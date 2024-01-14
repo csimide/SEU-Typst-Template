@@ -171,8 +171,24 @@
 #{
   set align(center)
   v(1cm)
-  set text(font: "STZhongsong", size: 字号.小初, weight: "bold")
-  [WIP]
+  set text(font: "Times New Roman", size: 24pt)
+  upper(lorem(13))
+
+  v(1cm)
+
+  set text(16pt)
+  set par(leading: 1.5em)
+  set block(spacing: 1.8cm)
+  [A Thesis submitted to \ Southeast University \ For the Academic Degree of Master of Touchfish]
+
+  parbreak()
+  [BY \ Someone]
+  parbreak()
+  [Supervised by \ Prof. Advisor’s Name \ and \ Associate Prof. Co-advisor’s Name]
+  parbreak()
+
+  [School of Touchfish \ Southeast University \ Jan 14, 2024]
+  
 }
 
 #pagebreak(weak: true)
