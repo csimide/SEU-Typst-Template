@@ -189,7 +189,7 @@
 
         if el.level == 1 {
           set text(weight: firstlevelfontweight)
-          if el.numbering == chinesenumbering {
+          if el.numbering == chinesenumbering and el.body.text != "致谢" {
             chinesenumbering(..counter(heading).at(el.location()), location: el.location())
             h(0.5em)
           }
@@ -262,7 +262,7 @@
       it
     }
 
-    if thesistype == "Undergraduate" and it.body.text in ("摘要", "目录", "致谢") {
+    if thesistype == "Undergraduate" and it.body.text in ("摘要", "目录", "致谢", "ABSTRACT") {
       if it.body.text == "目录" {v(5pt)} else {v(1em)}
     }
 
