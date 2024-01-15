@@ -1,4 +1,4 @@
-#import "template/main.typ": *
+#import "template/graduation.typ": *
 #import "@preview/tablex:0.0.8": tablex, rowspanx, colspanx
 
 #show: doc => conf(

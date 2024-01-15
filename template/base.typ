@@ -38,6 +38,7 @@
 #let equationcounter = counter(math.equation)
 
 #let partstate = state("part", "封面")
+#let skippedstate = state("skip", false)
 
 #let switchtopart(part) = {
   partstate.update(part)
@@ -148,16 +149,6 @@
     }
   }
 })
-
-#let smartpagebreak = () => {
-  if alwaysstartodd {
-    skippedstate.update(true)
-    pagebreak(to: "odd", weak: true)
-    skippedstate.update(false)
-  } else {
-    pagebreak(weak: true)
-  }
-}
 
 #let cnoutline(
   outlinedepth: 3, 
