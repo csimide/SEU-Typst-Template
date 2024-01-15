@@ -68,6 +68,7 @@
     }
   }
 
+
   #set text(font: 字体.宋体, size: 字号.小四, weight: "regular", lang: "zh")
   #set par(justify: true, first-line-indent: 2em)
 
@@ -144,7 +145,7 @@
   #show bibliography: it => {
     partstate.update("参考文献")
     it
-    pagebreak(weak: true)
+    smartpagebreak()
     appendix()
   }
 
@@ -158,7 +159,9 @@
   // 标题 heading
 
   #show heading: it => {
-    smartpagebreak()
+    if it.level == 1 {
+      smartpagebreak()
+    }
     showheading(
       headingtopmargin: (1cm, 0cm, 0cm),
       headingbottommargin: (1cm, 0cm, 0cm),
@@ -169,7 +172,8 @@
       ),
       thesistype: "Degree",
       it
-  )}
+    )
+  }
 
   #set page(margin: (top: 2cm, bottom: 2cm, left:2cm, right: 2cm))
 
@@ -177,6 +181,7 @@
   #partstate.update("封面")
   #{
     set align(center + top)
+    set par(first-line-indent: 0pt)
     image("image/cover_school.png", height: 11cm)
 
     v(-11cm)
@@ -253,7 +258,7 @@
       text(font: 字体.宋体, "导师姓名".clusters().join(h(1em/3))),
       [：], 
       chineseunderline(
-        advisors.map(it => it.CN + it.CNTitle).join("\n")
+        advisors.map(it => it.CN + " " + it.CNTitle).join("\n")
       )
     )
 
@@ -300,6 +305,7 @@
   // 中文扉页
   #{
     set align(center)
+    set par(first-line-indent: 0pt)
     v(1cm)
     set text(font: "STZhongsong", size: 字号.小初, weight: "bold")
     image("image/seu.png", width: 5em)
@@ -327,7 +333,7 @@
 
       text(font: 字体.黑体, "导师姓名".clusters().join(h(1em/3))), 
       "：", 
-      chineseunderline(advisors.map(it => it.CN + it.CNTitle).join("\n")),
+      chineseunderline(advisors.map(it => it.CN + " " + it.CNTitle).join("\n")),
     )
 
     align(left + bottom, text(font: 字体.宋体, size: 字号.小四, thanks))
@@ -337,6 +343,7 @@
 
   // 英文扉页
   #{
+    set par(first-line-indent: 0pt)
     set align(center)
     v(1cm)
     set text(font: "Times New Roman", size: 24pt)
@@ -357,7 +364,7 @@
     parbreak()
     [Supervised by]
     linebreak()
-    advisors.map(it => it.ENTitle + "\n" + it.EN).join("\n and \n")
+    advisors.map(it => it.ENTitle + " " + it.EN).join("\n and \n")
     
     parbreak()
 
@@ -509,25 +516,51 @@
   #partstate.update("正文")
   #[
     #set page(
-      header: locate(loc => {
-        set align(center)
-        set text(font: 字体.宋体, size: 字号.小五, lang: "zh")
-        if calc.even(loc.page()) {
-          thesisname.heading
-        } else{
-          let thischapterheading = query(selector(heading.where(level: 1)).before(
-            query(selector(<__footer__>).after(loc), loc).first().location()
-          ), loc).last()
+      header: locate(loc => [
+        #{
+          set align(center)
+          
+          set text(font: 字体.宋体, size: 字号.小五, lang: "zh")
+          if calc.even(loc.page()) {
+            thesisname.heading
+          } else {
 
-          if thischapterheading.numbering == chinesenumbering and thischapterheading.body.text != "致谢" {
-            chinesenumbering(..counter(heading).at(thischapterheading.location()), location: thischapterheading.location())
-            h(1em)
+              // 这里是要找到这个页眉对应的一级章节
+              // 但是由于一级标题换页是在 show 中实现的，也就是说， heading 可能是开始于上一页、结束于下一页的。
+              // 所以跨页的情况很麻烦，最后通过两次查询（查一次 label 查一次 heading）实现
+              // label 可以保证与标题几个字在同一页上，heading 锚点在 label 之前
+
+              // 先记录当前页眉所在的页码
+              let thispage = loc.page()
+
+              // 记录这里之后的页眉和标题+之前的标题
+              let nextheadings = query(
+                selector(<__l1heading__>).after(loc),
+                loc
+              )
+              
+              let thisheadinglabelloc = if nextheadings != () and nextheadings.first().location().page() == thispage {
+                nextheadings.first().location()
+              } else {
+                query(
+                  selector(<__l1heading__>).before(loc),
+                  loc
+                ).last().location()
+              }
+
+              let thischapterheading = query(selector(heading.where(level: 1)).before(thisheadinglabelloc), thisheadinglabelloc).last()
+
+              if thischapterheading.numbering == chinesenumbering and thischapterheading.body.text != "致谢" {
+                chinesenumbering(..counter(heading).at(thischapterheading.location()), location: thischapterheading.location())
+                h(1em) 
+              }
+              thischapterheading.body.text
           }
-          thischapterheading.body.text
         }
-        v(-0.5em)
-        line(length: 100%, stroke: (thickness: 0.5pt))
-      }), 
+        #label("__header__")
+        #v(-0.5em)
+        #line(length: 100%, stroke: (thickness: 0.5pt))
+  ]), 
       footer: locate(loc => {
         pagecounter.step()
         set text(font: 字体.宋体, size: 字号.小五)
@@ -546,6 +579,8 @@
     #set heading(numbering: chinesenumbering)
 
     #set par(first-line-indent: 2em, justify: true, leading: 0.8em)
+
+    #pagebreak(to: "odd", weak: true)
 
     #doc
   ]

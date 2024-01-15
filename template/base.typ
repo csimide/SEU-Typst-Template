@@ -37,8 +37,10 @@
 #let pagecounter = counter("page")
 #let equationcounter = counter(math.equation)
 
+
 #let partstate = state("part", "封面")
 #let skippedstate = state("skip", false)
+#let headingstate = state("heading", none)
 
 #let switchtopart(part) = {
   partstate.update(part)
@@ -167,12 +169,19 @@
   )[目录]
 
   #set text(font: 字体.宋体, size: 字号.小四)
-  #set par(leading: itemspacing)
+  #set par(leading: itemspacing, first-line-indent: 0pt)
   #set block(spacing: if firstlevelspacing != none {firstlevelspacing} else {itemspacing})
 
   #locate(loc => {
     let elems = query(heading.where(outlined: true), loc)
     for el in elems {
+
+      let el_real_loc = if el.level == 1 {
+        query(selector(<__l1heading__>).after(el.location()), el.location()).first().location()
+      } else {
+        el.location()
+      }
+
       let outlineline = {
         if (el.level == 1) {parbreak()}
 
@@ -201,13 +210,14 @@
 
         box(width: 1fr, h(10pt) + box(width: 1fr, repeat[.]) + h(10pt))
 
-        let footer = query(selector(<__footer__>).after(el.location()), el.location())
+
+        let footer = query(selector(<__footer__>).after(el_real_loc), el_real_loc)
         footer.first()
 
           linebreak()
       }
 
-      link(el.location())[#outlineline]
+      link(el_real_loc)[#outlineline]
 
     }
   })
@@ -226,7 +236,7 @@
 ) = [
   #set par(first-line-indent: 0em)
 
-  #if it.level == 1 {
+  #if it.level == 1 and thesistype == "Undergraduate" {
     pagebreak(weak: true)
   }
 
@@ -240,22 +250,28 @@
     set align(center)
     set text(..headingtext.at(0))
 
-
-    if it.numbering == none or it.body.text == "致谢"{
-      if it.body.text.clusters().len() == 2 {
-        it.body.text.first()
-        h(2em)
-        it.body.text.last()
-      } else {
-        it.body.text
-      }
-    } else {
-      it
-    }
+    [
+      #[
+        #if it.numbering == none or it.body.text == "致谢"{
+          if it.body.text.clusters().len() == 2 {
+            it.body.text.first()
+            h(2em)
+            it.body.text.last()
+          } else {
+            it.body.text
+          }
+        } else {
+          it
+        }
+      ]
+      #label("__l1heading__")
+    ]
+    
 
     if thesistype == "Undergraduate" and it.body.text in ("摘要", "目录", "致谢", "ABSTRACT") {
       if it.body.text == "目录" {v(5pt)} else {v(1em)}
     }
+    
 
     locate(loc => {
       let itpart = partstate.at(loc)
@@ -266,6 +282,7 @@
         appendixcounter.step()
       }
     })
+    
   } else {
     set text(..headingtext.at(
       it.level - 1,
