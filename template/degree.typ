@@ -12,6 +12,82 @@
 
 #set text(font: 字体.宋体, size: 字号.小四, weight: "regular")
 
+#show figure.caption: it => {
+  if it.kind != table {
+    v(0.5em)
+  } // 图和图序号行间隔 0.5em
+
+  set text(font: 字体.宋体, size: 字号.五号, weight: "regular")
+
+  locate(loc => {
+    let baseloc = query(
+      selector(
+        heading.where(level: 1)
+      ).before(loc), 
+      loc
+    ).last().location()
+    // 使用此一级章节的开始处作为基准点
+    
+    it.supplement // "图 1-1" "表 1-2" 里的 "图" "表" 字符
+
+    if appendixcounter.at(loc).first() == 0 {
+      numbering(
+        if it.kind == table {"1.1"} else {"1-1"}, 
+        chaptercounter.at(loc).first(), // 章节号
+        (
+          counter(figure.where(kind: it.kind))
+          .at(loc)
+          .first() - 
+          counter(figure.where(kind: it.kind))
+          .at(baseloc)
+          .first()
+        ) // 图序号，使用总序号减章节开始时序号实现
+      )
+    } else {
+      numbering(
+        if it.kind == table {"A.1"} else {"A-1"}, 
+        chaptercounter.at(loc).first(), // 章节号
+        (
+          counter(figure.where(kind: it.kind))
+          .at(loc)
+          .first() - 
+          counter(figure.where(kind: it.kind))
+          .at(baseloc)
+          .first()
+        ) // 图序号，使用总序号减章节开始时序号实现
+      )
+    }
+  })
+  h(0.5em) // numbering 和 body 之间隔1个空格
+  it.body
+
+  if it.kind == table {
+    v(0.5em)
+  } // 表格序号行和表格间隔 0.5em
+}
+
+#show figure.where(
+  kind: table
+): set figure.caption(position: top)
+
+#show figure: it => {
+  if it.kind == table {
+    it
+    v(0.5em)
+  } else if it.kind == image {
+    v(0.5em)
+    it
+  }
+}
+
+#set math.equation(numbering: it => {
+  locate(loc => {
+    numbering("(1.1)", chaptercounter.at(loc).first(), equationcounter.at(loc).first())
+  })
+})
+
+
+
 // WIP
 // 思路：先做一个相似的文档，再模板化 
 
@@ -353,7 +429,6 @@
 // 参考文献格式
 #show bibliography: it => {
   partstate.update("参考文献")
-  set text(font: 字体.宋体, size: 字号.五号)
   it
   pagebreak(weak: true)
   appendix()
@@ -417,7 +492,18 @@
 
 #lorem(200)
 
+#figure(
+  image("../demo_image/24h_rain.png", width: 60%),
+  caption: "测试图片1"
+)
+
   = 测试章节2
+
+  $ 
+  alpha + beta = gamma \
+  1234567890
+  $
+  TODO: 编号当有续行时，应标注于最后一行的最右边。typst 没有提供修改位置的选项，todo用 `#show` 重新实现一下编号。或许之后还需要参考一下 LaTeX 模板的做法，如果 LaTeX 模板把编号放中间的话就不改位置了。
 
   == 测试小节21
 

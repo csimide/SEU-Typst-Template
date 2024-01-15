@@ -267,7 +267,7 @@
     }
 
     locate(loc => {
-      let itpart = partstate.at(loc).first()
+      let itpart = partstate.at(loc)
       equationcounter.update(0)
       if itpart == "正文" { 
         chaptercounter.step()
