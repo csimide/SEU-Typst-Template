@@ -36,46 +36,20 @@
   }
 
   // 每章节的标题
-  show heading: it => [
-    #set par(first-line-indent: 0em)
-    #if it.level == 1 {
-      pagebreak(weak: true)
-      
-    set align(center)
-    set text(font: 字体.黑体, size: 字号.三号, weight: "bold")
-    
-    if it.body.text in ("摘要", "目录", "致谢"){
-      it.body.text.first() 
-      h(2em)
-      it.body.text.last()
-      if it.body.text == "目录" {v(5pt)} else {v(1em)}
-    } else {
-      it
-    }
-    
-    locate(loc => {
-      let itpart = partcounter.at(loc).first()
-      equationcounter.update(0)
-      if itpart == 5 { // 正文5
-        chaptercounter.step()
-      } else if itpart == 7 { // 附录7
-        appendixcounter.step()
-      }
-    })
-    
-  } else if it.level == 2{
-      set text(font: 字体.黑体, size: 字号.四号, weight: "regular")
-      it
-    } else {
-      set text(font: 字体.宋体, size: 字号.小四, weight: "regular")
-      it
-    }
-  ]
-
-  show heading.where(body: "致谢"): set heading(numbering: none)
+  show heading: it => showheading(
+    headingtopmargin: (0cm, 0cm, 0cm),
+    headingbottommargin: (0cm, 0cm, 0cm),
+    headingtext: (
+      (font: 字体.黑体, size: 字号.三号, weight: "bold"),
+      (font: 字体.黑体, size: 字号.四号, weight: "regular"),
+      (font: 字体.宋体, size: 字号.小四, weight: "regular")
+    ),
+    thesistype: "Undergraduate",
+    it
+  )
 
   // 封面 Cover Page
-  partcounter.update(1)
+  partstate.update("封面")
   [
     #set align(center)
     #hide[#heading(outlined: false, bookmarked: true)[封面]]
@@ -121,7 +95,7 @@
   ]
 
   // 独创性声明
-  partcounter.update(2)
+  partstate.update("声明")
   [
     #v(80pt-0.5cm)
 
@@ -145,7 +119,7 @@
   pagecounter.update(1)
 
   // 摘要
-  partcounter.update(3)
+  partstate.update("摘要")
   [
 
     #set text(font: 字体.宋体, size: 字号.小四)
@@ -177,57 +151,16 @@
 
     
   // 目录
-  partcounter.update(4)
-  [
-    
-    #heading(numbering: none, outlined: true, bookmarked: true)[目录]
-
-    #set text(font: 字体.宋体, size: 字号.小四)
-    #set par(leading: 14pt)
-
-  #locate(loc => {
-    let elems = query(heading.where(outlined: true), loc)
-    for el in elems {
-      let outlineline = {
-        h((el.level) * 2em) // 这里level不需要减一，因为原版模板也偏右
-        if el.level == 1 {
-          if el.numbering == chinesenumbering {
-            chinesenumbering(..counter(heading).at(el.location()), location: el.location())
-            h(0.5em)
-          }
-
-          if el.body.text in ("摘要", "致谢", "目录") {
-            // 原始模板里加了空格
-            el.body.text.first() 
-            h(2em)
-            el.body.text.last()
-          } else {
-            el.body.text
-          }
-        } else if el.level <= outlinedepth and el.numbering == chinesenumbering {
-          chinesenumbering(..counter(heading).at(el.location()), location: el.location())
-            h(0.3em)
-            el.body.text
-        } else {continue}
-
-        box(width: 1fr, h(10pt) + box(width: 1fr, repeat[.]) + h(10pt))
-
-        let footer = query(selector(<__footer__>).after(el.location()), el.location())
-        footer.first()
-
-        linebreak()
-      }
-      
-
-      link(el.location())[#outlineline]
-
-      
-    }
-  })
-  ]
+  partstate.update("目录")
+  {
+    cnoutline(
+      outlinedepth: outlinedepth,
+      thesistype: "Undergraduate"
+    )
+  }
 
   // 正文
-  partcounter.update(5)
+  partstate.update("正文")
   [
     #set page(
       header: {
@@ -336,7 +269,7 @@
 
 
     #show bibliography: it => {
-      partcounter.update(6)
+      partstate.update("参考文献")
       set text(font: 字体.宋体, size: 字号.五号)
       it
       pagebreak(weak: true)

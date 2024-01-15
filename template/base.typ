@@ -31,17 +31,27 @@
 
 
 #let lengthceil(len, unit: 字号.小四) = calc.ceil(len / unit) * unit
-#let partcounter = counter("part") 
-// 文档部分计数器，封面1，声明页2，摘要3，目录4，正文5，参考文献6，附录7，致谢8
+
 #let chaptercounter = counter("chapter")
 #let appendixcounter = counter("appendix")
 #let pagecounter = counter("page")
 #let equationcounter = counter(math.equation)
 
+#let partstate = state("part", "封面")
+
+#let switchtopart(part) = {
+  partstate.update(part)
+
+  if part == "正文" {
+
+  } else if part == "附录" {
+    appendixcounter.update(1)
+    counter(heading).update(0)
+  }
+}
+
 #let appendix() = {
-  partcounter.update(7)
-  appendixcounter.update(1)
-  counter(heading).update(0)
+  switchtopart("附录")
 }
 
 #let chineseunderline(s, width: 300pt, bold: false) = {
@@ -138,3 +148,143 @@
     }
   }
 })
+
+#let smartpagebreak = () => {
+  if alwaysstartodd {
+    skippedstate.update(true)
+    pagebreak(to: "odd", weak: true)
+    skippedstate.update(false)
+  } else {
+    pagebreak(weak: true)
+  }
+}
+
+#let cnoutline(
+  outlinedepth: 3, 
+  thesistype: "Undergraduate",
+  baseindent: 1em,
+  firstlevelspacing: none,
+  firstlevelfontweight: "regular",
+  itemspacing: 14pt
+) = [
+  #partstate.update("目录")
+
+  #heading(
+    numbering: none, 
+    outlined: if thesistype == "Undergraduate" {true} else {false}, 
+    bookmarked: true
+  )[目录]
+
+  #set text(font: 字体.宋体, size: 字号.小四)
+  #set par(leading: itemspacing)
+  #set block(spacing: if firstlevelspacing != none {firstlevelspacing} else {itemspacing})
+
+  #locate(loc => {
+    let elems = query(heading.where(outlined: true), loc)
+    for el in elems {
+      let outlineline = {
+        if (el.level == 1) {parbreak()}
+
+        h((el.level - 1) * 2em + baseindent)
+
+        if el.level == 1 {
+          set text(weight: firstlevelfontweight)
+          if el.numbering == chinesenumbering {
+            chinesenumbering(..counter(heading).at(el.location()), location: el.location())
+            h(0.5em)
+          }
+
+          if el.body.text in ("摘要", "致谢", "目录") and thesistype == "Undergraduate" {
+            // 原始模板里加了空格
+            el.body.text.first() 
+            h(2em)
+            el.body.text.last()
+          } else {
+            el.body.text
+          }
+        } else if el.level <= outlinedepth and el.numbering == chinesenumbering {
+          chinesenumbering(..counter(heading).at(el.location()), location: el.location())
+            h(0.3em)
+            el.body.text
+        } else {continue}
+
+        box(width: 1fr, h(10pt) + box(width: 1fr, repeat[.]) + h(10pt))
+
+        let footer = query(selector(<__footer__>).after(el.location()), el.location())
+        footer.first()
+
+          linebreak()
+      }
+
+      link(el.location())[#outlineline]
+
+    }
+  })
+]
+
+#let showheading(
+  headingtopmargin: (0cm, 0cm, 0cm),
+  headingbottommargin: (0cm, 0cm, 0cm),
+  headingtext: (
+    (font: 字体.黑体, size: 字号.三号, weight: "bold"),
+    (font: 字体.黑体, size: 字号.四号, weight: "regular"),
+    (font: 字体.宋体, size: 字号.小四, weight: "regular")
+  ),
+  thesistype: "Undergraduate",
+  it
+) = [
+  #set par(first-line-indent: 0em)
+
+  #if it.level == 1 {
+    pagebreak(weak: true)
+  }
+
+  #v(headingtopmargin.at(
+    it.level - 1, 
+    default: headingtopmargin.at(2)
+  ))
+
+  #if it.level == 1 {
+
+    set align(center)
+    set text(..headingtext.at(0))
+
+
+    if it.numbering == none or it.body.text == "致谢"{
+      if it.body.text.clusters().len() == 2 {
+        it.body.text.first()
+        h(2em)
+        it.body.text.last()
+      } else {
+        it.body.text
+      }
+    } else {
+      it
+    }
+
+    if thesistype == "Undergraduate" and it.body.text in ("摘要", "目录", "致谢") {
+      if it.body.text == "目录" {v(5pt)} else {v(1em)}
+    }
+
+    locate(loc => {
+      let itpart = partstate.at(loc).first()
+      equationcounter.update(0)
+      if itpart == "正文" { 
+        chaptercounter.step()
+      } else if itpart == "附录" { 
+        appendixcounter.step()
+      }
+    })
+  } else {
+    set text(..headingtext.at(
+      it.level - 1,
+      default: headingtext.at(2)
+    ))
+    it
+  }
+
+  #v(headingbottommargin.at(
+    it.level - 1, 
+    default: headingbottommargin.at(2)
+  ))
+]

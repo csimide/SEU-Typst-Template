@@ -1,6 +1,16 @@
 #import "base.typ": *
 
+#let headingtopmargin = (1cm, 0cm, 0cm)
+#let headingbottommargin = (1cm, 0cm, 0cm)
+#let headingtext = (
+  (font: 字体.黑体, size: 字号.三号, weight: "bold"),
+  (font: 字体.宋体, size: 字号.四号, weight: "bold"),
+  (font: 字体.黑体, size: 字号.小四, weight: "bold"),
+)
+
 #set text(lang: "zh")
+
+#set text(font: 字体.宋体, size: 字号.小四, weight: "regular")
 
 // WIP
 // 思路：先做一个相似的文档，再模板化 
@@ -206,7 +216,7 @@
   set text(font: 字体.宋体, size: 10.6pt, lang: "zh")
   // 字号来自“附件1：学位论文独创性和使用授权声明.pdf”
 
-  set par(first-line-indent: 2em, leading: 1.5em)
+  set par(first-line-indent: 2em, leading: 1.5em, justify: true)
   set block(spacing: 1.5em)
 
   set align(horizon)
@@ -250,3 +260,189 @@
     ))
   })
 }
+
+// 标题 heading
+
+#show heading: it => {showheading(
+  headingtopmargin: (1cm, 0cm, 0cm),
+  headingbottommargin: (1cm, 0cm, 0cm),
+  headingtext: (
+    (font: 字体.黑体, size: 字号.三号, weight: "regular"),
+    (font: 字体.宋体, size: 字号.四号, weight: "bold"),
+    (font: 字体.黑体, size: 字号.小四, weight: "regular"),
+  ),
+  thesistype: "Degree",
+  it
+)}
+
+#pagebreak(weak: true)
+
+// 从摘要开始使用罗马字符标识页码
+#set page(footer: locate(loc => {
+  pagecounter.step()
+  set text(font: 字体.宋体, size: 字号.小五)
+  set align(center)
+  [
+    #numbering("I", pagecounter.at(loc).first())
+    #label("__footer__")
+  ]
+}))
+#pagecounter.update(1)
+
+// 中文摘要
+#{
+  set par(first-line-indent: 2em, justify: true)
+  heading(numbering: none, level: 1, outlined: true, bookmarked: true)[摘要]
+
+  [论文摘要包括题名、硕士（博士）研究生姓名、导师姓名、学校名称、正文、关键词。中文约 500 字左右，英文约 200~300 词左右，二者应基本对应。它是论文内容的高度概括，应说明研究目的、研究方法、成果和结论，要突出本论文的创造性成果或新的见解，用语简洁、准确。论文摘要后还应注明本文的关键词 3 至 5 个。关键词应为公知公用的词和学术术语，不可采用自造字词和略写、符号等，词组不宜过长。]
+
+  v(1em)
+  parbreak()
+
+  text(weight: "bold")[关键词：]
+  [关键词，关键词，关键词]
+  parbreak()
+}
+
+#pagebreak(weak: true)
+// 英文摘要
+#{
+  set par(first-line-indent: 2em, justify: true)
+  heading(numbering: none, level: 1, outlined: true, bookmarked: true)[ABSTRACT]
+
+
+  lorem(300)
+
+  v(1em)
+  parbreak()
+
+  text(weight: "bold")[Keywords: ]
+  [Keyword1, Keyword2, Keyword3]
+}
+
+#pagebreak(weak: true)
+// 目录
+#switchtopart("目录")
+#cnoutline(
+  outlinedepth: 3, 
+  thesistype: "Degree",
+  baseindent: 0pt,
+  firstlevelspacing: 1.3em,
+  firstlevelfontweight: "bold",
+  itemspacing: 1em
+)
+
+#pagebreak(weak: true)
+
+// 注释表
+#switchtopart("注释表")
+#[
+  #heading(numbering: none, level: 1, outlined: true, bookmarked: true)[本论文专用术语的注释表]
+  #import "@preview/tablex:0.0.8": tablex, rowspanx, colspanx
+
+  #figure(
+    tablex(
+      columns: 2,
+      [test], [test]
+    ),
+    kind: table,
+    caption: "本论文专用术语（符号、变量、缩略词等）的注释表"
+  )
+]
+
+// 参考文献格式
+#show bibliography: it => {
+  partstate.update("参考文献")
+  set text(font: 字体.宋体, size: 字号.五号)
+  it
+  pagebreak(weak: true)
+  appendix()
+}
+
+// 正文
+#partstate.update("正文")
+#[
+  #set page(
+    header: locate(loc => {
+      set align(center)
+      set text(font: 字体.宋体, size: 字号.小五, lang: "zh")
+      if calc.even(loc.page()) {
+        "东南大学"
+      } else{
+        let thischapterheading = query(selector(heading.where(level: 1)).before(
+          query(selector(<__footer__>).after(loc), loc).first().location()
+        ), loc).last()
+
+        if thischapterheading.numbering == chinesenumbering and thischapterheading.body.text != "致谢" {
+          chinesenumbering(..counter(heading).at(thischapterheading.location()), location: thischapterheading.location())
+          h(1em)
+        }
+        thischapterheading.body.text
+      }
+      v(-0.5em)
+      line(length: 100%, stroke: (thickness: 0.5pt))
+    }), 
+    footer: locate(loc => {
+      pagecounter.step()
+      set text(font: 字体.宋体, size: 字号.小五)
+      set align(center)
+      [
+        #numbering("1", pagecounter.at(loc).first())
+        #label("__footer__")
+      ]
+    }), 
+    header-ascent: 15%,
+    footer-descent: 20%
+    )
+
+  #pagecounter.update(1)
+
+  #set heading(numbering: chinesenumbering)
+
+  #set par(first-line-indent: 2em, justify: true, leading: 0.8em)
+
+  = 测试章节1
+
+#lorem(200)
+
+#lorem(200)
+
+#lorem(200)
+
+#lorem(200)
+
+#lorem(200)
+
+#lorem(200)
+
+#lorem(200)
+
+  = 测试章节2
+
+  == 测试小节21
+
+#lorem(1000)
+
+== 测试小节22
+
+#lorem(200) @wang2010guide
+
+= 致谢
+ 
+#lorem(200) @kopka2004guide
+
+#bibliography(
+  "../ref.bib",
+  style: "gb-7714-2015-numeric"
+)
+
+= 测试附录1
+
+= 测试附录2
+
+== 附录小节21
+
+]
+
+
+
