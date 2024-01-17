@@ -509,8 +509,19 @@
         caption: "本论文专用术语（符号、变量、缩略词等）的注释表"
       )
     }
-    
   }
+
+  // 特殊处理：
+  // 由于 #set page() 会发生换页，因此这里不能简单使用 #smartpagebreak()
+  // 否则可能导致正文内有部分页面还是之前的 header / footer 
+  // 这里需要判断情况和强行加空白页
+  //  后续 set page 与前文的合并后，此处可以改用 smartpagebreak
+  // (TODO)
+  #locate(loc => {
+    if alwaysstartodd and calc.even(loc.page()) {
+      pagebreak()
+    }
+  })
 
   // 正文
   #partstate.update("正文")
@@ -560,7 +571,7 @@
         #label("__header__")
         #v(-0.5em)
         #line(length: 100%, stroke: (thickness: 0.5pt))
-  ]), 
+      ]), 
       footer: locate(loc => {
         pagecounter.step()
         set text(font: 字体.宋体, size: 字号.小五)
@@ -572,7 +583,7 @@
       }), 
       header-ascent: 15%,
       footer-descent: 20%
-      )
+    )
 
     #pagecounter.update(1)
 
