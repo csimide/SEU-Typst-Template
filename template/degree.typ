@@ -149,13 +149,15 @@
     appendix()
   }
 
-  // 公式序号显示（TODO: 修改显示方式以符合要求）
+  // 公式序号显示：格式
   #set math.equation(numbering: it => {
     locate(loc => {
       numbering("(1.1)", chaptercounter.at(loc).first(), equationcounter.at(loc).first())
     })
   })
 
+  // 公式序号显示：右侧最下一行
+  // 参考 https://github.com/typst/typst/discussions/3106
   #show math.equation: eq => {
     // apply custom style only to block equations with numbering enabled
     if eq.block and eq.numbering != none {
