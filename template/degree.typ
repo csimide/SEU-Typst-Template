@@ -156,6 +156,27 @@
     })
   })
 
+  #show math.equation: eq => {
+    // apply custom style only to block equations with numbering enabled
+    if eq.block and eq.numbering != none {
+      // default numbering of the equation
+      let eqCounter = counter(math.equation).at(eq.location())
+      let eqNumbering = numbering(eq.numbering, ..eqCounter)
+    
+      grid(
+        // change "0pt" to "auto" to give the numbering its own space on the line
+        columns: (1fr, 0pt),
+        
+        // note that "numbering: none" avoids infinite recursion
+        math.equation(eq.body, block: true, numbering: none),
+
+        align(right + bottom)[#eqNumbering],
+      )
+    } else {
+      eq
+    }
+  }
+
   // 标题 heading
 
   #show heading: it => {
