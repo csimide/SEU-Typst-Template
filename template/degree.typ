@@ -55,6 +55,7 @@
   enkeywords: ("Keywords1", "Keywords2"),
   alwaysstartodd: false,
   terminology: none,
+  anonymous: false,
   doc,
 ) = [
   
@@ -522,15 +523,7 @@
     switchtopart("注释表")
     {
       heading(numbering: none, level: 1, outlined: true, bookmarked: true)[本论文专用术语的注释表]
-      import "@preview/tablex:0.0.8": tablex, rowspanx, colspanx
-      figure(
-        tablex(
-          columns: 2,
-          [test], [test]
-        ),
-        kind: table,
-        caption: "本论文专用术语（符号、变量、缩略词等）的注释表"
-      )
+      terminology
     }
   }
 
