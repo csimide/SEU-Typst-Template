@@ -37,8 +37,8 @@
 
   // 每章节的标题
   show heading: it => showheading(
-    headingtopmargin: (0cm, 0cm, 0cm),
-    headingbottommargin: (0cm, 0cm, 0cm),
+    headingtopmargin: (2pt, 0cm, 0cm),
+    headingbottommargin: (0cm, 5pt, 0cm),
     headingtext: (
       (font: 字体.黑体, size: 字号.三号, weight: "bold"),
       (font: 字体.黑体, size: 字号.四号, weight: "regular"),
@@ -123,9 +123,9 @@
   [
 
     #set text(font: 字体.宋体, size: 字号.小四)
-    #set par(first-line-indent: 2em, leading: 14pt, justify: true)
-    #show par: set block(spacing: 14pt)
-    // 这个14pt是试出来的，用模板里的22pt直接寄
+    #set par(first-line-indent: 2em, leading: 16pt, justify: true)
+    #show par: set block(spacing: 16pt)
+    // 这个16pt是试出来的，用模板里的22pt直接寄
 
   #heading(outlined: true, bookmarked: true, level: 1)[摘要]
 
@@ -188,7 +188,8 @@
 
     #set heading(numbering: chinesenumbering)
 
-    #set par(first-line-indent: 2em, leading: 14pt, justify: true)
+    #set par(first-line-indent: 2em, leading: 16pt, justify: true)
+    #show par: set block(spacing: 16pt)
 
     #set text(font: 字体.宋体, size: 字号.小四, weight: "regular", lang: "zh")
 
