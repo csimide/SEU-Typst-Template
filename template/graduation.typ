@@ -139,7 +139,7 @@
 
   #heading(outlined: true, bookmarked: true, level: 1)[ABSTRACT]
 
-  #h(2em) #enabstract
+  #enabstract
 
   #linebreak()
 
