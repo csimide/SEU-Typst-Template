@@ -169,8 +169,8 @@
   )[目录]
 
   #set text(font: 字体.宋体, size: 字号.小四)
+
   #set par(leading: itemspacing, first-line-indent: 0pt)
-  #set block(spacing: if firstlevelspacing != none {firstlevelspacing} else {itemspacing})
 
   #locate(loc => {
     let elems = query(heading.where(outlined: true), loc)
@@ -183,7 +183,10 @@
       }
 
       let outlineline = {
-        if (el.level == 1) {parbreak()}
+        if (el.level == 1) {
+          v(if firstlevelspacing != none {firstlevelspacing} else {itemspacing} - 1em)
+          // 一级标题前更长的空间
+        }
 
         h((el.level - 1) * 2em + baseindent)
 
@@ -295,4 +298,7 @@
     it.level - 1, 
     default: headingbottommargin.at(2)
   ))
+
+  #text()[#v(0em, weak: true)]
+  #text()[#h(0em)]
 ]
