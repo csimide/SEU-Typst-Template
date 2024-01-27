@@ -20,9 +20,7 @@
 
 此 Typst 模板基于[《东南大学研究生学位论文格式规定》](https://seugs.seu.edu.cn/_upload/article/files/5d/c2/abe9785f44c8b3ea4823f14bfb92/cd829a73-1b86-400d-9bce-2c4b4fdb85b7.pdf)制作，制作时参考了 [SEUThesis 模板](https://ctan.math.utah.edu/ctan/tex-archive/macros/latex/contrib/seuthesis/seuthesis.pdf)。
 
-模板主文件是 `template/degree.typ`。目前，此模板已是初步成品。
-
-目前 `demo_degree_thesis.typ` 暂时是只有元数据和少量内容的近乎空白的文档，不能反应模板支持的内容。其对应的 `demo_degree_thesis.pdf` 也不是最新模板的状态。
+模板主文件是 `template/degree.typ`。目前，此模板已是初步成品。您可以打开 `demo_degree_thesis.pdf` 查看效果。
 
 ### 说明
 
@@ -87,12 +85,12 @@
 
 学位：
 
-- [ ] 格式细化。
+- [x] 格式细化。
 - [x] 修复自动切换奇数页。
 - [x] 公式编号位置调整到最后一行。
-- [ ] Demo PDF。
-- [ ] 基本文档。
-- [ ] 使用教程。
+- [x] Demo PDF。
+- [x] 基本文档。
+- [x] 使用教程。
 - [ ] 为正文前的章节添加页眉（合并 header）。
 - [ ] 盲审版本。
 
