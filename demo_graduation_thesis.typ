@@ -1,6 +1,5 @@
-#import "template/graduation.typ": *
+#import "template/graduation.typ": conf
 #import "@preview/tablex:0.0.8": tablex, rowspanx, colspanx
-#import "@preview/codelst:2.0.0": sourcecode
 #import "@preview/sourcerer:0.2.1": code
 
 #show: doc => conf(
@@ -49,7 +48,7 @@ ABSTRACT为三号Times New Roman加粗居中。
 
 == 研究现状
 
-#h(2em)目前，由于宋体（SimSun）、黑体（SimHei）均是单一字重字体，而 Typst 0.10.0 尚未加入伪粗体的支持，本文档的中文部分暂时无法加粗。章节大标题等需要加粗的地方也未加粗。因 https://github.com/typst/typst/pull/2970 已经合并了改善字体描边功能的 PR，预计在之后的版本中即可直接或间接使用伪粗体。
+#h(2em)目前，由于宋体（SimSun）、黑体（SimHei）均是单一字重字体，而 Typst 0.10.0 尚未加入伪粗体的支持，本文档的中文部分暂时无法加粗。章节大标题等需要加粗的地方也未加粗。因 https://github.com/typst/typst/pull/2970 已经合并了改善字体描边功能的 PR，预计在之后的版本中即可直接或间接使用伪粗体，届时本模板亦将相应修改。
 
 == 本文研究内容
 
@@ -70,8 +69,6 @@ ABSTRACT为三号Times New Roman加粗居中。
 
 本模板采用按章节编号的方式。如果需要插入带自动编号的图片，需要使用`#figure`。例如，使用下面的代码插入带编号的图片：
 
-#show raw: set text(font: "SimHei")
-
 #code(
   numbering: true,
   radius: 0pt,
@@ -91,7 +88,7 @@ ABSTRACT为三号Times New Roman加粗居中。
 
 #h(2em) 通常情况下，插入图、表等组件后，后续的首个段落会丢失首行缩进，需要使用 `#h(2em)` 手动补充缩进。
 
-如一个插图由两个及以上的分图组成，分图用(a)、(b)、(c)等标出，并标出分图名。这时，需要使用 `#grid` 来构建。`#grid` 用于绘制“网格”布局。例如：
+如一个插图由两个及以上的分图组成，分图用(a)、(b)、(c)等标出，并标出分图名。目前，本模板尚未实现分图的字母自送编号。如需要分图，需要使用 `#grid` 来构建。例如：
 
 #code(
   numbering: true,
@@ -102,7 +99,7 @@ ABSTRACT为三号Times New Roman加粗居中。
     grid(
       columns: (3.83cm, 5.51cm),
       image("./demo_image/2-2a.png") + "(a) 速度障碍集合", 
-      image("./demo_image/2-2b.png") + " (b) 避免碰撞集合"
+      image("./demo_image/2-2b.png") + "(b) 避免碰撞集合"
     ),
     caption: "速度障碍法速度选择"
   )
@@ -113,7 +110,7 @@ ABSTRACT为三号Times New Roman加粗居中。
   grid(
     columns: (3.83cm, 5.51cm),
     image("./demo_image/2-2a.png") + "(a) 速度障碍集合", 
-    image("./demo_image/2-2b.png") + " (b) 避免碰撞集合"
+    image("./demo_image/2-2b.png") + "(b) 避免碰撞集合"
   ),
   caption: "速度障碍法速度选择"
 )
@@ -225,11 +222,14 @@ $ E_"ocv" &= 1.229 - 0.85 times 10^(-3) (T_"st" - T_0) \
 
 注释应当采用 `#footnote` 插入。如上方的“马尔科夫链”及其注释，是通过下面的代码插入的。
 
-#sourcecode[
-```
+#code(
+  numbering: true,
+  radius: 0pt,
+  text-style: (font: ("Courier New", "SimHei")),
+```typst
 马尔可夫链#footnote[马尔可夫链表示……]
 ```
-] 
+)
 
 
 = 总结与展望
@@ -306,3 +306,5 @@ $ a^2 + b^2 = c^2 $
 “致谢”用三号黑体加粗居中，两字之间空4个半角空格。致谢内容为小四号宋体，1.5倍行距。
 
 使用 `= 致谢` 作为一级标题时，该章节不会编号。请不要在非文末使用 `致谢` 作为一级标题，否则会导致编号不正确。
+
+由于自动生成盲审版本的需求，本模板后续可能会调整致谢的实现方式。
