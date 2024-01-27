@@ -1,6 +1,7 @@
 #import "template/graduation.typ": *
 #import "@preview/tablex:0.0.8": tablex, rowspanx, colspanx
 #import "@preview/codelst:2.0.0": sourcecode
+#import "@preview/sourcerer:0.2.1": code
 
 #show: doc => conf(
   studentID: "00121001",
@@ -69,14 +70,19 @@ ABSTRACT为三号Times New Roman加粗居中。
 
 本模板采用按章节编号的方式。如果需要插入带自动编号的图片，需要使用`#figure`。例如，使用下面的代码插入带编号的图片：
 
-#sourcecode[
-```
-#figure(
-  image("./demo_image/24h_rain.png", width: 8.36cm),// 宽度/高度需要自行调整
-  caption: [每小时降水量24小时均值分布图]
+#show raw: set text(font: "SimHei")
+
+#code(
+  numbering: true,
+  radius: 0pt,
+  text-style: (font: ("Courier New", "SimHei")),
+  ```typst
+  #figure(
+    image("./demo_image/24h_rain.png", width: 8.36cm),// 宽度/高度需要自行调整
+    caption: [每小时降水量24小时均值分布图]
+  )
+  ```
 )
-```
-]
 
 #figure(
   image("./demo_image/24h_rain.png", width: 8.36cm),
@@ -87,18 +93,21 @@ ABSTRACT为三号Times New Roman加粗居中。
 
 如一个插图由两个及以上的分图组成，分图用(a)、(b)、(c)等标出，并标出分图名。这时，需要使用 `#grid` 来构建。`#grid` 用于绘制“网格”布局。例如：
 
-#sourcecode[
-```
-#figure(
-  grid(
-    columns: (3.83cm, 5.51cm),
-    image("./demo_image/2-2a.png") + "(a) 速度障碍集合", 
-    image("./demo_image/2-2b.png") + " (b) 避免碰撞集合"
-  ),
-  caption: "速度障碍法速度选择"
+#code(
+  numbering: true,
+  radius: 0pt,
+  text-style: (font: ("Courier New", "SimHei")),
+  ```typst
+  #figure(
+    grid(
+      columns: (3.83cm, 5.51cm),
+      image("./demo_image/2-2a.png") + "(a) 速度障碍集合", 
+      image("./demo_image/2-2b.png") + " (b) 避免碰撞集合"
+    ),
+    caption: "速度障碍法速度选择"
+  )
+  ```
 )
-```
-]
 
 #figure(
   grid(
@@ -122,8 +131,11 @@ ABSTRACT为三号Times New Roman加粗居中。
 表格居中，边框为黑色直线1磅，中文为五号宋体，英文及数字为五号Times New Roman字体，表序与表名之间空一格，表格与下文之间空一行。
 
 
-#sourcecode[
-```
+#code(
+  numbering: true,
+  radius: 0pt,
+  text-style: (font: ("Courier New", "SimHei")),
+```typst
 #figure(
   tablex(
     columns: 13 ,
@@ -145,7 +157,7 @@ ABSTRACT为三号Times New Roman加粗居中。
   kind: table // 使用 tablex 时要手动指定一下kind
 )
 ```
-]
+)
 
 
 
@@ -191,13 +203,16 @@ $ alpha + beta = gamma $
 
 多行公式可以使用 `\ ` 换行（反斜杠紧跟空格或者反斜杠紧跟换行）。与 LaTeX 类似，`&` 可以用于声明对齐关系。
 
-#sourcecode[
-```
-$ E_"ocv" &= 1.229 - 0.85 times 10^(-3) (T_"st" - T_0) \
-  &+ 4.3085 times 10^(-5) T_"st" [ln(P_H_2/1.01325)+1/2 ln(P_O_2/1.01325)] 
-$
-```
-]
+#code(
+  numbering: true,
+  radius: 0pt,
+  text-style: (font: ("Courier New", "SimHei")),
+  ```typst
+  $ E_"ocv" &= 1.229 - 0.85 times 10^(-3) (T_"st" - T_0) \
+    &+ 4.3085 times 10^(-5) T_"st" [ln(P_H_2/1.01325)+1/2 ln(P_O_2/1.01325)] 
+  $
+  ```
+)
 
 $ E_"ocv" &= 1.229 - 0.85 times 10^(-3) (T_"st" - T_0) \
   &+ 4.3085 times 10^(-5) T_"st" [ln(P_H_2/1.01325)+1/2 ln(P_O_2/1.01325)] 
@@ -234,13 +249,16 @@ $ E_"ocv" &= 1.229 - 0.85 times 10^(-3) (T_"st" - T_0) \
 #h(2em)参考文献需要使用 bib 格式的引用文献表，再在正文中通过 `@labelname` 方式引用。如
 
 
-#sourcecode[
-```
+#code(
+  numbering: true,
+  radius: 0pt,
+  text-style: (font: ("Courier New", "SimHei")),
+```typst
 这里有一段话 @kopka2004guide.
 
 引用多个会自动合并 @kopka2004guide @wang2010guide 。
 ```
-] 
+) 
 
 #h(2em)这里有一段话 @kopka2004guide，引用多个会自动合并 @kopka2004guide @wang2010guide 。
 
@@ -250,14 +268,17 @@ $ E_"ocv" &= 1.229 - 0.85 times 10^(-3) (T_"st" - T_0) \
 
 完成上述操作后，在正文的末尾，添加
 
-#sourcecode[
-```
+#code(
+  numbering: true,
+  radius: 0pt,
+  text-style: (font: ("Courier New", "SimHei")),
+```typst
 #bibliography(
   "ref.bib", // 替换为自己的bib路径
   style: "gb-7714-2015-numeric"
 )
 ```
-] 
+) 
 
 #h(2em)就会自动生成参考文献表。demo 使用的 `ref.bib` 来自 https://github.com/lucifer1004/pkuthss-typst 。
 
@@ -268,11 +289,14 @@ $ E_"ocv" &= 1.229 - 0.85 times 10^(-3) (T_"st" - T_0) \
   style: "gb-7714-2015-numeric"
 )
 
-= 模板使用说明
+= 这里是附录内容
 
 == 附录测试1
 
-附录测试1内容
+#h(2em)在参考文献之后的章节会自动编为附录。同样，图表等要素在此都会使用 A B C 序号。例如：
+
+$ a^2 + b^2 = c^2 $
+
 
 
 = 致谢

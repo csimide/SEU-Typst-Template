@@ -48,7 +48,7 @@
   if part == "正文" {
 
   } else if part == "附录" {
-    appendixcounter.update(1)
+    appendixcounter.update(0)
     counter(heading).update(0)
   }
 }
@@ -137,13 +137,13 @@
 
 #let chinesenumbering(..nums, location: none, brackets: false) = locate(loc => {
   let actual_loc = if location == none { loc } else { location }
-  if appendixcounter.at(actual_loc).first() == 0 {
+  if partstate.at(actual_loc) == "正文" {
     if nums.pos().len() == 1 {
       "第" + chinesenumber(nums.pos().first(), standalone: true) + "章"
     } else {
       numbering(if brackets { "(1.1)" } else { "1.1" }, ..nums)
     }
-  } else {
+  } else if partstate.at(actual_loc) == "附录" {
     if nums.pos().len() == 1 {
       "附录 " + numbering("A.1", ..nums)
     } else {

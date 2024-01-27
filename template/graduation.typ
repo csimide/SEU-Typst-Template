@@ -212,7 +212,7 @@
         
         it.supplement // "图 1-1" "表 1-2" 里的 "图" "表" 字符
 
-        if appendixcounter.at(loc).first() == 0 {
+        if partstate.at(loc) == "正文" {
           numbering(
             if it.kind == table {"1.1"} else {"1-1"}, 
             chaptercounter.at(loc).first(), // 章节号
@@ -225,10 +225,10 @@
               .first()
             ) // 图序号，使用总序号减章节开始时序号实现
           )
-        } else {
+        } else if partstate.at(loc) == "附录" {
           numbering(
             if it.kind == table {"A.1"} else {"A-1"}, 
-            chaptercounter.at(loc).first(), // 章节号
+            appendixcounter.at(loc).first(), // 章节号
             (
               counter(figure.where(kind: it.kind))
               .at(loc)
@@ -264,7 +264,11 @@
 
     #set math.equation(numbering: it => {
       locate(loc => {
-        numbering("(1.1)", chaptercounter.at(loc).first(), equationcounter.at(loc).first())
+        if partstate.at(loc) == "附录" {
+          numbering("(A.1)", appendixcounter.at(loc).first(), equationcounter.at(loc).first())
+        } else {
+          numbering("(1.1)", chaptercounter.at(loc).first(), equationcounter.at(loc).first())
+        }
       })
     })
 
