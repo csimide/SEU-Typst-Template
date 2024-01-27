@@ -71,7 +71,6 @@
 
 
   #set text(font: 字体.宋体, size: 字号.小四, weight: "regular", lang: "zh")
-  #set par(justify: true, first-line-indent: 2em)
 
   // 图和表格序号显示
   #show figure.caption: it => {
@@ -79,7 +78,7 @@
       v(0.5em)
     } // 图和图序号行间隔 0.5em
 
-    set text(font: 字体.宋体, size: 字号.五号, weight: "regular")
+    //set text(font: 字体.宋体, size: 字号.五号, weight: "regular")
 
     locate(loc => {
       let baseloc = query(
@@ -92,7 +91,7 @@
       
       it.supplement // "图 1-1" "表 1-2" 里的 "图" "表" 字符
 
-      if appendixcounter.at(loc).first() == 0 {
+      if partstate.at(loc) == "正文" {
         numbering(
           if it.kind == table {"1.1"} else {"1-1"}, 
           chaptercounter.at(loc).first(), // 章节号
@@ -105,10 +104,10 @@
             .first()
           ) // 图序号，使用总序号减章节开始时序号实现
         )
-      } else {
+      } else if partstate.at(loc) == "附录" {
         numbering(
-          if it.kind == table {"A.1"} else {"A-1"}, 
-          chaptercounter.at(loc).first(), // 章节号
+          "A-1", 
+          appendixcounter.at(loc).first(), // 章节号
           (
             counter(figure.where(kind: it.kind))
             .at(loc)
@@ -153,7 +152,11 @@
   // 公式序号显示：格式
   #set math.equation(numbering: it => {
     locate(loc => {
-      numbering("(1.1)", chaptercounter.at(loc).first(), equationcounter.at(loc).first())
+      if partstate.at(loc) == "附录" {
+        numbering("(A-1)", appendixcounter.at(loc).first(), equationcounter.at(loc).first())
+      } else {
+        numbering("(1.1)", chaptercounter.at(loc).first(), equationcounter.at(loc).first())
+      }
     })
   })
 
@@ -165,13 +168,17 @@
       // default numbering of the equation
       let eqCounter = counter(math.equation).at(eq.location())
       let eqNumbering = numbering(eq.numbering, ..eqCounter)
+
+      set align(left)
     
       grid(
         // change "0pt" to "auto" to give the numbering its own space on the line
-        columns: (1fr, 0pt),
+        columns: (4em, 100% - 4em, 0pt),
         
         // note that "numbering: none" avoids infinite recursion
-        math.equation(eq.body, block: true, numbering: none),
+        h(4em),
+        
+        block(math.equation(eq.body, block: true, numbering: none)),
 
         align(right + bottom)[#eqNumbering],
       )
@@ -360,7 +367,9 @@
       chineseunderline(advisors.map(it => it.CN + " " + it.CNTitle).join("\n")),
     )
 
-    align(left + bottom, text(font: 字体.宋体, size: 字号.小四, thanks))
+    if thanks != none {
+      place(bottom + left, text(font: 字体.宋体, size: 字号.小四, thanks))
+    }
   }
 
   #smartpagebreak()
@@ -370,12 +379,12 @@
     set par(first-line-indent: 0pt)
     set align(center)
     v(1cm)
-    set text(font: "Times New Roman", size: 24pt)
+    set text(font: "Times New Roman", size: 24pt, weight: "bold")
     upper(title.EN)
 
     v(1cm)
 
-    set text(16pt)
+    set text(16pt, weight: "regular")
     set par(leading: 1.5em)
     set block(spacing: 1.8cm)
     thesisname.EN
@@ -473,9 +482,11 @@
   #pagecounter.update(1)
   #smartpagebreak()
 
+  #set par(first-line-indent: 2em, justify: true, leading: 0.8em)
+  #show par: set block(spacing: 0.8em)
+
   // 中文摘要
   #{
-    set par(first-line-indent: 2em, justify: true)
     heading(numbering: none, level: 1, outlined: true, bookmarked: true)[摘要]
 
     cnabstract
@@ -491,7 +502,6 @@
   #smartpagebreak()
   // 英文摘要
   #{
-    set par(first-line-indent: 2em, justify: true)
     heading(numbering: none, level: 1, outlined: true, bookmarked: true)[ABSTRACT]
 
 
@@ -512,9 +522,9 @@
     outlinedepth: 3, 
     thesistype: "Degree",
     baseindent: 0pt,
-    firstlevelspacing: 1.3em,
+    firstlevelspacing: 1.4em,
     firstlevelfontweight: "bold",
-    itemspacing: 1em
+    itemspacing: .9em
   )
 
   // 注释表
@@ -604,8 +614,6 @@
     #pagecounter.update(1)
 
     #set heading(numbering: chinesenumbering)
-
-    #set par(first-line-indent: 2em, justify: true, leading: 0.8em)
 
     #pagebreak(to: "odd", weak: true)
 
