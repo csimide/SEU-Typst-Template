@@ -1,4 +1,4 @@
-#import "base.typ": *
+#import "utils.typ": *
 
 #let conf(
   studentID: "00121001",

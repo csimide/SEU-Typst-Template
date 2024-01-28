@@ -1,4 +1,4 @@
-#import "base.typ": *
+#import "utils.typ": *
 
 #let conf(
   author: (CN: "王东南", EN: "WANG Dong-nan", ID: "012345"),
