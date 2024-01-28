@@ -1,4 +1,4 @@
-#import "template/graduation.typ": conf
+#import "seu-thesis/bachelor.typ": conf
 #import "@preview/tablex:0.0.8": tablex, rowspanx, colspanx
 #import "@preview/sourcerer:0.2.1": code
 

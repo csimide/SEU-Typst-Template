@@ -1,4 +1,4 @@
-# 仿东南大学论文模板
+# 东南大学论文模板
 
 使用 Typst 复刻东大本科毕业设计模板和研究生学位论文模板。
 
@@ -8,70 +8,31 @@
 >
 > 此模板内可能仍然存在诸多格式问题。
 
+> [!NOTE]
+>
+> 可以看看隔壁 <https://github.com/TideDra/seu-thesis-typst/>项目，也在使用 Typst 复刻本科毕业设计模板，并提供了毕设翻译模板。
+
+此模板组参考了来自 <https://github.com/lucifer1004/pkuthss-typst> 的 typst 格式。在 `seu-thesis/utils.typ` 中使用了一部分来自此项目的代码。
+
 ## 本科毕业设计论文模板
 
 此 Typst 模板基于东南大学本科毕业设计论文模板（2019 年 9 月）仿制，原模板可以在[教务处网站](https://jwc.seu.edu.cn/2021/1108/c21686a389963/page.htm)上下载。
 
-此模板参考了来自 <https://github.com/lucifer1004/pkuthss-typst> 的 typst 格式。在 `template/graduation.typ` 中使用了一部分来自此项目的代码。
-
-模板主文件是 `template/graduation.typ`。目前，此模板已是初步成品。您可以打开 `demo_graduation_thesis.pdf` 查看效果。
+模板主文件是 `seu-thesis/bachelor.typ`。目前，此模板已是初步成品。您可以打开 `demo_graduation_thesis.pdf` 查看效果。
 
 ## 学位论文模板
 
 此 Typst 模板基于[《东南大学研究生学位论文格式规定》](https://seugs.seu.edu.cn/_upload/article/files/5d/c2/abe9785f44c8b3ea4823f14bfb92/cd829a73-1b86-400d-9bce-2c4b4fdb85b7.pdf)制作，制作时参考了 [SEUThesis 模板](https://ctan.math.utah.edu/ctan/tex-archive/macros/latex/contrib/seuthesis/seuthesis.pdf)。
 
-模板主文件是 `template/degree.typ`。目前，此模板已是初步成品。您可以打开 `demo_degree_thesis.pdf` 查看效果。
+模板主文件是 `seu-thesis/advanced-degree.typ`。目前，此模板已是初步成品。您可以打开 `demo_degree_thesis.pdf` 查看效果。
 
-### 说明
+## 说明
 
-如需使用，请仿照 `demo_degree_thesis.typ` 的内容填充元数据。由于我并不知道部分标线的合适长度，如果标线（特别是封面标线）长度不合适，请提交 Issue 或 PR 。
+如需使用，先安装 `fonts` 目录下的字体。如需在 Typst.app 在线使用，需要将字体移动到根目录，可能需要修改 `seu-thesis\utils.typ` 内的字体声明。
 
-按照研究生院给出的模板，文章顺序为
+此模板需要使用 Typst 0.10.0 编译，推荐在本地环境编译。您可以使用 VSCode 配合 Typst LSP、Typst Preview 等插件获得较佳的编辑体验。
 
-- 封面
-- 中文扉页
-- 英文扉页
-- 声明页
-- 中文摘要（从此处开始使用罗马字符标页码）
-- 英文摘要
-- 目录
-- 注释表（可选，续前罗马字符页码）
-- 正文（从此处开始使用阿拉伯数字标页码，并标记章节序号）
-- 致谢
-- 参考文献表
-- 附录
-- 封底（目前没做）
-
-其中，中文摘要（关键词）、英文摘要（关键词）均是通过模板 `conf()` 的参数传入的。注释表也是通过参数传入，但是我更建议在文档顶部定义一个变量再传入，否则太长放在参数里比较难看。中文摘要、英文摘要也可以使用类似方法。
-
-从正文到致谢仅需要使用 `= 致谢` 作为一级标题时，此时章节序号会自动消失。请在正文最后再使用 `= 致谢` ，否则致谢这一节也会占用一个章节序号。
-
-从致谢到参考文献表，只需要使用 `#bibliography` 插入自动生成的参考文献表，就会自动将环境调整为参考文献环境。参考文献环境后会自动进入附录环境。
-
-也就是说，代码会像这样：
-
-```typst
-= 正文最后一章节
-
-== 某一小节
-
-一些内容……
-
-= 致谢 // 会渲染为 "致    谢"，不带章节编号
-
-感谢 Typst 开发者。
-
-#bibliography(
-  "ref.bib",
-  style: "gb-7714-2015-numeric" // 不完全符合东大要求
-)
-
-= 示例标题 // 会渲染为 "附录A 示例标题"
-
-附录A内容……
-```
-
-封底暂时没做。
+模板的使用说明在各自的 Demo 文稿内。
 
 ## TODO List
 
@@ -108,6 +69,6 @@
 除下述特殊说明的文件外，此项目使用 MIT License 。
 
 - `demo_image` 路径下的文件来自东南大学教务处本科毕设模板。
-- `template/image` 路径下的文件来是由东南大学教务处模板经二次加工得到。
-- `font` 路径下的文件是此模板用到的字体。
+- `seu-thesis/image` 路径下的文件来是由东南大学教务处模板经二次加工得到。
+- `fonts` 路径下的文件是此模板用到的字体。
 - `毕业设计论文参考模板.docx` 是教务处提供的毕设论文模板。
