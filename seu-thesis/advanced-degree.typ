@@ -206,6 +206,61 @@
     )
   }
 
+  #show ref: it => {
+    let el = it.element
+
+    if el != none and el.func() == figure {
+      let loc = el.location()
+      let baseloc = query(
+        selector(
+          heading.where(level: 1)
+        ).before(loc), 
+        loc
+      ).last().location()
+
+      el.supplement
+      
+      if partstate.at(loc) == "正文" {
+        numbering(
+          if el.kind == table {"1.1"} else {"1-1"}, 
+          chaptercounter.at(loc).first(), // 章节号
+          (
+            counter(figure.where(kind: el.kind))
+            .at(loc)
+            .first() - 
+            counter(figure.where(kind: el.kind))
+            .at(baseloc)
+            .first()
+          ) // 图序号，使用总序号减章节开始时序号实现
+        )
+      } else if partstate.at(loc) == "附录" {
+        numbering(
+         "A-1",  
+          appendixcounter.at(loc).first(), // 章节号
+          (
+            counter(figure.where(kind: el.kind))
+            .at(loc)
+            .first() - 
+            counter(figure.where(kind: el.kind))
+            .at(baseloc)
+            .first()
+          ) // 图序号，使用总序号减章节开始时序号实现
+        )
+      }
+    } else if el != none and el.func() == math.equation {  
+      let loc = el.location()
+      el.supplement
+      " "
+      if partstate.at(loc) == "附录" {
+        numbering("(A.1)", appendixcounter.at(loc).first(), equationcounter.at(loc).first())
+      } else {
+        numbering("(1.1)", chaptercounter.at(loc).first(), equationcounter.at(loc).first())
+      }
+    } else {
+      it
+    }
+  }
+
   #set page(margin: (top: 2cm, bottom: 2cm, left:2cm, right: 2cm))
 
   // 封面页
