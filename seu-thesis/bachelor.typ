@@ -109,14 +109,19 @@
   [
     #set align(center)
     #hide[#heading(outlined: false, bookmarked: true)[封面]]
-    #v(36pt-0.5cm)
+    //#v(10pt)
     #grid(
       columns: (25pt, auto),
       [],
-      image("./image/cover_title.png", width: 12.11cm, height: 4.64cm, fit: "stretch")
+      image("./image/东南大学校标文字组合.png", width: 10cm)
     ) // 为了让这个标题图能显示在“正确”的位置上
+
+    #box(height: 2cm)[
+      #set text(font: 字体.标题黑体, size: 字号.一号, weight: "bold")
+        本科毕业设计（论文）报告
+    ]
     
-    #v(60pt)
+    #v(40pt)
 
     #box(height: 2.5cm)[
       #set text(font: 字体.标题黑体, size: 字号.二号)

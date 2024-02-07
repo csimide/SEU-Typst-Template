@@ -18,9 +18,9 @@
 
 ## 本科毕业设计（论文）报告模板
 
-此 Typst 模板基于东南大学本科毕业设计（论文）报告模板（2019 年 9 月）仿制，原模板可以在[教务处网站](https://jwc.seu.edu.cn/2021/1108/c21686a389963/page.htm)上下载。
+此 Typst 模板基于东南大学本科毕业设计（论文）报告模板（2024 年 1 月）仿制，原模板可以在教务处网站上下载（[2019 年 9 月版](https://jwc.seu.edu.cn/2021/1108/c21686a389963/page.htm) , [2024 年 1 月版](https://jwc.seu.edu.cn/2024/0117/c21686a479303/page.htm)）。
 
-模板主文件是 `seu-thesis/bachelor.typ`。目前，此模板已是初步成品。您可以打开 [`demo_graduation_thesis.pdf`](./demo_bachelor_thesis.pdf) 查看效果与模板使用说明。
+模板主文件是 `seu-thesis/bachelor.typ`。目前，此模板已是初步成品。您可以打开 [`demo_bachelor_thesis.pdf`](./demo_bachelor_thesis.pdf) 查看效果与模板使用说明。
 
 > [!NOTE]
 >
@@ -78,4 +78,4 @@
 - `demo_image` 路径下的文件来自东南大学教务处本科毕设模板。
 - `seu-thesis/image` 路径下的文件来是由东南大学教务处模板经二次加工得到。
 - `fonts` 路径下的文件是此模板用到的字体。
-- `毕业设计论文参考模板.docx` 是教务处提供的毕设论文模板。
+- `东南大学本科毕业设计（论文）参考模板 (2024年1月修订).docx` 是教务处提供的毕设论文模板。
