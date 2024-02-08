@@ -109,7 +109,7 @@
   [
     #set align(center)
     #hide[#heading(outlined: false, bookmarked: true)[封面]]
-    //#v(10pt)
+
     #grid(
       columns: (25pt, auto),
       [],
