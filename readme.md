@@ -74,9 +74,13 @@
 
 参考文献格式不完全符合要求。Typst 自带的 GB/T 7714-2015 numeric 格式与学校要求格式相比，有以下问题：
 
-- 学校要求在作者数量较多时，英文使用 `et al.` 中文使用 `等` 来省略。但是，Typst 自带的格式目前仅可以显示为 `等`。
+- 学校要求在作者数量较多时，英文使用 `et al.` 中文使用 `等` 来省略。但是，Typst 自带的格式目前仅可以显示为单一语言。
 
-  此问题目前难以解决：Typst 尚不支持一些不算标准的 csl 语法，尚未找到根据声明的引文语言选择不同语言显示的方法。
+  此问题目前难以解决：
+
+  - 目前，使用 CSL 实现这一 feature 需要用到 [CSL-M](https://citeproc-js.readthedocs.io/en/latest/csl-m/index.html#cs-layout-extension) 扩展功能，而 Typst 尚不支持 CSL-M 扩展功能。详见 [typst issue #2793](https://github.com/typst/typst/issues/2793) 与 [citationberg issue #5](https://github.com/typst/citationberg/issues/5)。
+
+  - 同时，Typst 目前会忽视 BibTeX/CSL 中的 `language` 字段。参见 [hayagriva issue #126](https://github.com/typst/hayagriva/pull/126)。
 
 - 学校给出的范例中，除了纯电子资源，即使引用文献来自线上渠道，也均不加 `OL`、访问日期、DOI 与 链接。但是，Typst 内置的 GB/T 7714-2015 numeric 格式会为所有 bib 内定义了链接/DOI 的文献添加 `OL` 标记和链接/DOI 。
 
@@ -84,7 +88,7 @@
 
   - (Zotero) 使用 Better BibTeX 插件，在 `工具` - `Better BibTeX` - `Better BibTeX 首选项` - `导出` - `BibTeX` 设置项内，设置 `将 URL 添加到 BibTeX 导出的` 为 `否`。在之后导出参考文献表 bib 文件时，选择导出格式为 `Better BibTeX` 。请注意，副作用将导致纯电子文献也缺失 URL 。
   - 手工删除相应条目的链接/DOI。
-  - (推荐) 使用经过修改的 csl 文件：请将参考文献使用的 `style: "gb-7714-2015-numeric"` 修改为 `style: "./seu-thesis/gb-t-7714-2015-numeric-seu.csl"` 。
+  - (推荐) 使用经过修改的 CSL 文件：请将参考文献使用的 `style: "gb-7714-2015-numeric"` 修改为 `style: "./seu-thesis/gb-t-7714-2015-numeric-seu.csl"` 。
     > 该 csl 修改自 <https://github.com/redleafnew/Chinese-STD-GB-T-7714-related-csl/blob/main/003gb-t-7714-2015-numeric-bilingual-no-url-doi.csl> ，但是无法实现自动选用 `et al.` 或 `等`。
     >
     > 原文件基于 CC-BY-SA 3.0 协议共享。
