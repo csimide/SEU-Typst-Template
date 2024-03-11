@@ -10,6 +10,10 @@
 >
 > 如需使用此模板，请自行承担风险。
 
+> [!NOTE]
+>
+> 此模板正在适配 Typst [Version 0.11.0, Release Candidate 1 (March 9, 2024)](https://github.com/typst/typst/releases/tag/v0.11.0-rc1) ，请见 `dev` 分支。
+
 ## 研究生学位论文模板
 
 此 Typst 模板按照[《东南大学研究生学位论文格式规定》](https://seugs.seu.edu.cn/_upload/article/files/5d/c2/abe9785f44c8b3ea4823f14bfb92/cd829a73-1b86-400d-9bce-2c4b4fdb85b7.pdf)制作，制作时参考了 [SEUThesis 模板](https://ctan.math.utah.edu/ctan/tex-archive/macros/latex/contrib/seuthesis/seuthesis.pdf)。
