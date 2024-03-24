@@ -1,4 +1,5 @@
 #import "utils.typ": *
+#import "@preview/cuti:0.2.0": show-cn-fakebold
 
 #let conf(
   author: (CN: "王东南", EN: "WANG Dong-nan", ID: "012345"),
@@ -72,12 +73,7 @@
 
   #set text(font: 字体.宋体, size: 字号.小四, weight: "regular", lang: "zh")
 
-  #show text.where(weight: "bold").or(strong): it => {
-    show regex("\p{script=Han}"): set text(stroke: 0.02857em)
-    it
-  }
-  // 见 https://github.com/typst/typst/issues/394#issuecomment-1987055478
-  // 0.02857 是 Word 伪粗体使用的参数。
+  #show: show-cn-fakebold
 
   // 图和表格序号显示
   #show figure.caption: it => {

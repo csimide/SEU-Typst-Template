@@ -10,10 +10,6 @@
 >
 > 如需使用此模板，请自行承担风险。
 
-> [!NOTE]
->
-> 此模板正在适配 Typst [Version 0.11.0, Release Candidate 1 (March 9, 2024)](https://github.com/typst/typst/releases/tag/v0.11.0-rc1) ，请见 `dev` 分支。
-
 ## 研究生学位论文模板
 
 此 Typst 模板按照[《东南大学研究生学位论文格式规定》](https://seugs.seu.edu.cn/_upload/article/files/5d/c2/abe9785f44c8b3ea4823f14bfb92/cd829a73-1b86-400d-9bce-2c4b4fdb85b7.pdf)制作，制作时参考了 [SEUThesis 模板](https://ctan.math.utah.edu/ctan/tex-archive/macros/latex/contrib/seuthesis/seuthesis.pdf)。
@@ -34,7 +30,7 @@
 
 如需使用，先安装 `fonts` 目录下的字体。如需在 Typst.app 在线使用，需要将字体移动到根目录，可能需要修改 `seu-thesis/utils.typ` 内的字体声明。
 
-此模板需要使用 Typst 0.10.0 编译，推荐在本地环境编译。您可以使用 VSCode 配合 Typst LSP、Typst Preview 等插件获得较佳的编辑体验。
+此模板需要使用 Typst 0.11.0 编译，推荐在本地环境编译。您可以使用 VSCode 配合 Typst LSP、Typst Preview 等插件获得较佳的编辑体验。
 
 两个模板各自的使用说明在各自的 Demo 文稿内。
 

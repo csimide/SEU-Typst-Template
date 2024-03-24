@@ -1,4 +1,5 @@
 #import "utils.typ": *
+#import "@preview/cuti:0.2.0": show-cn-fakebold
 
 #let conf(
   studentID: "00121001",
@@ -25,12 +26,7 @@
     gap: 1em
   )
 
-  show text.where(weight: "bold").or(strong): it => {
-    show regex("\p{script=Han}"): set text(stroke: 0.02857em)
-    it
-  }
-  // 见 https://github.com/typst/typst/issues/394#issuecomment-1987055478
-  // 0.02857 是 Word 伪粗体使用的参数。
+  show: show-cn-fakebold
 
   show footnote.entry: it => {
     let loc = it.note.location()
