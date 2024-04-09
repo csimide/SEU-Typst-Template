@@ -1,4 +1,4 @@
-#import "seu-thesis/advanced-degree.typ": conf
+#import "seu-thesis/advanced-degree.typ": conf, bilingual-bibliography
 #import "@preview/tablex:0.0.8": tablex, rowspanx, colspanx, vlinex
 #import "@preview/sourcerer:0.2.1": code
 
@@ -352,9 +352,29 @@ $ alpha + beta = gamma $ <eqexample​>
 
 
 
-目前参考文献格式不符合教务处原文要求，会在今后重制/寻找合适的 csl 文件。
+目前参考文献格式不符合研究生院要求，会在今后重制/寻找合适的 csl 文件。
 
-完成上述操作后，在致谢章节之后！致谢章节之后！致谢章节之后！，添加
+完成上述操作后，*在致谢章节之后！致谢章节之后！致谢章节之后！*，添加
+
+#code(
+  numbering: true,
+  radius: 0pt,
+  text-style: (font: ("Courier New", "SimHei")),
+```typst
+#bilingual-bibliography(
+  bibliography(
+    "ref.bib", // 替换为自己的bib路径
+    style: "seu-thesis/gb-t-7714-2015-numeric-seu.csl"
+  )
+)
+```
+) 
+
+#h(2em)就会自动生成参考文献表。demo 使用的 `ref.bib` 来自 https://github.com/lucifer1004/pkuthss-typst 。
+
+*注：* 为了生成中英文双语的参考文献表，本模板实验性地引入了 `bilingual-bibliography` 。有关该功能的详细信息，请访问 https://github.com/nju-lug/modern-nju-thesis/issues/3 。如果出现参考文献显示不正常的情况，请前往 https://github.com/csimide/SEU-Typst-Template/issues/1 反馈。
+
+如果 `bilingual-bibliography` 工作不正常/想禁用 `bilingual-bibliography`，请使用下面的代码代替上面的代码。
 
 #code(
   numbering: true,
@@ -367,8 +387,6 @@ $ alpha + beta = gamma $ <eqexample​>
 )
 ```
 ) 
-
-#h(2em)就会自动生成参考文献表。demo 使用的 `ref.bib` 来自 https://github.com/lucifer1004/pkuthss-typst 。
 
 参考文献过后，会自动进入使用 A B C 排序的附录部分。
 
@@ -390,9 +408,12 @@ $ alpha + beta = gamma $ <eqexample​>
 
 在致谢章节后，请添加  `#bibliography` 引用文献表。在引用文献表后，会自动切换到附录。
 
-#bibliography(
-  "ref.bib", // 替换为自己的bib路径
-  style: "gb-7714-2015-numeric"
+
+#bilingual-bibliography(
+  bibliography(
+    "ref.bib", // 替换为自己的bib路径
+    style: "seu-thesis/gb-t-7714-2015-numeric-seu.csl"
+  )
 )
 
 = 附录说明

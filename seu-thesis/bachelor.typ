@@ -1,5 +1,6 @@
 #import "utils.typ": *
-#import "@preview/cuti:0.2.0": show-cn-fakebold
+#import "@preview/cuti:0.2.1": show-cn-fakebold
+#import "bilingual-bibliography.typ": *
 
 #let conf(
   studentID: "00121001",

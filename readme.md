@@ -73,9 +73,9 @@
 
 1. 学校要求在作者数量较多时，英文使用 `et al.` 中文使用 `等` 来省略。但是，Typst 目前仅可以显示为单一语言。
 
-   **A:** 该问题系 Typst 的 CSL 解析器不支持 CSL-M 导致的。目前难以解决，后文给出了一个曲线解决方案。
+   **A:** 该问题系 Typst 的 CSL 解析器不支持 CSL-M 导致的。
 
-   <details>
+      <details>
    <summary> 详细原因 </summary>
 
    - 使用 CSL 实现这一 feature 需要用到 [CSL-M](https://citeproc-js.readthedocs.io/en/latest/csl-m/index.html#cs-layout-extension) 扩展的多 `layout` 功能，而 Typst 尚不支持 CSL-M 扩展功能。详见 [typst issue #2793](https://github.com/typst/typst/issues/2793) 与 [citationberg issue #5](https://github.com/typst/citationberg/issues/5)。
@@ -85,28 +85,27 @@
 
    </details>
 
+   OrangeX4 和我写了一个基于查找替换的 `bilingual-bibliography` 功能，试图在 Typst 支持 CSL-M 前实现中文西文使用不同的关键词。
+
+   本模板的 Demo 文档内已使用 `bilingual-bibliography` 引用，请查看 Demo 文档以了解用法。注意，该功能仍在测试，很可能有 Bug，详见 https://github.com/csimide/SEU-Typst-Template/issues/1 。
+
+   > 请在 https://github.com/nju-lug/modern-nju-thesis/issues/3 查看更多有关双语参考文献实现的讨论。
+   >
+   > 本模板曾经尝试使用 https://github.com/csimide/cslper 作为双语参考文献的实现方法。
+
 2. 学校给出的范例中，除了纯电子资源，即使引用文献来自线上渠道，也均不加 `OL`、访问日期、DOI 与 链接。但是，Typst 内置的 GB/T 7714-2015 numeric 格式会为所有 bib 内定义了链接/DOI 的文献添加 `OL` 标记和链接/DOI 。
 
-   **A:** 该问题系学校的标准与 GB/T 7714-2015 不完全一致导致的，解决方案后详。
+   **A:** 该问题系学校的标准与 GB/T 7714-2015 不完全一致导致的。
 
-**解决方案：**
+   请使用 `style: "./seu-thesis/gb-t-7714-2015-numeric-seu.csl"` ，会自动依据文献类型选择是否显示 `OL` 标记和链接/DOI。
 
-如果仅仅想临时解决问题 2，方法如下，择一即可：
+   > 该 csl 修改自 <https://github.com/redleafnew/Chinese-STD-GB-T-7714-related-csl/blob/main/003gb-t-7714-2015-numeric-bilingual-no-url-doi.csl>
+   >
+   > 原文件基于 CC-BY-SA 3.0 协议共享。
 
-<details>
-  <summary> 参考文献问题2临时解决办法 </summary>
-  
-- (Zotero) 使用 Better BibTeX 插件，在 `工具` - `Better BibTeX` - `Better BibTeX 首选项` - `导出` - `BibTeX` 设置项内，设置 `将 URL 添加到 BibTeX 导出的` 为 `否`。在之后导出参考文献表 bib 文件时，选择导出格式为 `Better BibTeX` 。请注意，副作用将导致纯电子文献也缺失 URL 。
-- 手工删除相应条目的链接/DOI。
-- (推荐) 使用经过修改的 CSL 文件：请将参考文献使用的 `style: "gb-7714-2015-numeric"` 修改为 `style: "./seu-thesis/gb-t-7714-2015-numeric-seu.csl"` 。
+3. 作者大小写（或者其他细节）与学校范例不一致。
 
-> 该 csl 修改自 <https://github.com/redleafnew/Chinese-STD-GB-T-7714-related-csl/blob/main/003gb-t-7714-2015-numeric-bilingual-no-url-doi.csl，但是无法实现自动选用 `et al.` 或 `等`。
->
-> 原文件基于 CC-BY-SA 3.0 协议共享。
-
-</details>
-
-如果想解决问题 1 和问题 2 ，我制作了一个临时解决方案，请见 https://github.com/csimide/cslper 。
+   **A:** 学校用的是 GB/T 7714-2015 的方言，曾经有学长把它叫做 GB/T 7714-SEU ，目前没找到完美匹配学校要求的 CSL（不同学院的要求也不太一样），后续会写一个符合要求的 CSL 文件。
 
 ## 开发与协议
 
