@@ -1,8 +1,9 @@
-#import "seu-thesis/bachelor.typ": conf, bilingual-bibliography
+#import "seu-thesis/templates/bachelor.typ": bachelor-conf, bilingual-bibliography
 #import "@preview/tablex:0.0.8": tablex, rowspanx, colspanx
 #import "@preview/sourcerer:0.2.1": code
+#import "seu-thesis/utils/states.typ": *
 
-#show: doc => conf(
+#show: doc => bachelor-conf(
   studentID: "00121001",
   author: "王东南",
   school: "示例学院",
@@ -287,7 +288,7 @@ $
 
 #h(2em)就会自动生成参考文献表。demo 使用的 `ref.bib` 来自 https://github.com/lucifer1004/pkuthss-typst 。
 
-*注：* 为了生成中英文双语的参考文献表，本模板实验性地引入了 `bilingual-bibliography` 。有关该功能的详细信息，请访问 https://github.com/nju-lug/modern-nju-thesis/issues/3 。如果出现参考文献显示不正常的情况，请前往 https://github.com/csimide/SEU-Typst-Template/issues/1 反馈。
+*注：* 为了生成中英文双语的参考文献表，本模板实验性地引入了 `bilingual-bibliography` 。有关该功能的详细信息，请访问 https://github.com/nju-lug/modern-nju-thesis/issues/3 。如果出现参考文献显示不正常的情况，请前往 https://github.com/csimide/SEU-Typst-Template/issues/1 反馈。 @ss1 
 
 如果 `bilingual-bibliography` 工作不正常/想禁用 `bilingual-bibliography`，请使用下面的代码代替上面的代码。
 
@@ -321,7 +322,14 @@ $
 
 在参考文献之后的章节会自动编为附录。同样，图表等要素在此都会使用 A B C 序号。例如：
 
-$ a^2 + b^2 = c^2 $
+#context {chapter-numbering-show-state.get()}
+
+$ a^2 + b^2 = c^2 $ <ss1>
+
+#figure(
+  [111],
+  caption: [2222222]
+)
 
 = 致谢
 
