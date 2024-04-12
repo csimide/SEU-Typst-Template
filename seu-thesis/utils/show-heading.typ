@@ -48,7 +48,7 @@
         )
       }
     } else if type(it.numbering) == function {
-        (it.numbering)(..counter(heading).get())
+        (it.numbering)(..counter(heading).get(), location: here())
     }
   }
 

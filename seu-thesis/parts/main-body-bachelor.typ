@@ -1,4 +1,3 @@
-#import "../utils/numbering-tools.typ": chinese-numbering
 #import "../utils/states.typ": part-state
 #import "../utils/fonts.typ": 字体, 字号
 
@@ -24,7 +23,7 @@
   pagebreak(weak: false)
   
 
-  counter(page).update(0)
+  counter(page).update(1)
   counter(heading.where(level: 1)).update(0)
 
   doc
