@@ -142,13 +142,45 @@
   }
 }
 
-#let set-math-numbering(it) = {
+#let set-math-numbering(
+  it,
+  main-body-numbering: "(1.1)",
+  appendix-numbering: "(A.1)",
+) = {
   locate(loc => {
     if part-state.at(loc) == "附录" {
-      numbering("(A.1)", counter(heading.where(level: 1)).at(loc).first(), counter(math.equation).at(loc).first())
+      numbering(appendix-numbering, counter(heading.where(level: 1)).at(loc).first(), counter(math.equation).at(loc).first())
     } else {
-      numbering("(1.1)", counter(heading.where(level: 1)).at(loc).first(), counter(math.equation).at(loc).first())
+      numbering(main-body-numbering, counter(heading.where(level: 1)).at(loc).first(), counter(math.equation).at(loc).first())
     }
   })
+}
+
+// 公式序号显示：右侧最下一行
+// 参考 https://github.com/typst/typst/discussions/3106
+// #show math.equation: show-math-equation-degree
+#let show-math-equation-degree(eq) = {
+  // apply custom style only to block equations with numbering enabled
+  if eq.block and eq.numbering != none {
+    // default numbering of the equation
+    let eqCounter = counter(math.equation).at(eq.location())
+    let eqNumbering = numbering(eq.numbering, ..eqCounter)
+
+    set align(left)
+  
+    grid(
+      // change "0pt" to "auto" to give the numbering its own space on the line
+      columns: (4em, 100% - 4em, 0pt),
+      
+      // note that "numbering: none" avoids infinite recursion
+      h(4em),
+      
+      block(math.equation(eq.body, block: true, numbering: none)),
+
+      align(right + bottom)[#eqNumbering],
+    )
+  } else {
+    eq
+  }
 }
 

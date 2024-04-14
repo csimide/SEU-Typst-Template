@@ -4,9 +4,9 @@
 #import "../utils/states.typ": part-state
 
 #import "../pages/cover-bachelor-fn.typ": bachelor-cover-conf
-#import "../parts/abstract-fn.typ": abstract-conf
-#import "../pages/outline-bachelor-fn.typ": outline-conf
-#import "../parts/main-body-bachelor.typ": main-body-bachelor-conf
+#import "../parts/abstract-bachelor-fn.typ": abstract-conf
+#import "../parts/outline-bachelor-fn.typ": outline-conf
+#import "../parts/main-body-bachelor-fn.typ": main-body-bachelor-conf
 
 #let bachelor-conf(
   studentID: "00121001",
@@ -21,6 +21,7 @@
   enabstract: [#lorem(100)],
   enkeywords: ("Keywords1", "Keywords2"),
   outlinedepth: 3,
+  bilingual-bib: true,
   doc,
 ) = {
   show: set-bachelor
@@ -48,7 +49,7 @@
   )
 
   // 目录
-  outline-conf()
+  outline-conf(outline-depth: outlinedepth)
 
   // 正文
   show: main-body-bachelor-conf

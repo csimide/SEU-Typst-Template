@@ -22,7 +22,8 @@
   仿宋: ("Times New Roman", "FangSong", "STFangSong"),
   宋体: ("Times New Roman", "SimSun"),
   黑体: ("Times New Roman", "SimHei"),
-  标题黑体: ("SimHei"),
+  //标题黑体: ("SimHei"),
+  标题宋体: ("Times New Roman", "STZhongsong", "SimSun"),
   楷体: ("Times New Roman", "KaiTi"),
   代码: ("New Computer Modern Mono", "Times New Roman", "SimSun"),
 )
@@ -93,6 +94,6 @@
       } else {
         (expected-width - measure-width)/(s.clusters().len() - 1)
       }
-    s.clusters().join(h(spacing))
+    text(tracking: spacing, s)
   }
 }

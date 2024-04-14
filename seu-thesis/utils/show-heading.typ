@@ -158,6 +158,8 @@
 
   fake-par
 
+  heading-l1-updating-name-str-state.update(chapter-name-string)
+
   // text()[#v(0em, weak: true)]
   // text()[#h(0em)]
 }

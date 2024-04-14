@@ -15,9 +15,17 @@
 
   show heading: show-heading.with(always-new-page: true)
 
-  show figure: show-figure
+  show figure: show-figure.with(
+    main-body-table-numbering: "1.1",
+    main-body-image-numbering: "1-1", // 其他也会视为 image
+    appendix-table-numbering: "A.1",
+    appendix-image-numbering: "A-1", // 其他也会视为 image
+  )
   show ref: show-ref
-  set math.equation(numbering: set-math-numbering)
+  set math.equation(numbering: set-math-numbering.with(
+    main-body-numbering: "(1.1)",
+    appendix-numbering: "(A.1)",
+  ))
 
   set footnote(numbering: num => number-with-circle(num))
   set footnote.entry(

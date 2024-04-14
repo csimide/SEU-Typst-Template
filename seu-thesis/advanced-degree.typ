@@ -1,6 +1,6 @@
 #import "utils.typ": *
 #import "@preview/cuti:0.2.1": show-cn-fakebold
-#import "bilingual-bibliography.typ": *
+//#import "bilingual-bibliography.typ": *
 
 #let conf(
   author: (CN: "王东南", EN: "WANG Dong-nan", ID: "012345"),

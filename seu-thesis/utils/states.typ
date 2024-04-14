@@ -4,6 +4,8 @@
 #let chapter-l1-numbering-show-state = state("chapter-l1-numbering-show")
 #let chapter-l1-page-number-show-state = state("chapter-l1-page-number-show")
 
+#let heading-l1-updating-name-str-state = state("heading-l1-updating")
+
 #let chapter-name-str-state = state("chapter-name-str")
 #let chapter-name-show-state = state("chapter-name-show")
 #let chapter-true-loc-state = state("chapter-true-loc")
