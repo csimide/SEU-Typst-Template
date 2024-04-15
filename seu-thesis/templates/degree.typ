@@ -7,8 +7,10 @@
 #import "../parts/terminology.typ": terminology-conf
 #import "../parts/main-body-degree-fn.typ": main-body-bachelor-conf
 
-#import "../utils/set-degree.typ": set-bachelor
+#import "../utils/set-degree.typ": set-degree
 #import "../utils/smart-pagebreak.typ": gen-smart-pagebreak
+#import "../utils/thanks.typ": thanks
+#import "../utils/states.typ": appendix
 
 #let degree-conf(
   author: (CN: "王东南", EN: "WANG Dong-nan", ID: "012345"),
@@ -67,6 +69,7 @@
   terminology: none,
   anonymous: false,
   skip-with-page-blank: false,
+  bilingual-bib: true,
   doc,
 ) = {
 
@@ -75,7 +78,7 @@
     always-skip-even: alwaysstartodd,
   )
 
-  show: set-bachelor.with(always-new-page: smart-pagebreak)
+  show: set-degree.with(always-new-page: smart-pagebreak, bilingual-bib: bilingual-bib)
 
   degree-cover-conf(  
     author: author,

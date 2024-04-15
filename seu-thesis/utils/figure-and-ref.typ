@@ -56,16 +56,6 @@
     kind: table
   ): set figure.caption(position: top)
 
-  show figure: it => {
-    if it.kind == table {
-      it
-      v(0.5em)
-    } else if it.kind == image {
-      v(0.5em)
-      it
-    }
-  }
-
   show figure.caption: it => {
     if it.kind != table {
       v(0.5em)
@@ -97,15 +87,32 @@
     h(0.5em) // numbering 和 body 之间隔1个空格
     it.body
 
+    // if it.kind == table {
+    //   v(0.5em)
+    // } // 表格序号行和表格间隔 0.5em
+  }
+
+  show figure: it => {
     if it.kind == table {
+      align(center, block(it.caption))
+      align(center, block(it.body))
       v(0.5em)
-    } // 表格序号行和表格间隔 0.5em
+    } else if it.kind == image {
+      v(0.5em)
+      it
+    }
   }
   it
 }
 
 
-#let show-ref(it) = {
+#let show-ref(
+  it,
+  main-body-table-numbering: "1.1",
+  main-body-image-numbering: "1-1", // 其他也会视为 image
+  appendix-table-numbering: "A.1",
+  appendix-image-numbering: "A-1", // 其他也会视为 image
+) = {
   let el = it.element
 
   if el != none and el.func() == figure {

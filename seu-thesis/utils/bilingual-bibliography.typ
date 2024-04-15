@@ -6,8 +6,6 @@
   mapping: (:),
   cont
 ) = {
-  set bibliography(title: none)
-  heading(bookmarked: true, outlined: true, numbering: none, level: 1)[参考文献]
   // Please fill in the remaining mapping table here
   mapping = (
     //"等": "et al",
@@ -102,5 +100,23 @@
 
   set text(lang: "zh")
   cont
-  appendix()
+}
+
+#let show-bibliography(
+  mapping: (:),
+  bilingual: true,
+  it
+) = {
+  set bibliography(title: none)
+
+  show bibliography: it => {
+    heading(bookmarked: true, outlined: true, numbering: none, level: 1)[参考文献]
+    if bilingual {
+      bilingual-bibliography(mapping: mapping, it)
+    } else {
+      it
+    }
+    appendix()
+  }  
+  it
 }

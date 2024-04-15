@@ -9,25 +9,25 @@
         set par(first-line-indent: 0pt, leading: 16pt, justify: true)
         show par: set block(spacing: 16pt)
 
-        // 这里应该实现一个章首不显示页眉的功能
-        // 但是摸了
-        context if part-state.get() == none {
-         []
-        } else {
-          if calc.even(here().page()) {
-            thesisname.heading
+        locate(loc => {
+          let next-heading = query(selector(<__heading__>).after(loc), loc)
+          if next-heading != () and next-heading.first().location().page() == loc.page() and chapter-level-state.at(loc) == 1 {
+            [] 
           } else {
-            let cl1nss = chapter-l1-numbering-show-state.get()
-            if not cl1nss in (none, "", [], [ ]){
-              cl1nss
-              h(0.3em)
+            if calc.even(loc.page()) {
+              thesisname.heading
+            } else {
+              let cl1nss = chapter-l1-numbering-show-state.at(loc)
+              if not cl1nss in (none, "", [], [ ]){
+                cl1nss
+                h(0.3em)
+              }
+              chapter-l1-name-str-state.at(loc)
             }
-            chapter-l1-name-str-state.get()
-          }
-
-          v(-1em)
-          line(length: 100%, stroke: (thickness: 0.5pt))
-        }
+            v(-1em)
+            line(length: 100%, stroke: (thickness: 0.5pt))
+          }})
+        
 
         counter(footnote).update(0)
       },

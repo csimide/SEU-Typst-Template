@@ -5,7 +5,7 @@
 #import "fake-par.typ": fake-par
 
 #let show-heading(
-  heading-top-margin: (0cm, 0cm, 0cm),
+  heading-top-margin: (0.2cm, 0cm, 0cm),
   heading-bottom-margin: (0cm, 0cm, 0cm),
   heading-indent: (0em, 0em, 0em),
   heading-align: (center, left, left),
@@ -92,7 +92,7 @@
     chapter-page-number-show-state.update(to-string(chapter-page-show))
     if it.level == 1 {
       chapter-l1-true-loc-state.update(loc)
-      chapter-l1-numbering-show-state.update(to-string(chapter-page-show))
+      chapter-l1-page-number-show-state.update(to-string(chapter-page-show))
     }
   })
 

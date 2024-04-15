@@ -14,13 +14,13 @@
 
 此 Typst 模板按照[《东南大学研究生学位论文格式规定》](https://seugs.seu.edu.cn/_upload/article/files/5d/c2/abe9785f44c8b3ea4823f14bfb92/cd829a73-1b86-400d-9bce-2c4b4fdb85b7.pdf)制作，制作时参考了 [SEUThesis 模板](https://ctan.math.utah.edu/ctan/tex-archive/macros/latex/contrib/seuthesis/seuthesis.pdf)。
 
-模板主文件是 `seu-thesis/advanced-degree.typ`。目前，此模板已是初步成品。您可以打开 [`demo_degree_thesis.pdf`](./demo_degree_thesis.pdf) 查看效果与模板使用说明。
+模板主文件是 `seu-thesis/templates/degree.typ`。目前，此模板已是初步成品。您可以打开 [`demo_degree_thesis.pdf`](./demo/demo_degree_thesis.pdf) 查看效果与模板使用说明。
 
 ## 本科毕业设计（论文）报告模板
 
 此 Typst 模板基于东南大学本科毕业设计（论文）报告模板（2024 年 1 月）仿制，原模板可以在教务处网站上下载（[2019 年 9 月版](https://jwc.seu.edu.cn/2021/1108/c21686a389963/page.htm) , [2024 年 1 月版](https://jwc.seu.edu.cn/2024/0117/c21686a479303/page.htm)）。
 
-模板主文件是 `seu-thesis/bachelor.typ`。目前，此模板已是初步成品。您可以打开 [`demo_bachelor_thesis.pdf`](./demo_bachelor_thesis.pdf) 查看效果与模板使用说明。
+模板主文件是 `seu-thesis/templates/bachelor.typ`。目前，此模板已是初步成品。您可以打开 [`demo_bachelor_thesis.pdf`](./demo/demo_bachelor_thesis.pdf) 查看效果与模板使用说明。
 
 > [!NOTE]
 >
@@ -28,7 +28,7 @@
 
 ## 说明
 
-如需使用，先安装 `fonts` 目录下的字体。如需在 Typst.app 在线使用，需要将字体移动到根目录，可能需要修改 `seu-thesis/utils.typ` 内的字体声明。
+如需使用，先安装 `fonts` 目录下的字体。如需在 Typst.app 在线使用，需要将字体移动到根目录，可能需要修改 `seu-thesis/utils/fonts.typ` 内的字体声明。
 
 此模板需要使用 Typst 0.11.0 编译，推荐在本地环境编译。您可以使用 VSCode 配合 Typst LSP、Typst Preview 等插件获得较佳的编辑体验。
 
@@ -38,7 +38,7 @@
 
 毕设：
 
-- [ ] 将模板内涉及计数器的部分重构。
+- [x] 将模板内涉及计数器的部分重构。
 - [ ] “代码展示块”功能。
 - [ ] 实现“续表”功能。（暂时没想明白怎么实现）
 - [ ] 改用符合东大要求的 csl。（请见 [目前存在的问题-参考文献](#参考文献) ）
@@ -53,7 +53,6 @@
 - [x] Demo PDF。
 - [x] 基本文档。
 - [x] 使用教程。
-- [ ] 为正文前的章节添加页眉（合并 header）。
 - [ ] 盲审版本。
 - [x] ref 样式。
 
@@ -64,7 +63,6 @@
 - 参考文献格式不完全符合要求。请见下方参考文献小节。
 - 行距、边距等有待继续调整。
 - ~~学位论文中，自动切换奇数页暂时不工作。~~ 目前大部分场景自动切换已修复。
-- 目前的模板暂时无法实现盲审版本自动隐藏致谢，**可能之后会将致谢内容改成单独的参数传入模板或使用专门的函数**。
 - ~~目前缺少 ref 样式，待修。~~ 已经添加 ref 格式。
 
 ### 参考文献
@@ -75,7 +73,7 @@
 
    **A:** 该问题系 Typst 的 CSL 解析器不支持 CSL-M 导致的。
 
-      <details>
+   <details>
    <summary> 详细原因 </summary>
 
    - 使用 CSL 实现这一 feature 需要用到 [CSL-M](https://citeproc-js.readthedocs.io/en/latest/csl-m/index.html#cs-layout-extension) 扩展的多 `layout` 功能，而 Typst 尚不支持 CSL-M 扩展功能。详见 [typst issue #2793](https://github.com/typst/typst/issues/2793) 与 [citationberg issue #5](https://github.com/typst/citationberg/issues/5)。
@@ -107,6 +105,17 @@
 
    **A:** 学校用的是 GB/T 7714-2015 的方言，曾经有学长把它叫做 GB/T 7714-SEU ，目前没找到完美匹配学校要求的 CSL（不同学院的要求也不太一样），后续会写一个符合要求的 CSL 文件。
 
+4. 正文中连续引用，上标合并错误（例如，引用 1 2 3 4 应当显示为 [1-4] ，但是显示为 [1,4] ）。
+
+   临时方案是把 csl 文件里 `after-collapse-delimiter=","` 改成 `after-collapse-delimiter="-"`。
+
+   <details>
+   <summary> 详细原因 </summary>
+
+   正常情况下， `after-collapse-delimiter` 不应该控制折叠符号，但是 Typst 的实现中 `after-collapse-delimiter` 控制了折叠符号，我认为这应该是不正确的。
+
+   </details>
+
 ## 开发与协议
 
 此模板组参考了来自 <https://github.com/lucifer1004/pkuthss-typst> 的 typst 格式。在 `seu-thesis/utils.typ` 中使用了一部分来自此项目的代码。
@@ -115,7 +124,7 @@
 
 除下述特殊说明的文件外，此项目使用 MIT License 。
 
-- `demo_image` 路径下的文件来自东南大学教务处本科毕设模板。
-- `seu-thesis/image` 路径下的文件来是由东南大学教务处模板经二次加工得到。
+- `demo/demo_image` 路径下的文件来自东南大学教务处本科毕设模板。
+- `seu-thesis/assets/` 路径下的文件是由东南大学教务处模板经二次加工得到，或从东南大学视觉设计中取得。
 - `fonts` 路径下的文件是此模板用到的字体。
 - `东南大学本科毕业设计（论文）参考模板 (2024年1月修订).docx` 是教务处提供的毕设论文模板。

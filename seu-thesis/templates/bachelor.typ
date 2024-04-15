@@ -1,7 +1,8 @@
 #import "../utils/fonts.typ": 字体, 字号
 #import "../utils/set-bachelor.typ": set-bachelor
-#import "../utils/bilingual-bibliography.typ": bilingual-bibliography, appendix
+#import "../utils/bilingual-bibliography.typ": appendix
 #import "../utils/states.typ": part-state
+#import "../utils/thanks.typ": thanks
 
 #import "../pages/cover-bachelor-fn.typ": bachelor-cover-conf
 #import "../parts/abstract-bachelor-fn.typ": abstract-conf
@@ -24,7 +25,7 @@
   bilingual-bib: true,
   doc,
 ) = {
-  show: set-bachelor
+  show: set-bachelor.with(bilingual-bib: bilingual-bib)
 
   // 封面
   bachelor-cover-conf(

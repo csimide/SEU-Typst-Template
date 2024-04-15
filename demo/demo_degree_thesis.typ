@@ -1,4 +1,4 @@
-#import "seu-thesis/advanced-degree.typ": conf, bilingual-bibliography
+#import "../seu-thesis/templates/degree.typ": degree-conf, thanks, appendix
 #import "@preview/tablex:0.0.8": tablex, rowspanx, colspanx, vlinex
 #import "@preview/sourcerer:0.2.1": code
 
@@ -35,7 +35,7 @@
 ]
 
 
-#show: doc => conf(
+#show: doc => degree-conf(
   author: (CN: "王东南", EN: "WANG Dong-nan", ID: "012345"),
   thesisname: (
     CN: "摸鱼学硕士学位论文",
@@ -97,6 +97,7 @@
   alwaysstartodd: true,
   terminology: terminology,
   anonymous: false,
+  bilingual-bib: true,
   doc,
 )
 
@@ -351,7 +352,6 @@ $ alpha + beta = gamma $ <eqexample​>
 #h(2em)这里有一段话 @kopka2004guide，引用多个会自动合并 @kopka2004guide @wang2010guide 。
 
 
-
 目前参考文献格式不符合研究生院要求，会在今后重制/寻找合适的 csl 文件。
 
 完成上述操作后，*在致谢章节之后！致谢章节之后！致谢章节之后！*，添加
@@ -361,38 +361,30 @@ $ alpha + beta = gamma $ <eqexample​>
   radius: 0pt,
   text-style: (font: ("Courier New", "SimHei")),
 ```typst
-#bilingual-bibliography(
-  bibliography(
-    "ref.bib", // 替换为自己的bib路径
-    style: "seu-thesis/gb-t-7714-2015-numeric-seu.csl"
-  )
+#bibliography(
+  "ref.bib", // 替换为自己的bib路径
+  style: "./seu-thesis/gb-t-7714-2015-numeric-seu.csl"
 )
 ```
 ) 
 
 #h(2em)就会自动生成参考文献表。demo 使用的 `ref.bib` 来自 https://github.com/lucifer1004/pkuthss-typst 。
 
-*注：* 为了生成中英文双语的参考文献表，本模板实验性地引入了 `bilingual-bibliography` 。有关该功能的详细信息，请访问 https://github.com/nju-lug/modern-nju-thesis/issues/3 。如果出现参考文献显示不正常的情况，请前往 https://github.com/csimide/SEU-Typst-Template/issues/1 反馈。
+当前（Typst 0.11.0）的 GB/T 7714-2015 参考文献功能仍有较多问题；东大使用的参考文献也不是标准的 GB/T 7714-2015 格式。目前，我们尝试使用曲线方法解决：
 
-如果 `bilingual-bibliography` 工作不正常/想禁用 `bilingual-bibliography`，请使用下面的代码代替上面的代码。
+为了生成中英文双语的参考文献表，本模板实验性地引入了 `bilingual-bibliography` 。有关该功能的详细信息，请访问 https://github.com/nju-lug/modern-nju-thesis/issues/3 。如果出现参考文献显示不正常的情况，请前往 https://github.com/csimide/SEU-Typst-Template/issues/1 反馈。
 
-#code(
-  numbering: true,
-  radius: 0pt,
-  text-style: (font: ("Courier New", "SimHei")),
-```typst
-#bibliography(
-  "ref.bib", // 替换为自己的bib路径
-  style: "gb-7714-2015-numeric"
-)
-```
-) 
+模板提供了 `bilingual-bib` 参数，用于控制是否使用 `bilingual-bibliography`。当 `bilingual-bib` 参数设置为 `true` 时，模板会使用 `bilingual-bibliography` 渲染。
 
-参考文献过后，会自动进入使用 A B C 排序的附录部分。
+本模板附带的 `gb-t-7714-2015-numeric-seu.csl` 是“修复”部分 bug 的 CSL 文件。该格式和东大格式不完全吻合，但比自带的 `gb7714-2015` 稍微符合一些。
 
-= 致谢
+参考文献过后，会自动进入使用 A B C 排序的附录部分。如果不想加入参考文献，想直接进入附录部分，请使用 `#appendix()`
 
-致谢应当作为正文部分的最后一个章节出现。当标题为 `= 致谢` 时，会自动渲染为不带章节编号的“致#h(2em)谢”。
+
+
+#thanks[
+
+致谢应当作为正文部分的最后一个章节出现。
 
 可以在正文后对本论文学术研究有特别贡献的组织或个人表达谢意：
 
@@ -402,19 +394,17 @@ $ alpha + beta = gamma $ <eqexample​>
 
 3、给予转载或者引用权的资料、图片、文献、研究设想的所有者。
 
-请不要在其他位置使用致谢作为一级标题，否则渲染编号将会出现问题。
+致谢章节应当使用 `#thanks[内容]` 显示。
 
-由于自动生成盲审版本的需求，本模板后续可能会调整致谢的实现方式。
+在致谢章节后，请添加  `#bibliography` 引用文献表。在引用文献表后，会自动切换到附录。如果不插入参考文献，但进入附录，请使用 `#appendix()`。
 
-在致谢章节后，请添加  `#bibliography` 引用文献表。在引用文献表后，会自动切换到附录。
+]
 
-
-#bilingual-bibliography(
-  bibliography(
-    "ref.bib", // 替换为自己的bib路径
-    style: "seu-thesis/gb-t-7714-2015-numeric-seu.csl"
-  )
+#bibliography(
+  "ref.bib", // 替换为自己的bib路径
+  style: "../seu-thesis/gb-t-7714-2015-numeric-seu.csl"
 )
+
 
 = 附录说明
 
