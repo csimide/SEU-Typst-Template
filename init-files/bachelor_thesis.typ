@@ -1,5 +1,4 @@
-#import "../seu-thesis/templates/bachelor.typ": bachelor-conf, thanks, appendix
-#import "@preview/tablex:0.0.8": tablex, rowspanx, colspanx
+#import "@preview/cheda-seu-thesis:0.2.0": bachelor-conf, thanks, appendix
 #import "@preview/sourcerer:0.2.1": code
 
 #show: doc => bachelor-conf(
@@ -123,9 +122,9 @@ ABSTRACT为三号Times New Roman加粗居中。
 
 表格的结构应简洁，一律采用三线表，应有表序和表名，且表序和表名位于表格上方。表格可以逐章单独编序（如：表2.1），也可以统一编序（如：表10），采用哪种方式应和插图及公式的编序方式统一。表序必须连续，不得重复或跳跃。
 
-带编号、表名的表格需要使用 `#figure` 包裹，才能自动编号。方式与上方图片相仿，或者查看下面的代码说明。表格本身建议使用函数 `table` 、第三方库 `tablex` 或 `tablem` 库绘制。使用 `tablex` 或 `tablem` 库时，`#figure` 可能会认为其包裹的内容不是 `table` 类型，而编号“图X-X”。可以通过添加 `kind: table` 声明这是一个表格。详见下方样例。
+带编号、表名的表格需要使用 `#figure` 包裹，才能自动编号。方式与上方图片相仿，或者查看下面的代码说明。表格本身建议使用函数 `table` 或第三方库 `tablem` 库绘制。使用 `tablem` 库时，`#figure` 可能会认为其包裹的内容不是 `table` 类型，而编号“图X-X”。可以通过添加 `kind: table` 声明这是一个表格。
 
-表格无法在同一页排版时，可以用续表的形式另页书写，续表需在表格右上角表序前加“续”字，如“续表2.1”，并重复表头。请注意：目前此模板内，`#figure` 包裹的单个表格强制显示在同一页上，不会发生跨页现象。如果按照 https://github.com/typst/typst/pull/1121 启用了 `#show figure: set block(breakable: true)`，那么跨页表格第二页暂时不会显示“续表”与表名。目前模板作者尚未找到合适的解决办法。 如果使用 `tablex` 声明表头行数的特性，第二页会重复表头。
+表格无法在同一页排版时，可以用续表的形式另页书写，续表需在表格右上角表序前加“续”字，如“续表2.1”，并重复表头。请注意：目前此模板内，`#figure` 包裹的单个表格强制显示在同一页上，不会发生跨页现象。如果按照 https://github.com/typst/typst/pull/1121 启用了 `#show figure: set block(breakable: true)`，那么跨页表格第二页暂时不会显示“续表”与表名。目前模板作者尚未找到合适的解决办法。 如果使用 `table` 声明表头的特性，第二页会重复表头。
 
 表格居中，边框为黑色直线1磅，中文为五号宋体，英文及数字为五号Times New Roman字体，表序与表名之间空一格，表格与下文之间空一行。
 
@@ -136,50 +135,49 @@ ABSTRACT为三号Times New Roman加粗居中。
   text-style: (font: ("Courier New", "SimHei")),
 ```typst
 #figure(
-  tablex(
-    columns: 13 ,
-    rows: 1.8em,
-    align: center + horizon,
-    auto-vlines: false,
-    margin: 3pt,
-    header-rows: 2,
-    [], colspanx(4)[Stage 1 (>7.1 μm)], (), (), (), colspanx(4)[Stage 2 (4.8-7.1 μm)], (), (), (), colspanx(4)[Stage 3 (3.2-4.7 μm)], (), (), (), 
+  {
+    set table.cell(stroke: (top: 0.8pt, bottom: 0.8pt, left: 0pt, right: 0pt))
+    show table.cell.where(y:0): set text(weight: "bold")
+    table(
+      columns: 13,
+      rows: 1.8em,
+      align: center + horizon,
+      table.header(
+        [], table.cell(colspan: 4)[Stage 1 (>7.1 μm)], table.cell(colspan: 4)[Stage 2 (4.8-7.1 μm)], table.cell(colspan: 4)[Stage 3 (3.2-4.7 μm)], 
+      ),
 
-    [], [Con], [Low], [Medium], [High], [Con], [Low], [Medium], [High], [Con], [Low], [Medium], [High],
+      [], [Con], [Low], [Medium], [High], [Con], [Low], [Medium], [High], [Con], [Low], [Medium], [High],
 
-    [H], [2.52], [2.58], [2.57], [2.24], [2.48], [2.21], [2.21], [2.36], [2.66], [2.65], [2.64], [2.53],
+      [H], [2.52], [2.58], [2.57], [2.24], [2.48], [2.21], [2.21], [2.36], [2.66], [2.65], [2.64], [2.53],
 
-    [E], [0.87], [0.88], [0.93], [0.85], [0.9], [0.86], [0.86], [0.85], [0.9], [0.9], [0.85], [0.88]
-
-  ),
+      [E], [0.87], [0.88], [0.93], [0.85], [0.9], [0.86], [0.86], [0.85], [0.9], [0.9], [0.85], [0.88]
+    )
+  },
   caption: "室外细菌气溶胶香农-维纳指数（H）和均匀性指数（E）",
-  kind: table // 使用 tablex 时要手动指定一下kind
 )
 ```
-)
-
-
-
+) 
 
 #figure(
-  tablex(
-    columns: 13 ,
-    rows: 1.8em,
-    align: center + horizon,
-    auto-vlines: false,
-    margin: 3pt,
-    header-rows: 2,
-    [], colspanx(4)[Stage 1 (>7.1 μm)], (), (), (), colspanx(4)[Stage 2 (4.8-7.1 μm)], (), (), (), colspanx(4)[Stage 3 (3.2-4.7 μm)], (), (), (), 
+  {
+    set table.cell(stroke: (top: 0.8pt, bottom: 0.8pt, left: 0pt, right: 0pt))
+    show table.cell.where(y:0): set text(weight: "bold")
+    table(
+      columns: 13,
+      rows: 1.8em,
+      align: center + horizon,
+      table.header(
+        [], table.cell(colspan: 4)[Stage 1 (>7.1 μm)], table.cell(colspan: 4)[Stage 2 (4.8-7.1 μm)], table.cell(colspan: 4)[Stage 3 (3.2-4.7 μm)], 
+      ),
 
-    [], [Con], [Low], [Medium], [High], [Con], [Low], [Medium], [High], [Con], [Low], [Medium], [High],
+      [], [Con], [Low], [Medium], [High], [Con], [Low], [Medium], [High], [Con], [Low], [Medium], [High],
 
-    [H], [2.52], [2.58], [2.57], [2.24], [2.48], [2.21], [2.21], [2.36], [2.66], [2.65], [2.64], [2.53],
+      [H], [2.52], [2.58], [2.57], [2.24], [2.48], [2.21], [2.21], [2.36], [2.66], [2.65], [2.64], [2.53],
 
-    [E], [0.87], [0.88], [0.93], [0.85], [0.9], [0.86], [0.86], [0.85], [0.9], [0.9], [0.85], [0.88]
-
-  ),
+      [E], [0.87], [0.88], [0.93], [0.85], [0.9], [0.86], [0.86], [0.85], [0.9], [0.9], [0.85], [0.88]
+    )
+  },
   caption: "室外细菌气溶胶香农-维纳指数（H）和均匀性指数（E）",
-  kind: table // 使用 tablex 时要手动指定一下kind
 )
 
 // 表格太多懒得手敲了
