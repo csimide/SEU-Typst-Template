@@ -131,8 +131,8 @@
    <details>
    <summary> 详细原因 </summary>
 
-   - 使用 CSL 实现这一 feature 需要用到 [CSL-M](https://citeproc-js.readthedocs.io/en/latest/csl-m/index.html#cs-layout-extension) 扩展的多 `layout` 功能，而 Typst 尚不支持 CSL-M 扩展功能。详见 [typst issue #2793](https://github.com/typst/typst/issues/2793) 与 [citationberg issue #5](https://github.com/typst/citationberg/issues/5)。
-   - Typst 目前会忽视 BibTeX/CSL 中的 `language` 字段。参见 [hayagriva issue #126](https://github.com/typst/hayagriva/pull/126)。
+   - 使用 CSL 实现这一 feature 需要用到 [CSL-M](https://citeproc-js.readthedocs.io/en/latest/csl-m/index.html#cs-layout-extension) 扩展的多 `layout` 功能，而 Typst 尚不支持 CSL-M 扩展功能。详见 https://github.com/typst/typst/issues/2793 与 https://github.com/typst/citationberg/issues/5 。
+   - Typst 目前会忽视 BibTeX/CSL 中的 `language` 字段。参见 https://github.com/typst/hayagriva/pull/126 。
 
    因为上述原因，目前很难使用 Typst 原生方法实现根据语言自动选用 `et al.` 与 `等`。
 
@@ -164,12 +164,7 @@
 
    临时方案是把 csl 文件里 `after-collapse-delimiter=","` 改成 `after-collapse-delimiter="-"`。
 
-   <details>
-   <summary> 详细原因 </summary>
-
-   正常情况下， `after-collapse-delimiter` 不应该控制折叠符号，但是 Typst 的实现中 `after-collapse-delimiter` 控制了折叠符号，我认为这应该是不正确的。
-
-   </details>
+   详细原因请见 https://github.com/typst/hayagriva/issues/154 。
 
 ## 开发与协议
 
@@ -200,7 +195,7 @@
 
 - 支持双语显示参考文献（自动使用 `et al.` 和 `等`）
   - 该功能来自 `bilingual-bibliography`，关联的文件是 `seu-thesis/utils/bilingual-bibliography.typ`。
-  - 有关 `bilingual-bibliography` 的更多信息，请查看 <https://github.com/nju-lug/modern-nju-thesis/issues/3>
+  - 有关 `bilingual-bibliography` 的更多信息，请查看 https://github.com/nju-lug/modern-nju-thesis/issues/3
 
 > [!NOTE]
 >
