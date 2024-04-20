@@ -70,6 +70,7 @@
   anonymous: false,
   skip-with-page-blank: false,
   bilingual-bib: true,
+  first-level-title-page-disable-heading: false, 
   doc,
 ) = {
 
@@ -155,7 +156,10 @@
 
   smart-pagebreak(skip-with-page-blank: true)
 
-  show: main-body-bachelor-conf.with(thesisname: thesisname)
+  show: main-body-bachelor-conf.with(
+    thesisname: thesisname,
+    first-level-title-page-disable-heading: first-level-title-page-disable-heading
+  )
 
   doc
 }

@@ -1,4 +1,4 @@
-#import "@preview/a2c-nums:0.0.1": int-to-cn-num
+#import "packages.typ": int-to-cn-num
 #import "states.typ": part-state
 #import "fonts.typ": 字体, 字号
 

@@ -1,4 +1,4 @@
-#import "@preview/cheda-seu-thesis:0.2.0": degree-conf, thanks, appendix
+#import "../seu-thesis/lib.typ": degree-conf, thanks, appendix
 #import "@preview/sourcerer:0.2.1": code
 
 #let terminology = [
@@ -92,6 +92,8 @@
   alwaysstartodd: true,
   terminology: terminology,
   anonymous: false,
+  first-level-title-page-disable-heading: false, // 一级标题页不显示页眉
+  // 启用此选项后，“第X章 XXXXX” 一级标题所在页面将不显示页眉
   bilingual-bib: true,
   doc,
 )
