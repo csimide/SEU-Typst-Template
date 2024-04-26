@@ -1,6 +1,14 @@
 #import "states.typ": *
 #import "../utils/fonts.typ": 字体, 字号
 
+/* 
+这里有一个巨大的自造轮子用于显示目录。
+
+由于 heading 跨页问题，如果使用 Typst 内置的目录，将导致页码显示错误、链接跳转锚点不正确。故仍使用自造轮子。
+
+请查阅 `utils/show-heading.typ` 以查看 heading 跨页的其他影响 。如有更好的解决方案，欢迎给出建议或提交 PR。
+*/
+
 #let cn-outline(
   outline-depth: 3, 
   base-indent: 1em,

@@ -7,6 +7,13 @@
   // 启用此选项后，“第X章 XXXXX” 一级标题所在页面将不显示页眉
   doc
 ) = {
+  /* 
+  这里有一个巨大的自造轮子用于实现奇数页显示章节号与章节名、偶数页显示固定文字。
+
+  原有计划迁移到 chic-hdr ，但是由于 heading 跨页问题，以及需要显示章节号（第XX章），故仍是自造轮子。
+  
+  请查阅 `utils/show-heading.typ` 以查看 heading 跨页的其他影响 。如有更好的解决方案，欢迎给出建议或提交 PR。
+  */
   set page(
     header: {
         set align(center)

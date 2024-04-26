@@ -4,6 +4,22 @@
 #import "to-string.typ": to-string
 #import "fake-par.typ": fake-par
 
+/*
+这里有一个巨大的自造轮子用于实现 heading 的各项功能，包括：
+
+  - 一级标题自动换页（及换页到偶数页）：该功能依赖于 `always-new-page` 参数传入 function。
+
+  - 一级标题与多级标题写入 state：该功能依赖于从 `states.typ` 导入的多个 states 。目录（`utils/outline-tools.typ`）、页眉（`parts/main-body-*-fn.typ`）均依赖于此功能。
+
+  - 自定义多级 heading 的基本样式。
+
+但是，由于该 heading 涉及跨页问题：自动换页中，heading 会变成跨多页的元素。这也导致目录、页眉必须是用自造轮子。
+
+目前，该自造轮子会导致生成的 PDF 目录中，一级标题的锚点位置不正确。
+
+如有更好的解决方案，欢迎给出建议或提交 PR。
+*/
+
 #let show-heading(
   heading-top-margin: (0.2cm, 0cm, 0cm),
   heading-bottom-margin: (0cm, 0cm, 0cm),
@@ -122,35 +138,6 @@
     ]
   }
 
-  // if it.level == 1 {
-  //   set align(center)
-  //   set text(..heading-text.at(0))
-
-    
-
-  //   // if thesistype == "Undergraduate" and it.body.text in ("摘要", "目录", "致谢", "ABSTRACT") {
-  //   //   if it.body.text == "目录" {v(5pt)} else {v(1em)}
-  //   // }
-    
-
-  //   // locate(loc => {
-  //   //   let itpart = partstate.at(loc)
-  //   //   equationcounter.update(0)
-  //   //   if itpart == "正文" { 
-  //   //     chaptercounter.step()
-  //   //   } else if itpart == "附录" { 
-  //   //     appendixcounter.step()
-  //   //   }
-  //   // })
-    
-  // } else {
-  //   set text(..heading-text.at(
-  //     it.level - 1,
-  //     default: heading-text.at(2)
-  //   ))
-  //   it
-  // }
-
   v(heading-bottom-margin.at(
     it.level - 1, 
     default: heading-bottom-margin.at(2)
@@ -159,7 +146,4 @@
   fake-par
 
   heading-l1-updating-name-str-state.update(chapter-name-string)
-
-  // text()[#v(0em, weak: true)]
-  // text()[#h(0em)]
 }
