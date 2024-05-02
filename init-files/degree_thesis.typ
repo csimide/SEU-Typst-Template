@@ -1,5 +1,10 @@
-#import "../seu-thesis/lib.typ": degree-conf, thanks, appendix
+#import "@preview/cheda-seu-thesis:0.2.1": degree-conf, thanks, appendix
 #import "@preview/sourcerer:0.2.1": code
+
+/*
+  使用模板前，请先安装 https://github.com/csimide/SEU-Typst-Template/tree/master/fonts 内的所有字体。
+  如果使用 Web App，请将这些字体上传到 Web App 项目的根目录中。
+*/
 
 #let terminology = [
 
@@ -91,7 +96,7 @@
   enkeywords: ("Keywords1", "Keywords2"),
   alwaysstartodd: true,
   terminology: terminology,
-  anonymous: false,
+  anonymous: false, // 选项暂时无用，未来用于渲染盲审版本
   first-level-title-page-disable-heading: false, // 一级标题页不显示页眉
   // 启用此选项后，“第X章 XXXXX” 一级标题所在页面将不显示页眉
   bilingual-bib: true,
@@ -397,7 +402,7 @@ $ alpha + beta = gamma $ <eqexample​>
 
 #bibliography(
   "ref.bib", // 替换为自己的bib路径
-  style: "../seu-thesis/gb-t-7714-2015-numeric-seu.csl"
+  style: "gb-t-7714-2015-numeric-seu.csl"
 )
 
 

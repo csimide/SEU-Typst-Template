@@ -1,5 +1,10 @@
-#import "@preview/cheda-seu-thesis:0.2.0": bachelor-conf, thanks, appendix
+#import "@preview/cheda-seu-thesis:0.2.1": bachelor-conf, thanks, appendix
 #import "@preview/sourcerer:0.2.1": code
+
+/*
+  使用模板前，请先安装 https://github.com/csimide/SEU-Typst-Template/tree/master/fonts 内的所有字体。
+  如果使用 Web App，请将这些字体上传到 Web App 项目的根目录中。
+*/
 
 #show: doc => bachelor-conf(
   studentID: "00121001",
@@ -279,7 +284,7 @@ $
 
 #bibliography(
   "ref.bib", // 替换为自己的bib路径
-  style: "../seu-thesis/gb-t-7714-2015-numeric-seu.csl"
+  style: "gb-t-7714-2015-numeric-seu.csl"
 )
 
 = 这里是附录内容
