@@ -284,7 +284,7 @@ $
 
 #bibliography(
   "ref.bib", // 替换为自己的bib路径
-  style: "gb-t-7714-2015-numeric-seu.csl"
+  style: "gb-t-7714-2015-numeric-seu-bachelor.csl"
 )
 
 = 这里是附录内容

@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <style xmlns="http://purl.org/net/xbiblio/csl" version="1.0" class="in-text" name-as-sort-order="all" sort-separator=" " demote-non-dropping-particle="never" initialize-with=" " initialize-with-hyphen="false" page-range-format="expanded" default-locale="zh-CN">
   <info>
-    <title>GB/T 7714-2015 (SEU 毕设)</title>
-    <id>http://www.zotero.org/styles/gb-t-7714-2015-numeric-bilingual-no-url-doi</id>
+    <title>GB/T 7714-2015 (SEU 学位，适用于 Typst 0.11.0)</title>
+    <id>http://www.zotero.org/styles/gb-t-7714-2015-numeric-bilingual-no-url-doi-seu</id>
     <link href="http://www.zotero.org/styles/gb-t-7714-2015-numeric-bilingual-no-url-doi" rel="self"/>
     <link href="http://www.zotero.org/styles/china-national-standard-gb-t-7714-2015-numeric" rel="template"/>
     <link href="https://std.samr.gov.cn/gb/search/gbDetailed?id=71F772D8055ED3A7E05397BE0A0AB82A" rel="documentation"/>
+    <link href="https://github.com/nju-lug/modern-nju-thesis/issues/3" rel="documentation"/>
+    <link href="https://github.com/csimide/SEU-Typst-Template" rel="documentation"/>
     <author>
       <name>牛耕田</name>
       <email>buffalo_d@163.com</email>
@@ -19,8 +21,8 @@
     </contributor>
     <category citation-format="numeric"/>
     <category field="generic-base"/>
-    <summary>1. (暂不支持)按照语言显示“等”或“et al.”；2. 仅纯电子资源显示引用日期和 URL；3. 无 DOI。</summary>
-    <updated>2024-03-04T15:21:32+08:00</updated>
+    <summary>1. 适用于 Typst 0.11.0 ，与 bilingual-bibliography 配合使用可按照语言显示“等”或“et al.”；2. 仅纯电子资源显示引用日期和 URL；3. 无 DOI；4. 显示学位论文的类别，但 Typst 尚不支持。</summary>
+    <updated>2024-05-02T19:21:32+08:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xml:lang="zh">
@@ -51,7 +53,7 @@
   <macro name="author">
     <names variable="author">
       <name>
-        <name-part name="family" text-case="uppercase"/>
+        <name-part name="family"/>
       </name>
       <substitute>
         <names variable="composer"/>
@@ -106,6 +108,7 @@
       <text macro="type-id"/>
       <text macro="medium-id"/>
     </group>
+    <text prefix=": [" suffix="]" variable="genre" />
   </macro>
   <!-- 书籍的卷号（“第 x 卷”或“第 x 册”） -->
   <macro name="volume">
@@ -195,7 +198,7 @@
   <macro name="secondary-contributors">
     <names variable="translator">
       <name>
-        <name-part name="family" text-case="uppercase"/>
+        <name-part name="family"/>
       </name>
       <label form="short" prefix=", "/>
     </names>
@@ -204,7 +207,7 @@
   <macro name="container-contributors">
     <names variable="editor">
       <name>
-        <name-part name="family" text-case="uppercase"/>
+        <name-part name="family"/>
       </name>
       <substitute>
         <names variable="editorial-director"/>
@@ -360,11 +363,7 @@
           </else>
         </choose>
       </if>
-      <else-if type="article-journal" variable="available-date" match="all">
-        <!-- 网络首发（advance online publication）的期刊文章的日期使用 available-date -->
-        <date variable="available-date" form="numeric" date-parts="year"/>
-      </else-if>
-      <else>
+            <else>
         <!-- 选取引用日期的年份作为估计的出版年 -->
         <date variable="accessed" form="numeric" date-parts="year" prefix="[" suffix="]"/>
       </else>
@@ -403,46 +402,58 @@
       <choose>
         <if type="periodical">
           <!-- 4.3 连续出版物 -->
-          <text macro="title"/>
-          <text macro="year-volume-issue"/>
-          <text macro="publisher"/>
+          <group delimiter=". ">
+            <text macro="title"/>
+            <text macro="year-volume-issue"/>
+            <text macro="publisher"/>
+          </group>
         </if>
         <else-if type="article-journal article-magazine article-newspaper" match="any">
           <!-- 4.4 连续出版物中的析出文献 -->
-          <text macro="title"/>
-          <text macro="container-periodical"/>
+          <group delimiter=". ">
+            <text macro="title"/>
+            <text macro="container-periodical"/>
+          </group>
         </else-if>
         <else-if type="patent">
           <!-- 4.5 专利文献 -->
-          <text macro="title"/>
-          <text macro="publisher"/>
+          <group delimiter=". ">
+            <text macro="title"/>
+            <text macro="publisher"/>
+          </group>
         </else-if>
         <else-if type="dataset post post-weblog software webpage" match="any">
           <!-- 4.6 电子资源 -->
-          <text macro="title"/>
-          <text macro="publisher"/>
+          <group delimiter=". ">
+            <text macro="title"/>
+            <text macro="publisher"/>
+          </group>
         </else-if>
         <else-if type="chapter entry-dictionary entry-encyclopedia paper-conference" variable="container-title" match="any">
           <!-- 4.2 专著中的析出文献 -->
-          <group delimiter="//">
-            <group delimiter=". ">
-              <text macro="title"/>
-              <text macro="secondary-contributors"/>
+          <group delimiter=". ">
+            <group delimiter="//">
+              <group delimiter=". ">
+                <text macro="title"/>
+                <text macro="secondary-contributors"/>
+              </group>
+              <group delimiter=". ">
+                <text macro="container-contributors"/>
+                <text macro="container-booklike"/>
+              </group>
             </group>
-            <group delimiter=". ">
-              <text macro="container-contributors"/>
-              <text macro="container-booklike"/>
-            </group>
+            <text macro="edition"/>
+            <text macro="publisher"/>
           </group>
-          <text macro="edition"/>
-          <text macro="publisher"/>
         </else-if>
         <else>
           <!-- 4.1 专著 -->
-          <text macro="title"/>
-          <text macro="secondary-contributors"/>
-          <text macro="edition"/>
-          <text macro="publisher"/>
+          <group delimiter=". ">
+            <text macro="title"/>
+            <text macro="secondary-contributors"/>
+            <text macro="edition"/>
+            <text macro="publisher"/>
+          </group>
         </else>
       </choose>
       <text macro="access"/>
