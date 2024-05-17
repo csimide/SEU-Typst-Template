@@ -1,7 +1,7 @@
 #import "numbering-tools.typ": chinese-numbering
 #import "packages.typ": show-cn-fakebold
 #import "show-heading.typ": show-heading
-#import "figure-and-ref.typ": show-figure, show-ref, set-math-numbering, show-math-equation-degree
+#import "figure-and-ref.typ": show-figure, show-ref, set-math-numbering
 #import "bilingual-bibliography.typ": show-bibliography
 #import "fonts.typ": 字体, 字号
 
@@ -41,8 +41,7 @@
   set math.equation(numbering: set-math-numbering.with(
     main-body-numbering: "(1.1)",
     appendix-numbering: "(A-1)",
-  ))
-  show math.equation: show-math-equation-degree
+  ), number-align: bottom)
 
   set heading(numbering: chinese-numbering)
 

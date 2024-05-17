@@ -162,32 +162,3 @@
     }
   })
 }
-
-// 公式序号显示：右侧最下一行
-// 参考 https://github.com/typst/typst/discussions/3106
-// #show math.equation: show-math-equation-degree
-#let show-math-equation-degree(eq) = {
-  // apply custom style only to block equations with numbering enabled
-  if eq.block and eq.numbering != none {
-    // default numbering of the equation
-    let eqCounter = counter(math.equation).at(eq.location())
-    let eqNumbering = numbering(eq.numbering, ..eqCounter)
-
-    set align(left)
-  
-    grid(
-      // change "0pt" to "auto" to give the numbering its own space on the line
-      columns: (4em, 100% - 4em, 0pt),
-      
-      // note that "numbering: none" avoids infinite recursion
-      h(4em),
-      
-      block(math.equation(eq.body, block: true, numbering: none)),
-
-      align(right + bottom)[#eqNumbering],
-    )
-  } else {
-    eq
-  }
-}
-

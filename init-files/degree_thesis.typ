@@ -1,4 +1,4 @@
-#import "@preview/cheda-seu-thesis:0.2.1": degree-conf, thanks, appendix
+#import "../seu-thesis/lib.typ": degree-conf, thanks, appendix
 #import "@preview/sourcerer:0.2.1": code
 
 /*
