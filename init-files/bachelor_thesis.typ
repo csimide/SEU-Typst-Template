@@ -1,4 +1,4 @@
-#import "@preview/cheda-seu-thesis:0.2.1": bachelor-conf, thanks, appendix
+#import "@preview/cheda-seu-thesis:0.2.2": bachelor-conf, thanks, appendix
 #import "@preview/sourcerer:0.2.1": code
 
 /*

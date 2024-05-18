@@ -1,4 +1,4 @@
-#import "../seu-thesis/lib.typ": degree-conf, thanks, appendix
+#import "@preview/cheda-seu-thesis:0.2.2": degree-conf, thanks, appendix
 #import "@preview/sourcerer:0.2.1": code
 
 /*
@@ -363,7 +363,7 @@ $ alpha + beta = gamma $ <eqexample​>
 ```typst
 #bibliography(
   "ref.bib", // 替换为自己的bib路径
-  style: "./seu-thesis/gb-t-7714-2015-numeric-seu.csl"
+  style: "./seu-thesis/gb-t-7714-2015-numeric-seu-degree.csl"
 )
 ```
 ) 
@@ -376,7 +376,7 @@ $ alpha + beta = gamma $ <eqexample​>
 
 模板提供了 `bilingual-bib` 参数，用于控制是否使用 `bilingual-bibliography`。当 `bilingual-bib` 参数设置为 `true` 时，模板会使用 `bilingual-bibliography` 渲染。
 
-本模板附带的 `gb-t-7714-2015-numeric-seu.csl` 是“修复”部分 bug 的 CSL 文件。该格式和东大格式不完全吻合，但比自带的 `gb7714-2015` 稍微符合一些。
+本模板附带的 `gb-t-7714-2015-numeric-seu-degree.csl` 是“修复”部分 bug 的学位论文用 CSL 文件。该格式和东大格式不完全吻合，但比自带的 `gb7714-2015` 稍微符合一些。
 
 参考文献过后，会自动进入使用 A B C 排序的附录部分。如果不想加入参考文献，想直接进入附录部分，请使用 `#appendix()`
 
