@@ -193,15 +193,11 @@
 
 - 有较为麻烦的图表、公式编号（图表编号格式不相同，甚至附录与正文中图表编号格式也不相同；图的名称在图下方，表的名称在表上方；公式不是居中对齐，公式编号位置不是右侧上下居中）。
 
-  - `seu-thesis/utils/figure-and-ref.typ` 定义了显示图表格式、图表文内引用格式和公式引用格式的函数。
-  - 上述文件依赖于 `part-state` （定义在 `seu-thesis/utils/states.typ` 内）用于判断所处的位置。
-  - 部分计数器置零的工作是在 `heading` 中完成的，即 `seu-thesis/utils/show-heading.typ`
-  - 如有条件或没有如此麻烦的需求，建议使用 `i-figure` 包。
+  - 已经改用 `i-figure` 包完成。
 
 - （仅研究生学位论文）奇数页偶数页页眉不同，且有页眉中显示章节名称的需求。
 
-  - 该功能位于 `seu-thesis/parts/main-body-degree-fn.typ` ，并且强依赖在 `heading` （`seu-thesis/utils/show-heading.typ`）中完成的工作。
-  - 该功能以来 `seu-thesis/utils/states.typ` 内定义的多个 `state`。
+  - 该功能位于 `seu-thesis/parts/main-body-degree-fn.typ`。
 
 - 支持双语显示参考文献（自动使用 `et al.` 和 `等`）
   - 该功能来自 `bilingual-bibliography`，关联的文件是 `seu-thesis/utils/bilingual-bibliography.typ`。
