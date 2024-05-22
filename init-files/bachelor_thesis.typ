@@ -1,4 +1,4 @@
-#import "@preview/cheda-seu-thesis:0.2.2": bachelor-conf, thanks, appendix
+#import "../seu-thesis/lib.typ": bachelor-conf, thanks, show-appendix-bachelor
 #import "@preview/sourcerer:0.2.1": code
 
 /*
@@ -83,14 +83,14 @@ ABSTRACT为三号Times New Roman加粗居中。
   #figure(
     image("./demo_image/24h_rain.png", width: 8.36cm),// 宽度/高度需要自行调整
     caption: [每小时降水量24小时均值分布图]
-  )
+  ) <​每小时降水量24小时均值分布图>
   ```
 )
 
 #figure(
   image("./demo_image/24h_rain.png", width: 8.36cm),
   caption: [每小时降水量24小时均值分布图]
-)
+)<每小时降水量24小时均值分布图>
 
 #h(2em) 通常情况下，插入图、表等组件后，后续的首个段落会丢失首行缩进，需要使用 `#h(2em)` 手动补充缩进。
 
@@ -112,6 +112,9 @@ ABSTRACT为三号Times New Roman加粗居中。
   ```
 )
 
+// 上面这处代码请不要直接复制
+// 因为为了规避渲染报错，加了一个零宽度空格
+
 #figure(
   grid(
     columns: (3.83cm, 5.51cm),
@@ -122,6 +125,8 @@ ABSTRACT为三号Times New Roman加粗居中。
 )
 
 #h(2em) 实际使用中，网格划分、网格大小调整需要自行操作。
+
+如果需要在文中引用这些图表，应当先给对应部分打 label ，再到需要引用的地方使用 `@` ，注意引用公式、图表需要添加相应的前缀，如  `@tbl:` `@fig:` `@eqt:`。例如，上面的@fig:每小时降水量24小时均值分布图 中使用 `<>` 添加了 label ，然后，使用`@fig:每小时降水量24小时均值分布图`引用，即可得到“@fig:每小时降水量24小时均值分布图”。
 
 == 表格格式要求
 
@@ -287,6 +292,8 @@ $
   style: "gb-t-7714-2015-numeric-seu-bachelor.csl"
 )
 
+#show: show-appendix-bachelor
+
 = 这里是附录内容
 
 == 附录测试1
@@ -299,7 +306,7 @@ $ a^2 + b^2 = c^2 $ <ss1>
   [（假装这里是表格内容）],
   caption: [附录中的一个表格],
   kind: table,
-)
+) <flt>
 
 #thanks[
 

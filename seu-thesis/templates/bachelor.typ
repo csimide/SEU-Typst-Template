@@ -1,12 +1,10 @@
 #import "../utils/fonts.typ": 字体, 字号
 #import "../utils/set-bachelor.typ": set-bachelor
-#import "../utils/bilingual-bibliography.typ": appendix
 #import "../utils/states.typ": part-state
 #import "../utils/thanks.typ": thanks
 
 #import "../pages/cover-bachelor-fn.typ": bachelor-cover-conf
 #import "../parts/abstract-bachelor-fn.typ": abstract-conf
-#import "../parts/outline-bachelor-fn.typ": outline-conf
 #import "../parts/main-body-bachelor-fn.typ": main-body-bachelor-conf
 
 #let bachelor-conf(
@@ -50,7 +48,9 @@
   )
 
   // 目录
-  outline-conf(outline-depth: outlinedepth)
+  heading(numbering: none, level: 1)[目录]
+  v(5pt)
+  outline(depth: outlinedepth, title: none)
 
   // 正文
   show: main-body-bachelor-conf

@@ -1,6 +1,5 @@
 // Authors: csimide, OrangeX4
 // Tested only on GB-7714-2015-Numeric
-#import "states.typ": appendix
 
 #let bilingual-bibliography(
   mapping: (:),
@@ -108,7 +107,6 @@
   it
 ) = {
   set bibliography(title: none)
-
   show bibliography: it => {
     heading(bookmarked: true, outlined: true, numbering: none, level: 1)[参考文献]
     if bilingual {
@@ -116,7 +114,6 @@
     } else {
       it
     }
-    appendix()
-  }  
+  }
   it
 }

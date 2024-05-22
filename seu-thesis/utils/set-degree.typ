@@ -1,7 +1,6 @@
 #import "numbering-tools.typ": chinese-numbering
-#import "packages.typ": show-cn-fakebold
+#import "packages.typ": show-cn-fakebold, i-figured
 #import "show-heading.typ": show-heading
-#import "figure-and-ref.typ": show-figure, show-ref, set-math-numbering
 #import "bilingual-bibliography.typ": show-bibliography
 #import "fonts.typ": 字体, 字号
 
@@ -26,22 +25,12 @@
     ),
   )
 
-  show figure: show-figure.with(
-    main-body-table-numbering: "1.1",
-    main-body-image-numbering: "1-1", // 其他也会视为 image
-    appendix-table-numbering: "A-1",
-    appendix-image-numbering: "A-1", // 其他也会视为 image
-  )
-  show ref: show-ref.with(
-    main-body-table-numbering: "1.1",
-    main-body-image-numbering: "1-1", // 其他也会视为 image
-    appendix-table-numbering: "A-1",
-    appendix-image-numbering: "A-1", // 其他也会视为 image
-  )
-  set math.equation(numbering: set-math-numbering.with(
-    main-body-numbering: "(1.1)",
-    appendix-numbering: "(A-1)",
-  ), number-align: bottom)
+  show figure.where(kind: table): set figure.caption(position: top)
+  show figure: set text(size: 字号.五号, font: 字体.宋体, weight: "regular")
+  show figure: i-figured.show-figure.with(numbering: "1-1")
+  show figure.where(kind: table): i-figured.show-figure.with(numbering: "1.1")
+  show math.equation.where(block: true): i-figured.show-equation
+  set math.equation(number-align: bottom)
 
   set heading(numbering: chinese-numbering)
 

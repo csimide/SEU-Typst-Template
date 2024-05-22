@@ -1,4 +1,4 @@
-#import "@preview/cheda-seu-thesis:0.2.2": degree-conf, thanks, appendix
+#import "../seu-thesis/lib.typ": degree-conf, thanks, show-appendix-degree
 #import "@preview/sourcerer:0.2.1": code
 
 /*
@@ -294,7 +294,9 @@ $
 
 #h(2em) 公式首行的起始位置位于行首算起第五个中文字符之处，即在段落起始行的首行缩进位置再退后两个中文字符。不要用居中、居左或居行首排列。公式编号按阿拉伯数字顺序编号，如（1）（2）……，公式较多时可按章顺序编号，如（1.1）（1.2）……。
 
-公式引用使用式 1、式 1.1 等，英语文本中用 Eq.1、Eq.1.1 等。在 Typst 中，可以给公式添加 label 再引用。例如引用@eqexample。
+公式引用使用式 1、式 1.1 等，英语文本中用 Eq.1、Eq.1.1 等。在 Typst 中，可以给公式添加 label 再引用。例如引用 @eqt:eqexample。
+
+请注意，引用公式、图表需要添加相应的前缀，如  `@tbl:` `@fig:` `@eqt:`。
 
 #code(
   radius: 0pt,
@@ -302,7 +304,7 @@ $
 ```typst
 $ alpha + beta = gamma $ <eqexample​>
 
-例如引用@eqexample。
+例如引用@eqt:eqexample。
 ```
 )
 
@@ -363,7 +365,7 @@ $ alpha + beta = gamma $ <eqexample​>
 ```typst
 #bibliography(
   "ref.bib", // 替换为自己的bib路径
-  style: "./seu-thesis/gb-t-7714-2015-numeric-seu-degree.csl"
+  style: "gb-t-7714-2015-numeric-seu-degree.csl"
 )
 ```
 ) 
@@ -377,8 +379,6 @@ $ alpha + beta = gamma $ <eqexample​>
 模板提供了 `bilingual-bib` 参数，用于控制是否使用 `bilingual-bibliography`。当 `bilingual-bib` 参数设置为 `true` 时，模板会使用 `bilingual-bibliography` 渲染。
 
 本模板附带的 `gb-t-7714-2015-numeric-seu-degree.csl` 是“修复”部分 bug 的学位论文用 CSL 文件。该格式和东大格式不完全吻合，但比自带的 `gb7714-2015` 稍微符合一些。
-
-参考文献过后，会自动进入使用 A B C 排序的附录部分。如果不想加入参考文献，想直接进入附录部分，请使用 `#appendix()`
 
 
 
@@ -396,7 +396,9 @@ $ alpha + beta = gamma $ <eqexample​>
 
 致谢章节应当使用 `#thanks[内容]` 显示。
 
-在致谢章节后，请添加  `#bibliography` 引用文献表。在引用文献表后，会自动切换到附录。如果不插入参考文献，但进入附录，请使用 `#appendix()`。
+在致谢章节后，请添加  `#bibliography` 引用文献表。
+
+参考文献过后，需要使用`#show: show-appendix-degree`进入附录部分。
 
 ]
 
@@ -405,8 +407,10 @@ $ alpha + beta = gamma $ <eqexample​>
   style: "gb-t-7714-2015-numeric-seu-degree.csl"
 )
 
+#show: show-appendix-degree // 进入附录部分
 
-= 附录说明
+
+= 附录说明 <appendix-1>
 
 如果有必要可以设置附录。该部分包括与论文有关的原始数据明细表，较多的图表，计算程序及说明，过长的公式推导，或取材于复制品而不便于编入正文的材料等。附录一般与论文全文装订在一起，与正文一起编页码。如果附录内容很多，可独立成册。若有多个附录，则按大写英文字母编号排序，如附录 A、附录 B 等，每一个附录均另起一页。附录中的公式及图表编号应冠以附录序号字母加一短划线，如公式（A-2）、图 A-2，表 B-2 等。
 
@@ -414,7 +418,7 @@ $
 &1+2+ \
 &3+4+\ 
 &66666666
-$
+$ <ss1>
 
 #figure(
   {
