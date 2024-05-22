@@ -13,8 +13,6 @@
   counter(heading.where(level: 1)).update(0)
   set heading(numbering: chinese-numbering.with(in-appendix: true))
 
-  set heading(supplement: none)
-
   show figure: i-figured.show-figure.with(numbering: image-numbering)
   show figure.where(kind: table): i-figured.show-figure.with(numbering: table-numbering)
   show math.equation.where(block: true): i-figured.show-equation.with(numbering: equation-numbering)

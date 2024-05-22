@@ -24,6 +24,7 @@
   show: show-bibliography.with(bilingual: bilingual-bib)
 
   show heading: show-heading.with(always-new-page: true)
+  show heading.where(level: 1): set heading(supplement: none)
 
   set outline(depth: 3, indent: 2em)
 

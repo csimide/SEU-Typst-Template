@@ -24,6 +24,7 @@
       (font: 字体.黑体, size: 字号.小四, weight: "regular"),
     ),
   )
+  show heading.where(level: 1): set heading(supplement: none)
 
   show figure.where(kind: table): set figure.caption(position: top)
   show figure: set text(size: 字号.五号, font: 字体.宋体, weight: "regular")

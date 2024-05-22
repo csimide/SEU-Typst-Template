@@ -37,7 +37,6 @@
       it.level - 1,
       default: heading-top-margin.last(),
     ),
-    weak: true,
   )
 
   // 标题
@@ -86,7 +85,6 @@
       it.level - 1,
       default: heading-bottom-margin.last(),
     ),
-    weak: true,
   )
 
   i-figured.reset-counters((level: it.level), return-orig-heading: false)
