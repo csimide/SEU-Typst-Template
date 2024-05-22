@@ -22,7 +22,7 @@
     <category citation-format="numeric"/>
     <category field="generic-base"/>
     <summary>1. 适用于 Typst 0.11.0 ，与 bilingual-bibliography 配合使用可按照语言显示“等”或“et al.”；2. 仅纯电子资源显示引用日期和 URL；3. 无 DOI；4. 显示学位论文的类别，但 Typst 尚不支持。</summary>
-    <updated>2024-05-02T19:21:32+08:00</updated>
+    <updated>2024-05-22T21:40:32+08:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xml:lang="zh">
@@ -397,7 +397,7 @@
   </macro>
   <!-- 参考文献表格式 -->
   <macro name="entry-layout">
-    <group delimiter=". ">
+    <group delimiter=". " suffix=".">
       <text macro="author"/>
       <choose>
         <if type="periodical">
