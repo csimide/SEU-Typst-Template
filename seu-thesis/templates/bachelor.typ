@@ -44,7 +44,7 @@
     cnabstract: cnabstract,
     cnkeywords: cnkeywords,
     enabstract: enabstract,
-    enkeywords: enkeywords
+    enkeywords: enkeywords,
   )
 
   // 目录

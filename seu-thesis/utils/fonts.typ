@@ -83,17 +83,17 @@
   context {
     let measure-width = measure(s).width
     let expected-width = if width == none {
-        0pt
-      } else if type(width) in (str, content) {
-        measure(width).width.to-absolute()
-      } else if type(width) == length {
-        width.to-absolute()
-      }
+      0pt
+    } else if type(width) in (str, content) {
+      measure(width).width.to-absolute()
+    } else if type(width) == length {
+      width.to-absolute()
+    }
     let spacing = if measure-width > expected-width {
-        0pt
-      } else {
-        (expected-width - measure-width)/(s.clusters().len() - 1)
-      }
+      0pt
+    } else {
+      (expected-width - measure-width) / (s.clusters().len() - 1)
+    }
     text(tracking: spacing, s)
   }
 }

@@ -32,27 +32,36 @@
   }
 
   // 标题前间距
-  v(heading-top-margin.at(
-    it.level - 1, 
-    default: heading-top-margin.last()
-  ), weak: true)
+  v(
+    heading-top-margin.at(
+      it.level - 1,
+      default: heading-top-margin.last(),
+    ),
+    weak: true,
+  )
 
   // 标题
   {
-    set align(heading-align.at(
-      it.level - 1,
-      default: heading-align.last()
-    ))
+    set align(
+      heading-align.at(
+        it.level - 1,
+        default: heading-align.last(),
+      ),
+    )
 
-    set text(..heading-text.at(
-      it.level - 1,
-      default: heading-text.last()
-    ))
+    set text(
+      ..heading-text.at(
+        it.level - 1,
+        default: heading-text.last(),
+      ),
+    )
 
-    h(heading-indent.at(
-      it.level - 1,
-      default: heading-indent.last()
-    ))
+    h(
+      heading-indent.at(
+        it.level - 1,
+        default: heading-indent.last(),
+      ),
+    )
 
     //
     if it.numbering == none {
@@ -70,13 +79,16 @@
       it.body
     }
   }
-  
+
   // 标题后间距
-  v(heading-bottom-margin.at(
-    it.level - 1, 
-    default: heading-bottom-margin.last()
-  ), weak: true)
-  
+  v(
+    heading-bottom-margin.at(
+      it.level - 1,
+      default: heading-bottom-margin.last(),
+    ),
+    weak: true,
+  )
+
   i-figured.reset-counters((level: it.level), return-orig-heading: false)
 
   fake-par

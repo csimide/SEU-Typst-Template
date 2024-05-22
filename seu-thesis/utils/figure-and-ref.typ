@@ -2,15 +2,15 @@
 #import "states.typ": part-state
 #import "fonts.typ": 字体, 字号
 
-// 用法: 
+// 用法:
 // #show figure: show-figure
 // #show ref: show-ref
-// #show 
+// #show
 
 #let tb-numbering(
   it,
-  loc: none, 
-  baseloc: none,   
+  loc: none,
+  baseloc: none,
   main-body-table-numbering: "1.1",
   main-body-image-numbering: "1-1", // 其他也会视为 image
   appendix-table-numbering: "A.1",
@@ -18,12 +18,12 @@
 ) = {
   if part-state.at(loc) != "附录" {
     numbering(
-      if it.kind == table {main-body-table-numbering} else {main-body-image-numbering}, 
+      if it.kind == table {main-body-table-numbering} else {main-body-image-numbering},
       counter(heading.where(level: 1)).at(loc).first(), // 章节号
       (
         counter(figure.where(kind: it.kind))
         .at(loc)
-        .first() - 
+        .first() -
         counter(figure.where(kind: it.kind))
         .at(baseloc)
         .first()
@@ -31,12 +31,12 @@
     )
   } else if part-state.at(loc) == "附录" {
     numbering(
-      if it.kind == table {appendix-table-numbering} else {appendix-image-numbering}, 
+      if it.kind == table {appendix-table-numbering} else {appendix-image-numbering},
       counter(heading.where(level: 1)).at(loc).first(), // 章节号
       (
         counter(figure.where(kind: it.kind))
         .at(loc)
-        .first() - 
+        .first() -
         counter(figure.where(kind: it.kind))
         .at(baseloc)
         .first()

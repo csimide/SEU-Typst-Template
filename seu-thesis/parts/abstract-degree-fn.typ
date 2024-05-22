@@ -6,12 +6,12 @@
   cnkeywords: none,
   enabstract: none,
   enkeywords: none,
-  page-break: none
+  page-break: none,
 ) = {
   // 摘要使用罗马字符的页码
   set page(numbering: "I", number-align: center)
   counter(page).update(1)
-  
+
   set text(font: 字体.宋体, size: 字号.小四)
   set par(first-line-indent: 2em, leading: 9.6pt, justify: true)
   show par: set block(spacing: 9.6pt)
@@ -37,16 +37,21 @@
     {
       if type(page-break) == function {
         page-break()
-      }  else {
+      } else {
         pagebreak(weak: true)
       }
-      
-      heading(numbering: none, level: 1, outlined: true, bookmarked: true)[ABSTRACT]
+
+      heading(
+        numbering: none,
+        level: 1,
+        outlined: true,
+        bookmarked: true,
+      )[ABSTRACT]
 
       enabstract
 
       v(1em)
-       parbreak()
+      parbreak()
 
       if not enkeywords in (none, ()) {
         assert(type(enkeywords) == array)
@@ -61,4 +66,4 @@
   cnkeywords: ("关键词1", "关键词2"),
   enabstract: none,
   enkeywords: ("Keywords1", "Keywords2"),
-) 
+)

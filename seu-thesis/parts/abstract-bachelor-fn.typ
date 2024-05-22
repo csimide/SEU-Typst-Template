@@ -9,7 +9,7 @@
   // 摘要使用罗马字符的页码
   set page(numbering: "I", number-align: center)
   counter(page).update(1)
-  
+
   set text(font: 字体.宋体, size: 字号.小四)
   set par(first-line-indent: 2em, leading: 15pt, justify: true)
   show par: set block(spacing: 15pt)
@@ -38,8 +38,13 @@
   if not enabstract in (none, [], "") or not enkeywords in (none, ()) {
     {
       pagebreak(weak: true)
-      
-      heading(outlined: true, bookmarked: true, level: 1, numbering: none)[ABSTRACT]
+
+      heading(
+        outlined: true,
+        bookmarked: true,
+        level: 1,
+        numbering: none,
+      )[ABSTRACT]
       v(1em)
 
       enabstract
@@ -59,4 +64,4 @@
   cnkeywords: ("关键词1", "关键词2"),
   enabstract: none,
   enkeywords: ("Keywords1", "Keywords2"),
-) 
+)

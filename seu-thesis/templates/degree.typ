@@ -16,27 +16,32 @@
   thesisname: (
     CN: "硕士学位论文",
     EN: [
-    A Thesis submitted to \
-    Southeast University \
-    For the Academic Degree of Master of Touching Fish
+      A Thesis submitted to \
+      Southeast University \
+      For the Academic Degree of Master of Touching Fish
     ],
-    heading: "东南大学硕士学位论文"
+    heading: "东南大学硕士学位论文",
   ),
   title: (
     CN: "摸鱼背景下的Typst模板使用研究",
-    EN: "A Study of the Use of the Typst Template During Touching Fish"
+    EN: "A Study of the Use of the Typst Template During Touching Fish",
   ),
   advisors: (
-    (CN: "湖牌桥", EN:"HU Pai-qiao", CNTitle: "教授", ENTitle: "Prof."),
-    (CN: "苏锡浦", EN:"SU Xi-pu", CNTitle: "副教授", ENTitle: "Associate Prof.")
+    (CN: "湖牌桥", EN: "HU Pai-qiao", CNTitle: "教授", ENTitle: "Prof."),
+    (
+      CN: "苏锡浦",
+      EN: "SU Xi-pu",
+      CNTitle: "副教授",
+      ENTitle: "Associate Prof.",
+    ),
   ),
   school: (
     CN: "摸鱼学院",
-    EN: "School of Touchingfish"
+    EN: "School of Touchingfish",
   ),
   major: (
     main: "摸鱼科学",
-    submajor: "计算机摸鱼"
+    submajor: "计算机摸鱼",
   ),
   degree: "摸鱼学硕士",
   categorynumber: "N94",
@@ -46,17 +51,17 @@
   committeechair: "张三 教授",
   readers: (
     "李四 副教授",
-    "王五 副教授"
+    "王五 副教授",
   ),
   date: (
     CN: (
-      defenddate: "2099年01月02日", 
+      defenddate: "2099年01月02日",
       authorizedate: "2099年01月03日",
-      finishdate: "2024年01月15日"
+      finishdate: "2024年01月15日",
     ),
     EN: (
-      finishdate: "Jan 15, 2024"
-    )
+      finishdate: "Jan 15, 2024",
+    ),
   ),
   thanks: "本论文受到摸鱼基金委的基金赞助（123456）",
   degreeform: "应用研究",
@@ -69,7 +74,7 @@
   anonymous: false,
   skip-with-page-blank: false,
   bilingual-bib: true,
-  first-level-title-page-disable-heading: false, 
+  first-level-title-page-disable-heading: false,
   doc,
 ) = {
 
@@ -78,9 +83,12 @@
     always-skip-even: alwaysstartodd,
   )
 
-  show: set-degree.with(always-new-page: smart-pagebreak, bilingual-bib: bilingual-bib)
+  show: set-degree.with(
+    always-new-page: smart-pagebreak,
+    bilingual-bib: bilingual-bib,
+  )
 
-  degree-cover-conf(  
+  degree-cover-conf(
     author: author,
     thesisname: thesisname,
     title: title,
@@ -148,7 +156,7 @@
 
   outline-conf()
 
-  if not terminology in (none, [], [ ], ""){
+  if not terminology in (none, [], [ ], "") {
     smart-pagebreak()
     terminology-conf(terminology)
   }
@@ -157,7 +165,7 @@
 
   show: main-body-bachelor-conf.with(
     thesisname: thesisname,
-    first-level-title-page-disable-heading: first-level-title-page-disable-heading
+    first-level-title-page-disable-heading: first-level-title-page-disable-heading,
   )
 
   doc
@@ -168,27 +176,32 @@
   thesisname: (
     CN: "硕士学位论文",
     EN: [
-    A Thesis submitted to \
-    Southeast University \
-    For the Academic Degree of Master of Touching Fish
+      A Thesis submitted to \
+      Southeast University \
+      For the Academic Degree of Master of Touching Fish
     ],
-    heading: "东南大学硕士学位论文"
+    heading: "东南大学硕士学位论文",
   ),
   title: (
     CN: "摸鱼背景下的Typst模板使用研究",
-    EN: "A Study of the Use of the Typst Template During Touching Fish"
+    EN: "A Study of the Use of the Typst Template During Touching Fish",
   ),
   advisors: (
-    (CN: "湖牌桥", EN:"HU Pai-qiao", CNTitle: "教授", ENTitle: "Prof."),
-    (CN: "苏锡浦", EN:"SU Xi-pu", CNTitle: "副教授", ENTitle: "Associate Prof.")
+    (CN: "湖牌桥", EN: "HU Pai-qiao", CNTitle: "教授", ENTitle: "Prof."),
+    (
+      CN: "苏锡浦",
+      EN: "SU Xi-pu",
+      CNTitle: "副教授",
+      ENTitle: "Associate Prof.",
+    ),
   ),
   school: (
     CN: "摸鱼学院",
-    EN: "School of Touchingfish"
+    EN: "School of Touchingfish",
   ),
   major: (
     main: "摸鱼科学",
-    submajor: "计算机摸鱼"
+    submajor: "计算机摸鱼",
   ),
   degree: "摸鱼学硕士",
   categorynumber: "N94",
@@ -198,17 +211,17 @@
   committeechair: "张三 教授",
   readers: (
     "李四 副教授",
-    "王五 副教授"
+    "王五 副教授",
   ),
   date: (
     CN: (
-      defenddate: "2099年01月02日", 
+      defenddate: "2099年01月02日",
       authorizedate: "2099年01月03日",
-      finishdate: "2024年01月15日"
+      finishdate: "2024年01月15日",
     ),
     EN: (
-      finishdate: "Jan 15, 2024"
-    )
+      finishdate: "Jan 15, 2024",
+    ),
   ),
   thanks: "本论文受到摸鱼基金委的基金赞助（123456）",
   degreeform: "应用研究",

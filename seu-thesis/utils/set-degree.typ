@@ -5,7 +5,7 @@
 #import "fonts.typ": 字体, 字号
 
 #let set-degree(always-new-page: true, bilingual-bib: true, doc) = {
-  set page(paper: "a4", margin: (top: 2cm, bottom: 2cm, left:2cm, right: 2cm))
+  set page(paper: "a4", margin: (top: 2cm, bottom: 2cm, left: 2cm, right: 2cm))
   set text(font: 字体.宋体, size: 字号.小四, weight: "regular", lang: "zh")
   set par(first-line-indent: 2em, leading: 9.6pt, justify: true)
   show par: set block(spacing: 9.6pt)
