@@ -372,7 +372,7 @@ $ alpha + beta = gamma $ <eqexample​>
 
 #h(2em)就会自动生成参考文献表。demo 使用的 `ref.bib` 来自 https://github.com/lucifer1004/pkuthss-typst 。
 
-当前（Typst 0.11.0）的 GB/T 7714-2015 参考文献功能仍有较多问题；东大使用的参考文献也不是标准的 GB/T 7714-2015 格式。目前，我们尝试使用曲线方法解决：
+当前（Typst 0.11.x）的 GB/T 7714-2015 参考文献功能仍有较多问题；东大使用的参考文献也不是标准的 GB/T 7714-2015 格式。目前，我们尝试使用曲线方法解决：
 
 为了生成中英文双语的参考文献表，本模板实验性地引入了 `bilingual-bibliography` 。有关该功能的详细信息，请访问 https://github.com/nju-lug/modern-nju-thesis/issues/3 。如果出现参考文献显示不正常的情况，请前往 https://github.com/csimide/SEU-Typst-Template/issues/1 反馈。
 
