@@ -11,19 +11,20 @@
   counter(page).update(1)
 
   set text(font: 字体.宋体, size: 字号.小四)
-  set par(first-line-indent: 2em, leading: 15pt, justify: true)
-  show par: set block(spacing: 15pt)
-  // 字号为小四时， 1.5*15.6pt - 0.7em = 15pt
-  // 经验公式由 Typst 中文非官方交流群 A ^_^ A 给出
 
   if not cnabstract in (none, [], "") or not cnkeywords in (none, ()) {
     {
+      set par(first-line-indent: 2em, leading: 14pt, justify: true)
+      show par: set block(spacing: 14pt)
+      // 我不理解为什么两个摘要需要不同的间距
+
       heading(outlined: true, bookmarked: true, level: 1, numbering: none)[摘要]
-      v(1em)
+
+      v(3pt)
 
       cnabstract
 
-      v(1em)
+      v(18pt)
 
       // 英文
       set par(first-line-indent: 0em)
@@ -39,17 +40,22 @@
     {
       pagebreak(weak: true)
 
+      set par(first-line-indent: 2em, leading: 15pt, justify: true)
+      show par: set block(spacing: 15pt)
+      // 我不理解为什么两个摘要需要不同的间距
+
       heading(
         outlined: true,
         bookmarked: true,
         level: 1,
         numbering: none,
       )[ABSTRACT]
-      v(1em)
+
+      v(3pt)
 
       enabstract
 
-      v(1em)
+      v(20pt)
 
       if not enkeywords in (none, ()) {
         assert(type(enkeywords) == array)

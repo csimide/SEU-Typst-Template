@@ -10,7 +10,7 @@
     paper: "a4",
     margin: (
       top: 2cm + 0.5cm,
-      bottom: 2cm + 0.5cm,
+      bottom: 2cm + 1cm,
       left: 2cm + 0.5cm,
       right: 2cm,
     ),
@@ -23,12 +23,25 @@
 
   show: show-bibliography.with(bilingual: bilingual-bib)
 
-  show heading: show-heading.with(always-new-page: true)
+  show heading: show-heading.with(
+    heading-top-margin: (0.2cm, 0.07cm, 0cm),
+    heading-bottom-margin: (0.13cm, 0.1cm, 0cm),
+    heading-indent: (0cm, 0em, 0em),
+    heading-align: (center, left, left),
+    heading-text: (
+      (font: 字体.黑体, size: 字号.三号, weight: "bold"),
+      (font: 字体.黑体, size: 字号.四号, weight: "regular"),
+      (font: 字体.宋体, size: 字号.小四, weight: "regular")
+    ),
+    always-new-page: true, // 每次一级标题都切换到新的页面，取值为 bool 或 function ，如果 function 则会以 function 作为分页时执行的操作
+    auto-h-spacing: true, // 为 true 时，二字标题会变为 A #h(2em) B
+  )
   show heading.where(level: 1): set heading(supplement: none)
 
   set outline(depth: 3, indent: 2em)
 
   show figure.where(kind: table): set figure.caption(position: top)
+  show figure: set figure(gap: 1.1em)
   show figure: set text(size: 字号.五号, font: 字体.宋体, weight: "regular")
   show figure: i-figured.show-figure.with(numbering: "1-1")
   show figure.where(kind: table): i-figured.show-figure.with(numbering: "1.1")

@@ -6,6 +6,7 @@
 #import "../pages/cover-bachelor-fn.typ": bachelor-cover-conf
 #import "../parts/abstract-bachelor-fn.typ": abstract-conf
 #import "../parts/main-body-bachelor-fn.typ": main-body-bachelor-conf
+#import "../parts/outline-bachelor-fn.typ": outline-conf
 
 #let bachelor-conf(
   studentID: "00121001",
@@ -48,9 +49,8 @@
   )
 
   // 目录
-  heading(numbering: none, level: 1)[目录]
-  v(5pt)
-  outline(depth: outlinedepth, title: none)
+  outline-conf()
+
 
   // 正文
   show: main-body-bachelor-conf

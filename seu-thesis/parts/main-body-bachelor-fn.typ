@@ -16,6 +16,12 @@
       counter(footnote).update(0)
     },
     numbering: "1",
+    footer: {
+      set align(center)
+      set text(font: 字体.宋体, size: 字号.小五, lang: "zh")
+      h(16pt)
+      counter(page).display()
+    },
     header-ascent: 10%,
     footer-descent: 10%,
   )
