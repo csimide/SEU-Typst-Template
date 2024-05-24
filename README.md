@@ -6,11 +6,22 @@
 
 > [!IMPORTANT]
 >
-> 此模板是民间模板，学校可能不会认可本模板。
+> 此模板是民间模板，有不被学校认可的风险。
 >
-> 此模板内可能仍然存在诸多格式问题。
+> 本模板虽已尽力尝试复原原始 Word 模板，但可能仍然存在诸多格式问题。
+
+> [!IMPORTANT]
 >
-> 如需使用此模板，请自行承担风险。
+> 自 `0.2.2` 的**下一个版本**开始，本模板将引入 breaking change：
+>
+> 1. 进入附录章节的方式改变：
+>    - 取消了 `#appendix()` ，改为使用 `#show: show-appendix-degree` 或 `#show: show-appendix-bachelor` 进入。请同步更新文档头部的 `#import` 语句，删除导入的 `appendix` 并修改为相应的 `show-appendix-degree` 或 `show-appendix-bachelor` 。
+>    - 不再支持使用 `#bibliography` 自动进入附录，需要手动切换到附录。
+> 2. 引用图表的方式改变：
+>    - 引用图表的样式由自造轮子改为了 `i-figure` 。
+>    - 请将所有图表引用 `@xxx` 添加相应的类别前缀，详见 https://github.com/RubixDev/typst-i-figured#usage
+> 3. `state` 改变：
+>    - 不再使用一堆 state 存放章节信息。
 
 - [东南大学论文模板](#东南大学论文模板)
   - [使用方法](#使用方法)
