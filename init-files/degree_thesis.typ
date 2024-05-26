@@ -21,17 +21,22 @@
       columns: (1fr, 1fr),
       align: center + horizon,
       rows: auto,
+      inset: 8pt,
+      stroke: none,
       //auto-vlines: false,
+      table.hline(),
       table.header[*符号、变量、缩略词等*][*含义*],
-      table.vline(),
-      [SEU], [东南大学],
+      table.hline(stroke: 0.5pt),
+      [SEU],table.vline(stroke: 0.5pt), [东南大学],
+      table.hline(stroke: 0.5pt),
       [Typst],[Typst is a new markup-based typesetting system for the sciences.],
+      table.hline(),
     ),
     kind: table,
     caption: [本论文专用术语（符号、变量、缩略词等）的注释表]
   )
 
-  当 `terminology` 为 `none` 时，此注释表页面不会被渲染。 
+  #h(2em)当 `terminology` 为 `none` 时，此注释表页面不会被渲染。 
 ]
 
 
@@ -293,6 +298,8 @@ $
 
 
 #h(2em) 公式首行的起始位置位于行首算起第五个中文字符之处，即在段落起始行的首行缩进位置再退后两个中文字符。不要用居中、居左或居行首排列。公式编号按阿拉伯数字顺序编号，如（1）（2）……，公式较多时可按章顺序编号，如（1.1）（1.2）……。
+
+*由于目前实现公式首行空四格的做法是修改对齐方式，故如遇多行公式，请手动为每行公式添加对齐，否则公式的位置将错位。*
 
 公式引用使用式 1、式 1.1 等，英语文本中用 Eq.1、Eq.1.1 等。在 Typst 中，可以给公式添加 label 再引用。例如引用 @eqt:eqexample。
 

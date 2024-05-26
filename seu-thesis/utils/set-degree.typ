@@ -2,6 +2,7 @@
 #import "packages.typ": show-cn-fakebold, i-figured
 #import "show-heading.typ": show-heading
 #import "bilingual-bibliography.typ": show-bibliography
+#import "show-equation-degree.typ": show-math-equation-degree
 #import "fonts.typ": 字体, 字号
 
 #let set-degree(always-new-page: true, bilingual-bib: true, doc) = {
@@ -32,6 +33,8 @@
   show figure.where(kind: table): i-figured.show-figure.with(numbering: "1.1")
   show math.equation.where(block: true): i-figured.show-equation
   set math.equation(number-align: bottom)
+  // 研究生院要求：公式首行的起始位置空四格。
+  show math.equation.where(block: true): show-math-equation-degree
 
   set heading(numbering: chinese-numbering)
 
