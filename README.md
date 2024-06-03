@@ -18,10 +18,11 @@
 >    - 取消了 `#appendix()` ，改为使用 `#show: show-appendix-degree` 或 `#show: show-appendix-bachelor` 进入。请同步更新文档头部的 `#import` 语句，删除导入的 `appendix` 并修改为相应的 `show-appendix-degree` 或 `show-appendix-bachelor` 。
 >    - 不再支持使用 `#bibliography` 自动进入附录，需要手动切换到附录。
 > 2. 引用图表的方式改变：
->    - 引用图表的样式由自造轮子改为了 `i-figure` 。
+>    - 引用图表的样式由自造轮子改为了 `i-figured` 。
 >    - 请将所有图表引用 `@xxx` 添加相应的类别前缀，详见 https://github.com/RubixDev/typst-i-figured#usage
 > 3. `state` 改变：
 >    - 不再使用一堆 state 存放章节信息。
+> 4. 参数格式统一（待定，TODO）
 
 - [东南大学论文模板](#东南大学论文模板)
   - [使用方法](#使用方法)
@@ -186,6 +187,8 @@
    **A:** 临时方案是把 csl 文件里 `after-collapse-delimiter=","` 改成 `after-collapse-delimiter="-"`。本模板附带的 CSL 文件已做此修改。
 
    详细原因请见 https://github.com/typst/hayagriva/issues/154 。
+
+   https://github.com/typst/hayagriva/pull/176 正尝试解决这一 bug。**该 bug 修复后，请及时撤销上述对 csl 的临时修改。**
 
 ## 开发与协议
 
