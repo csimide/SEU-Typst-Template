@@ -15,56 +15,56 @@
       show par: set block(spacing: 16pt)
 
       locate(loc => {
-        if calc.even(loc.page()) {
+        // 真正的一级标题会被装入这里，如果是 none 则不渲染本页的页眉
+        let true-level-1-heading = none
+
+        // 先确定下一个一级标题
+        let next-level-1-heading = query(
+          selector(heading.where(level: 1)).after(loc),
+        ).at(0, default: none)
+
+        if next-level-1-heading == none {
+          // 如不存在下一个一级标题，那么
+          // 1. 本页不是一级标题所在页面（不需要考虑是否显示的问题）
+          // 2. 本页所在章节由上一个一级标题所定义
+          true-level-1-heading = query(
+            selector(heading.where(level: 1)).before(loc),
+          ).at(0, default: none)
+        } else {
+          // 如果存在下一个一级标题，那么需要先考虑这个一级标题在不在本页
+          if next-level-1-heading.location().page() == loc.page() {
+            // 如果在本页，那么就要处理“一级标题是否显示页眉”参数
+            true-level-1-heading = if first-level-title-page-disable-heading {none} else {next-level-1-heading} 
+          } else {
+            // 如果不在本页，那么本页所在章节由上一个一级标题所定义
+            true-level-1-heading = query(
+              selector(heading.where(level: 1)).before(loc),
+            ).at(-1, default: none)
+          }
+        }
+        // 取所在章节的逻辑结束
+
+        if true-level-1-heading == none {
+          []
+        } else if calc.even(loc.page()) {
           thesisname.heading
           v(-1em)
           line(length: 100%, stroke: (thickness: 0.5pt))
         } else {
-          // 先确定下一个一级标题
-          let next-level-1-heading = query(
-            selector(heading.where(level: 1)).after(loc),
-          ).at(0, default: none)
-          // 如果下一个一级标题存在，且这个一级标题不在这一页
-          // 那么下一个一级标题的上一个一级标题就是本章标题
-          // （章内页的情形）
-          if next-level-1-heading != none and next-level-1-heading.location().page() != loc.page() {
-            if first-level-title-page-disable-heading {
-              []
-            } else {
-              let prev-level-1-heading = query(
-                selector(heading.where(level: 1)).before(
-                  next-level-1-heading.location(),
-                ),
-              ).at(-2)
-
-              if prev-level-1-heading.numbering != none {
-                counter(heading.where(level: 1)).display()
-                h(0.5em)
-              }
-              prev-level-1-heading.body
-              v(-1em)
-              line(length: 100%, stroke: (thickness: 0.5pt))
-            }
-          } else {
-            // 启用此选项后，“第X章 XXXXX” 一级标题所在页面将不显示页眉
-            if first-level-title-page-disable-heading {
-              []
-            } else {
-              if next-level-1-heading.numbering != none {
-                (next-level-1-heading.numbering)(
-                  counter(heading.where(level: 1)).at(
-                    next-level-1-heading.location(),
-                  ).first(),
-                )
-                h(0.5em)
-              }
-              next-level-1-heading.body
-              v(-1em)
-              line(length: 100%, stroke: (thickness: 0.5pt))
-            }
+          if true-level-1-heading.numbering != none {
+            (true-level-1-heading.numbering)(
+              counter(heading.where(level: 1)).at(
+                next-level-1-heading.location(),
+              ).first(),
+            )
+            h(0.5em)
           }
+          true-level-1-heading.body
+          v(-1em)
+          line(length: 100%, stroke: (thickness: 0.5pt))
         }
       })
+      // locate 结束
       counter(footnote).update(0)
     },
     numbering: "1",
