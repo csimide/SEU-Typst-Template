@@ -33,6 +33,7 @@
     - [本科毕业设计（论文）报告模板](#本科毕业设计论文报告模板)
   - [目前存在的问题](#目前存在的问题)
     - [参考文献](#参考文献)
+  - [友情链接](#友情链接)
   - [开发与协议](#开发与协议)
     - [二次开发](#二次开发)
 
@@ -182,13 +183,39 @@
    - 问题 5 不准备修复，查阅数篇已发表的学位论文，使用的也是半角符号；
    - 问题 6 似乎是 Typst 的 CSL 支持的问题，本模板附带的 CSL 文件已经做了额外处理，应该不会丢 `. ` 了。
 
-7. 正文中连续引用，上标合并错误（例如，引用 1 2 3 4 应当显示为 [1-4] ，但是显示为 [1,4] ）。
+7. 引用其他学位论文时，GB7714-2015/本科毕设/学位论文均要求注明 `地点: 学校名称, 年份.` 。但是模板不显示这一项。
+
+   **A:** Typst 不支持 `school` `institution` 作为 `publisher` 的别名，亦不支持解析 csl 中的 `institution`。如需修复，请手动修改 bib 文件内对应条目，在 `school = {学校名称},` 下加一行 `publisher = {学校名称},` 。
+   <details>
+    <summary> 修改示例 </summary>
+
+   ```biblatex
+   @phdthesis{Example1,
+     type = {{硕士学位论文}},
+     title = {{摸鱼背景下的Typst模板使用研究}},
+     author = {王, 东南},
+     year = {2024},
+     langid = {chinese},
+     address = {南京},
+     school = {东南大学},
+     publisher = {东南大学},
+   }
+   ```
+
+   </details>
+
+8. 正文中连续引用，上标合并错误（例如，引用 1 2 3 4 应当显示为 [1-4] ，但是显示为 [1,4] ）。
 
    **A:** 临时方案是把 csl 文件里 `after-collapse-delimiter=","` 改成 `after-collapse-delimiter="-"`。本模板附带的 CSL 文件已做此修改。
 
    详细原因请见 https://github.com/typst/hayagriva/issues/154 。
 
    https://github.com/typst/hayagriva/pull/176 正尝试解决这一 bug。**该 bug 修复后，请及时撤销上述对 csl 的临时修改。**
+
+## 友情链接
+
+- Typst Touying 东南大学主题幻灯片模板 by QuadnucYard - https://github.com/QuadnucYard/touying-theme-seu
+- 东南大学 Typst 本科毕设模板与毕设翻译模板 by Geary.Z (TideDra) - https://github.com/TideDra/seu-thesis-typst
 
 ## 开发与协议
 
