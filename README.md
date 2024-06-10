@@ -185,7 +185,7 @@
 
 7. 引用其他学位论文时，GB7714-2015/本科毕设/学位论文均要求注明 `地点: 学校名称, 年份.` 。但是模板不显示这一项。
 
-   **A:** Typst 不支持 `school` `institution` 作为 `publisher` 的别名，亦不支持解析 csl 中的 `institution`。如需修复，请手动修改 bib 文件内对应条目，在 `school = {学校名称},` 下加一行 `publisher = {学校名称},` 。
+   **A:** Typst 不支持 `school` `institution` 作为 `publisher` 的别名，亦不支持解析 csl 中的 `institution` （https://github.com/typst/hayagriva/issues/112）。如需修复，请手动修改 bib 文件内对应条目，在 `school = {学校名称},` 下加一行 `publisher = {学校名称},` 。
    <details>
     <summary> 修改示例 </summary>
 

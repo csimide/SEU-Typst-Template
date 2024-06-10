@@ -22,7 +22,7 @@
     <category citation-format="numeric"/>
     <category field="generic-base"/>
     <summary>1. 适用于 Typst 0.11.0 ，与 bilingual-bibliography 配合使用可按照语言显示“等”或“et al.”；2. 仅纯电子资源显示引用日期和 URL；3. 无 DOI；4. 显示学位论文的类别，但 Typst 尚不支持。</summary>
-    <updated>2024-05-22T21:40:32+08:00</updated>
+    <updated>2024-06-10T15:28:30+08:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xml:lang="zh">
@@ -109,6 +109,7 @@
       <text macro="medium-id"/>
     </group>
     <text prefix=": [" suffix="]" variable="genre" />
+    <!-- 不知道为什么不生效 -->
   </macro>
   <!-- 书籍的卷号（“第 x 卷”或“第 x 册”） -->
   <macro name="volume">
@@ -397,7 +398,8 @@
   </macro>
   <!-- 参考文献表格式 -->
   <macro name="entry-layout">
-    <group delimiter=". " suffix=".">
+    <group delimiter=". ">
+    <!-- 研究生院参考格式中，条目末尾不加 `.` -->
       <text macro="author"/>
       <choose>
         <if type="periodical">
