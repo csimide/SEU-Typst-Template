@@ -134,9 +134,11 @@ ABSTRACT为三号Times New Roman加粗居中。
 
 带编号、表名的表格需要使用 `#figure` 包裹，才能自动编号。方式与上方图片相仿，或者查看下面的代码说明。表格本身建议使用函数 `table` 或第三方库 `tablem` 库绘制。使用 `tablem` 库时，`#figure` 可能会认为其包裹的内容不是 `table` 类型，而编号“图X-X”。可以通过添加 `kind: table` 声明这是一个表格。
 
-表格无法在同一页排版时，可以用续表的形式另页书写，续表需在表格右上角表序前加“续”字，如“续表2.1”，并重复表头。请注意：目前此模板内，`#figure` 包裹的单个表格强制显示在同一页上，不会发生跨页现象。如果按照 https://github.com/typst/typst/pull/1121 启用了 `#show figure: set block(breakable: true)`，那么跨页表格第二页暂时不会显示“续表”与表名。目前模板作者尚未找到合适的解决办法。 如果使用 `table` 声明表头的特性，第二页会重复表头。
+表格无法在同一页排版时，可以用续表的形式另页书写，续表需在表格右上角表序前加“续”字，如“续表2.1”，并重复表头。请注意：目前此模板内，`#figure` 包裹的单个表格强制显示在同一页上，不会发生跨页现象。如果按照 https://github.com/typst/typst/pull/1121 启用了 `#show figure: set block(breakable: true)`，那么跨页表格第二页暂时不会显示“续表”与表名。#strong[由于在教务处给出的Word模板中，跨页表格并没有加注“续表”，也没有给出“续表”的格式样例，因此本模板暂未实现相关功能。]如果使用 `table` 声明表头的特性，第二页会重复表头。
 
-表格居中，边框为黑色直线1磅，中文为五号宋体，英文及数字为五号Times New Roman字体，表序与表名之间空一格，表格与下文之间空一行。
+表格居中，边框为黑色直线1磅，中文为五号宋体，英文及数字为五号Times New Roman字体，表序与表名之间空一格，表格与下文之间空一行。#strong[在教务处给出的Word模板中，文字说明是表格边框为黑色直线1磅，但示例的表格边框是0.5磅，自相矛盾。请自行根据需求与格式要求调整框线粗细。]
+
+在Typst中，绘制三线表的方法一般是设置 `table` 的 `stroke` 为 `none`，再通过 `table.hline()` 手动绘制横向分割线。可以使用 `table.hline(stroke: 0.5pt)` 类似的方法指定线条宽度，默认是 `1pt` （1磅）。
 
 
 #code(
@@ -146,21 +148,24 @@ ABSTRACT为三号Times New Roman加粗居中。
 ```typst
 #figure(
   {
-    set table.cell(stroke: (top: 0.8pt, bottom: 0.8pt, left: 0pt, right: 0pt))
-    show table.cell.where(y:0): set text(weight: "bold")
+    //show table.cell.where(y:0): set text(weight: "bold") // 取消这一行的注释可以首行加粗
     table(
       columns: 13,
       rows: 1.8em,
       align: center + horizon,
+      stroke: none,
       table.header(
+        table.hline(),
         [], table.cell(colspan: 4)[Stage 1 (>7.1 μm)], table.cell(colspan: 4)[Stage 2 (4.8-7.1 μm)], table.cell(colspan: 4)[Stage 3 (3.2-4.7 μm)], 
+        table.hline(stroke: 0.5pt, start: 1), // 调整线条粗细
+        [], [Con], [Low], [Medium], [High], [Con], [Low], [Medium], [High], [Con], [Low], [Medium], [High],
+        table.hline(),
       ),
-
-      [], [Con], [Low], [Medium], [High], [Con], [Low], [Medium], [High], [Con], [Low], [Medium], [High],
 
       [H], [2.52], [2.58], [2.57], [2.24], [2.48], [2.21], [2.21], [2.36], [2.66], [2.65], [2.64], [2.53],
 
-      [E], [0.87], [0.88], [0.93], [0.85], [0.9], [0.86], [0.86], [0.85], [0.9], [0.9], [0.85], [0.88]
+      [E], [0.87], [0.88], [0.93], [0.85], [0.9], [0.86], [0.86], [0.85], [0.9], [0.9], [0.85], [0.88],
+      table.hline(),
     )
   },
   caption: "室外细菌气溶胶香农-维纳指数（H）和均匀性指数（E）",
@@ -170,21 +175,24 @@ ABSTRACT为三号Times New Roman加粗居中。
 
 #figure(
   {
-    set table.cell(stroke: (top: 0.8pt, bottom: 0.8pt, left: 0pt, right: 0pt))
-    show table.cell.where(y:0): set text(weight: "bold")
+    //show table.cell.where(y:0): set text(weight: "bold") // 取消这一行的注释可以首行加粗
     table(
       columns: 13,
       rows: 1.8em,
       align: center + horizon,
+      stroke: none,
       table.header(
+        table.hline(),
         [], table.cell(colspan: 4)[Stage 1 (>7.1 μm)], table.cell(colspan: 4)[Stage 2 (4.8-7.1 μm)], table.cell(colspan: 4)[Stage 3 (3.2-4.7 μm)], 
+        table.hline(stroke: 0.5pt, start: 1), // 调整线条粗细
+        [], [Con], [Low], [Medium], [High], [Con], [Low], [Medium], [High], [Con], [Low], [Medium], [High],
+        table.hline(),
       ),
-
-      [], [Con], [Low], [Medium], [High], [Con], [Low], [Medium], [High], [Con], [Low], [Medium], [High],
 
       [H], [2.52], [2.58], [2.57], [2.24], [2.48], [2.21], [2.21], [2.36], [2.66], [2.65], [2.64], [2.53],
 
-      [E], [0.87], [0.88], [0.93], [0.85], [0.9], [0.86], [0.86], [0.85], [0.9], [0.9], [0.85], [0.88]
+      [E], [0.87], [0.88], [0.93], [0.85], [0.9], [0.86], [0.86], [0.85], [0.9], [0.9], [0.85], [0.88],
+      table.hline(),
     )
   },
   caption: "室外细菌气溶胶香农-维纳指数（H）和均匀性指数（E）",
