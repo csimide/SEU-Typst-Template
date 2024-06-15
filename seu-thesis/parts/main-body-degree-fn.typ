@@ -21,26 +21,20 @@
         // 先确定下一个一级标题
         let next-level-1-heading = query(
           selector(heading.where(level: 1)).after(loc),
+        ).filter(
+          it => it.location().page() == loc.page()
         ).at(0, default: none)
 
         if next-level-1-heading == none {
-          // 如不存在下一个一级标题，那么
+          // 如本页不存在下一个一级标题
           // 1. 本页不是一级标题所在页面（不需要考虑是否显示的问题）
           // 2. 本页所在章节由上一个一级标题所定义
           true-level-1-heading = query(
             selector(heading.where(level: 1)).before(loc),
-          ).at(0, default: none)
+          ).at(-1, default: none)
         } else {
-          // 如果存在下一个一级标题，那么需要先考虑这个一级标题在不在本页
-          if next-level-1-heading.location().page() == loc.page() {
-            // 如果在本页，那么就要处理“一级标题是否显示页眉”参数
-            true-level-1-heading = if first-level-title-page-disable-heading {none} else {next-level-1-heading} 
-          } else {
-            // 如果不在本页，那么本页所在章节由上一个一级标题所定义
-            true-level-1-heading = query(
-              selector(heading.where(level: 1)).before(loc),
-            ).at(-1, default: none)
-          }
+          // 如果在本页，那么就要处理“一级标题是否显示页眉”参数
+          true-level-1-heading = if first-level-title-page-disable-heading {none} else {next-level-1-heading} 
         }
         // 取所在章节的逻辑结束
 
@@ -54,7 +48,7 @@
           if true-level-1-heading.numbering != none {
             (true-level-1-heading.numbering)(
               counter(heading.where(level: 1)).at(
-                next-level-1-heading.location(),
+                true-level-1-heading.location(),
               ).first(),
             )
             h(0.5em)
