@@ -2,7 +2,7 @@
 
 #let title-en-conf(
   author: (CN: "王东南", EN: "WANG Dong-nan", ID: "012345"),
-  thesisname: (
+  thesis-name: (
     CN: "硕士学位论文",
     EN: [
       A Thesis submitted to \
@@ -16,12 +16,12 @@
     EN: "A Study of the Use of the Typst Template During Touching Fish",
   ),
   advisors: (
-    (CN: "湖牌桥", EN: "HU Pai-qiao", CNTitle: "教授", ENTitle: "Prof."),
+    (CN: "湖牌桥", EN: "HU Pai-qiao", CN-title: "教授", EN-title: "Prof."),
     (
       CN: "苏锡浦",
       EN: "SU Xi-pu",
-      CNTitle: "副教授",
-      ENTitle: "Associate Prof.",
+      CN-title: "副教授",
+      EN-title: "Associate Prof.",
     ),
   ),
   school: (
@@ -30,12 +30,12 @@
   ),
   date: (
     CN: (
-      defenddate: "2099年01月02日",
-      authorizedate: "2099年01月03日",
-      finishdate: "2024年01月15日",
+      defend-date: "2099年01月02日",
+      authorize-date: "2099年01月03日",
+      finish-date: "2024年01月15日",
     ),
     EN: (
-      finishdate: "Jan 15, 2024",
+      finish-date: "Jan 15, 2024",
     ),
   ),
   anonymous: false,
@@ -61,13 +61,13 @@
       height: 100% - 160pt,
       grid(
         rows: (auto, 1fr, auto, 1fr, auto, 1fr, auto),
-        thesisname.EN,
+        thesis-name.EN,
         [],
         "BY" + "\n" + author.EN,
         [],
-        "Supervised by" + "\n" + advisors.map(it => it.ENTitle + " " + it.EN).join("\n and \n"),
+        "Supervised by" + "\n" + advisors.map(it => it.EN-title + " " + it.EN).join("\n and \n"),
         [],
-        school.EN + "\n" + "Southeast University" + "\n" + date.EN.finishdate,
+        school.EN + "\n" + "Southeast University" + "\n" + date.EN.finish-date,
       ),
     )
   },
@@ -75,7 +75,7 @@
 
 #title-en-conf(
   author: (CN: "王东南", EN: "WANG Dong-nan", ID: "012345"),
-  thesisname: (
+  thesis-name: (
     CN: "硕士学位论文",
     EN: [
       A Thesis submitted to \
@@ -89,12 +89,12 @@
     EN: "A Study of the Use of the Typst Template During Touching Fish",
   ),
   advisors: (
-    (CN: "湖牌桥", EN: "HU Pai-qiao", CNTitle: "教授", ENTitle: "Prof."),
+    (CN: "湖牌桥", EN: "HU Pai-qiao", CN-title: "教授", EN-title: "Prof."),
     (
       CN: "苏锡浦",
       EN: "SU Xi-pu",
-      CNTitle: "副教授",
-      ENTitle: "Associate Prof.",
+      CN-title: "副教授",
+      EN-title: "Associate Prof.",
     ),
   ),
   school: (
@@ -103,12 +103,12 @@
   ),
   date: (
     CN: (
-      defenddate: "2099年01月02日",
-      authorizedate: "2099年01月03日",
-      finishdate: "2024年01月15日",
+      defend-date: "2099年01月02日",
+      authorize-date: "2099年01月03日",
+      finish-date: "2024年01月15日",
     ),
     EN: (
-      finishdate: "Jan 15, 2024",
+      finish-date: "Jan 15, 2024",
     ),
   ),
   anonymous: false,

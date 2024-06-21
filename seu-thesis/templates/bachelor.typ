@@ -9,18 +9,18 @@
 #import "../parts/outline-bachelor-fn.typ": outline-conf
 
 #let bachelor-conf(
-  studentID: "00121001",
+  student-id: "00121001",
   author: "王东南",
   school: "示例学院",
   major: "示例专业",
   advisor: "湖牌桥",
-  thesisname: "示例论文标题\n此行空白时下划线自动消失",
+  thesis-name: "示例论文标题\n此行空白时下划线自动消失",
   date: "某个起止日期",
-  cnabstract: [示例摘要],
-  cnkeywords: ("关键词1", "关键词2"),
-  enabstract: [#lorem(100)],
-  enkeywords: ("Keywords1", "Keywords2"),
-  outlinedepth: 3,
+  cn-abstract: [示例摘要],
+  cn-keywords: ("关键词1", "关键词2"),
+  en-abstract: [#lorem(100)],
+  en-keywords: ("Keywords1", "Keywords2"),
+  outline-depth: 3,
   bilingual-bib: true,
   doc,
 ) = {
@@ -28,12 +28,12 @@
 
   // 封面
   bachelor-cover-conf(
-    studentID: studentID,
+    student_id: student-id,
     author: author,
     school: school,
     major: major,
     advisor: advisor,
-    thesisname: thesisname,
+    thesis-name: thesis-name,
     date: date,
   )
 
@@ -42,14 +42,14 @@
 
   // 摘要
   abstract-conf(
-    cnabstract: cnabstract,
-    cnkeywords: cnkeywords,
-    enabstract: enabstract,
-    enkeywords: enkeywords,
+    cn-abstract: cn-abstract,
+    cn-keywords: cn-keywords,
+    en-abstract: en-abstract,
+    en-keywords: en-keywords,
   )
 
   // 目录
-  outline-conf()
+  outline-conf(outline-depth: outline-depth)
 
 
   // 正文
@@ -58,16 +58,16 @@
 }
 
 #show: bachelor-conf.with(
-  studentID: "00121001",
+  student-id: "00121001",
   author: "王东南",
   school: "示例学院",
   major: "示例专业",
   advisor: "湖牌桥",
-  thesisname: "示例论文标题\n此行空白时下划线自动消失",
+  thesis-name: "示例论文标题\n此行空白时下划线自动消失",
   date: "某个起止日期",
-  cnabstract: [示例摘要],
-  cnkeywords: ("关键词1", "关键词2"),
-  enabstract: [#lorem(100)],
-  enkeywords: ("Keywords1", "Keywords2"),
-  outlinedepth: 3,
+  cn-abstract: [示例摘要],
+  cn-keywords: ("关键词1", "关键词2"),
+  en-abstract: [#lorem(100)],
+  en-keywords: ("Keywords1", "Keywords2"),
+  outline-depth: 3,
 )

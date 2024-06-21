@@ -7,14 +7,14 @@
 */
 
 #show: doc => bachelor-conf(
-  studentID: "00121001",
+  student-id: "00121001",
   author: "王东南",
   school: "示例学院",
   major: "示例专业",
   advisor: "湖牌桥",
-  thesisname: "示例论文标题\n此行空白时下划线自动消失",
+  thesis-name: "示例论文标题\n此行空白时下划线自动消失",
   date: "某个起止日期",
-  cnabstract: [
+  cn-abstract: [
 摘要内容独立于正文而存在，是论文内容高度概括的简要陈述，应准确、具体、完整地概括论文的主要信息，内容包括研究目的、方法、过程、成果、结论及主要创新之处等，不含图表，不加注释，具有独立性和完整性，一般为400字左右。
 
 “摘要”用三号黑体加粗居中，“摘”与“要”之间空4个半角空格。摘要正文内容用小四号宋体，固定1.5倍行距。
@@ -23,8 +23,8 @@
 
 在本模板中，摘要在参数中添加，例如 `cnabstract: [我的摘要]` 。关键词添加的方法类似，例如 `cnkeywords: ("关键词1", "关键词2")`。有关这一部分的信息，可参考 demo 文档的写法。
 ],
-  cnkeywords: ("关键词1", "关键词2"),
-  enabstract: [
+  cn-keywords: ("关键词1", "关键词2"),
+  en-abstract: [
 英文摘要应与中文摘相对应，250个实词左右。采用第三人称介绍该学位论文内容，叙述的基本时态为一般现在时，确实需要强调过去的事情或者已经完成的行为才使用过去时、完成时等其他时态。
 
 ABSTRACT为三号Times New Roman加粗居中。
@@ -33,8 +33,7 @@ ABSTRACT为三号Times New Roman加粗居中。
 
 #lorem(100) // 添加一段英文乱语，供排版预览效果。
   ],
-  enkeywords: ("Keywords1", "Keywords2"),
-  outlinedepth: 3,
+  en-keywords: ("Keywords1", "Keywords2"),
   doc,
 )
 

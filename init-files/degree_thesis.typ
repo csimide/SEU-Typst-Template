@@ -42,7 +42,7 @@
 
 #show: doc => degree-conf(
   author: (CN: "王东南", EN: "WANG Dong-nan", ID: "012345"),
-  thesisname: (
+  thesis-name: (
     CN: "摸鱼学硕士学位论文",
     EN: [
     A Thesis submitted to \
@@ -56,8 +56,8 @@
     EN: "A Study of the Use of the Typst Template During Touching Fish"
   ),
   advisors: (
-    (CN: "湖牌桥", EN:"HU Pai-qiao", CNTitle: "教授", ENTitle: "Prof."),
-    (CN: "苏锡浦", EN:"SU Xi-pu", CNTitle: "副教授", ENTitle: "Associate Prof.")
+    (CN: "湖牌桥", EN:"HU Pai-qiao", CN-title: "教授", EN-title: "Prof."),
+    (CN: "苏锡浦", EN:"SU Xi-pu", CN-title: "副教授", EN-title: "Associate Prof.")
   ),
   school: (
     CN: "摸鱼学院",
@@ -68,38 +68,38 @@
     submajor: "计算机摸鱼"
   ),
   degree: "摸鱼学硕士",
-  categorynumber: "N94",
-  secretlevel: "公开",
+  category-number: "N94",
+  secret-level: "公开",
   UDC: "303",
-  schoolnumber: "10286",
-  committeechair: "张三 教授",
+  school-number: "10286",
+  committee-chair: "张三 教授",
   readers: (
     "李四 副教授",
     "王五 副教授"
   ),
   date: (
     CN: (
-      defenddate: "2099年01月02日", 
-      authorizedate: "2099年01月03日",
-      finishdate: "2024年01月15日"
+      defend-date: "2099年01月02日", 
+      authorize-date: "2099年01月03日",
+      finish-date: "2024年01月15日"
     ),
     EN: (
-      finishdate: "Jan 15, 2024"
+      finish-date: "Jan 15, 2024"
     )
   ),
   thanks: "本论文受到摸鱼基金委的基金赞助（123456）",
-  degreeform: "应用研究",
-  cnabstract: [
+  degree-form: "应用研究",
+  cn-abstract: [
     论文摘要包括题名、硕士（博士）研究生姓名、导师姓名、学校名称、正文、关键词中文约 500 字左右，英文约 200~300 词左右，二者应基本对应。它是论文内容的高度概括，应说明研究目的、研究方法、成果和结论，要突出本论文的创造性成果或新的见解，用语简洁、准确。论文摘要后还应注明本文的关键词 3 至 5 个。关键词应为公知公用的词和学术术语，不可采用自造字词和略写、符号等，词组不宜过长。
   ],
-  cnkeywords: ("关键词1", "关键词2"),
-  enabstract: [
+  cn-keywords: ("关键词1", "关键词2"),
+  en-abstract: [
     英文摘要采用第三人称单数语气介绍该学位论文内容，目的是便于其他文摘摘录，因此在写作英文文摘时不宜用第一人称的语气陈述。叙述的基本时态为一般现在时，确实需要强调过去的事情或者已经完成的行为才使用过去时、完成时等其他时态。可以采用被动语态，但要避免出现用“This paper”作为主语代替作者完成某些研究行为。中国姓名译为英文时用汉语拼音，按照姓前名后的原则，姓、名均用全名，不宜用缩写。姓全用大写，名的第一个字母大写，名为双中文字时两个字的拼音之间可以不用短划线，但容易引起歧义时必须用短划线。例如“冯长根”译为“FENG Changgen”或“FENG Chang-gen”，而“冯长安”则必须译为“FENG Chang-an”。论文英文封面上的署名也遵守此规定。
 
     #lorem(100)
     ],
-  enkeywords: ("Keywords1", "Keywords2"),
-  alwaysstartodd: true,
+  en-keywords: ("Keywords1", "Keywords2"),
+  always-start-odd: true,
   terminology: terminology,
   anonymous: false, // 选项暂时无用，未来用于渲染盲审版本
   first-level-title-page-disable-heading: false, // 一级标题页不显示页眉

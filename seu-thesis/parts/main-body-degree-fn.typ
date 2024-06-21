@@ -2,7 +2,7 @@
 #import "../utils/fonts.typ": 字体, 字号
 
 #let main-body-bachelor-conf(
-  thesisname: [],
+  thesis-name: [],
   first-level-title-page-disable-heading: false, //  一级标题页不显示页眉
   // 启用此选项后，“第X章 XXXXX” 一级标题所在页面将不显示页眉
   doc
@@ -41,7 +41,7 @@
         if true-level-1-heading == none {
           []
         } else if calc.even(loc.page()) {
-          thesisname.heading
+          thesis-name.heading
           v(-1em)
           line(length: 100%, stroke: (thickness: 0.5pt))
         } else {

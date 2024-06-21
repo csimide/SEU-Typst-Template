@@ -3,7 +3,7 @@
 
 #let title-cn-conf(
   author: (CN: "王东南", EN: "WANG Dong-nan", ID: "012345"),
-  thesisname: (
+  thesis-name: (
     CN: "硕士学位论文",
     EN: [
       A Thesis submitted to \
@@ -17,12 +17,12 @@
     EN: "A Study of the Use of the Typst Template During Touching Fish",
   ),
   advisors: (
-    (CN: "湖牌桥", EN: "HU Pai-qiao", CNTitle: "教授", ENTitle: "Prof."),
+    (CN: "湖牌桥", EN: "HU Pai-qiao", CN-title: "教授", EN-title: "Prof."),
     (
       CN: "苏锡浦",
       EN: "SU Xi-pu",
-      CNTitle: "副教授",
-      ENTitle: "Associate Prof.",
+      CN-title: "副教授",
+      EN-title: "Associate Prof.",
     ),
   ),
   school: (
@@ -35,12 +35,12 @@
   ),
   date: (
     CN: (
-      defenddate: "2099年01月02日",
-      authorizedate: "2099年01月03日",
-      finishdate: "2024年01月15日",
+      defend-date: "2099年01月02日",
+      authorize-date: "2099年01月03日",
+      finish-date: "2024年01月15日",
     ),
     EN: (
-      finishdate: "Jan 15, 2024",
+      finish-date: "Jan 15, 2024",
     ),
   ),
   thanks: "本论文受到摸鱼基金委的基金赞助（123456）",
@@ -55,7 +55,7 @@
     set par(first-line-indent: 0pt)
     image("../assets/vi/seu.png", width: 180pt)
 
-    block(fakebold(text(font: 字体.标题宋体, size: 字号.小初, thesisname.CN)))
+    block(fakebold(text(font: 字体.标题宋体, size: 字号.小初, thesis-name.CN)))
 
     v(40pt)
 
@@ -75,7 +75,7 @@
       chineseunderline(author.CN),
       text(font: 字体.黑体, "导师姓名".clusters().join(h(1em / 3))),
       "：",
-      chineseunderline(advisors.map(it => it.CN + " " + it.CNTitle).join("\n")),
+      chineseunderline(advisors.map(it => it.CN + " " + it.CN-title).join("\n")),
     )
 
     if thanks != none {
@@ -86,7 +86,7 @@
 
 #title-cn-conf(
   author: (CN: "王东南", EN: "WANG Dong-nan", ID: "012345"),
-  thesisname: (
+  thesis-name: (
     CN: "硕士学位论文",
     EN: [
       A Thesis submitted to \
@@ -100,12 +100,12 @@
     EN: "A Study of the Use of the Typst Template During Touching Fish",
   ),
   advisors: (
-    (CN: "湖牌桥", EN: "HU Pai-qiao", CNTitle: "教授", ENTitle: "Prof."),
+    (CN: "湖牌桥", EN: "HU Pai-qiao", CN-title: "教授", EN-title: "Prof."),
     (
       CN: "苏锡浦",
       EN: "SU Xi-pu",
-      CNTitle: "副教授",
-      ENTitle: "Associate Prof.",
+      CN-title: "副教授",
+      EN-title: "Associate Prof.",
     ),
   ),
   school: (
@@ -118,12 +118,12 @@
   ),
   date: (
     CN: (
-      defenddate: "2099年01月02日",
-      authorizedate: "2099年01月03日",
-      finishdate: "2024年01月15日",
+      defend-date: "2099年01月02日",
+      authorize-date: "2099年01月03日",
+      finish-date: "2024年01月15日",
     ),
     EN: (
-      finishdate: "Jan 15, 2024",
+      finish-date: "Jan 15, 2024",
     ),
   ),
   thanks: "本论文受到摸鱼基金委的基金赞助（123456）",

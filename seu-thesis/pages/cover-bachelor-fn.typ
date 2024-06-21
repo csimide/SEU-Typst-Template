@@ -2,12 +2,12 @@
 #import "../utils/fonts.typ": 字体, 字号, chineseunderline, justify-words
 
 #let bachelor-cover-conf(
-  studentID: "00121001",
+  student_id: "00121001",
   author: "王东南",
   school: "示例学院",
   major: "示例专业",
   advisor: "湖牌桥",
-  thesisname: "示例论文标题\n此行空白时下划线自动消失",
+  thesis-name: "示例论文标题\n此行空白时下划线自动消失",
   date: "某个起止日期",
 ) = page(
   paper: "a4",
@@ -41,7 +41,7 @@
       grid(
         columns: (2.85cm, 12.84cm),
         [题 目：],
-        chineseunderline(thesisname),
+        chineseunderline(thesis-name),
       )
     },
   )
@@ -55,7 +55,7 @@
       rows: 1.4cm,
       justify-words("学号", width: 4em),
       "：",
-      chineseunderline(studentID),
+      chineseunderline(student_id),
       justify-words("姓名", width: 4em),
       "：",
       chineseunderline(author),
@@ -77,11 +77,11 @@
 
 // 测试部分
 #bachelor-cover-conf(
-  studentID: "00121001",
+  student_id: "00121001",
   author: "王东南",
   school: "示例学院",
   major: "示例专业",
   advisor: "湖牌桥",
-  thesisname: "示例论文标题\n此行空白时下划线自动消失",
+  thesis-name: "示例论文标题\n此行空白时下划线自动消失",
   date: "某个起止日期",
 )

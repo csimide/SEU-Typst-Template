@@ -3,7 +3,7 @@
 
 #let degree-cover-conf(
   author: (CN: "王东南", EN: "WANG Dong-nan", ID: "012345"),
-  thesisname: (
+  thesis-name: (
     CN: "硕士学位论文",
     EN: [
       A Thesis submitted to \
@@ -17,12 +17,12 @@
     EN: "A Study of the Use of the Typst Template During Touching Fish",
   ),
   advisors: (
-    (CN: "湖牌桥", EN: "HU Pai-qiao", CNTitle: "教授", ENTitle: "Prof."),
+    (CN: "湖牌桥", EN: "HU Pai-qiao", CN-title: "教授", EN-title: "Prof."),
     (
       CN: "苏锡浦",
       EN: "SU Xi-pu",
-      CNTitle: "副教授",
-      ENTitle: "Associate Prof.",
+      CN-title: "副教授",
+      EN-title: "Associate Prof.",
     ),
   ),
   school: (
@@ -34,31 +34,26 @@
     submajor: "计算机摸鱼",
   ),
   degree: "摸鱼学硕士",
-  categorynumber: "N94",
-  secretlevel: "公开",
+  category-number: "N94",
+  secret-level: "公开",
   UDC: "303",
-  schoolnumber: "10286",
-  committeechair: "张三 教授",
+  school-number: "10286",
+  committee-chair: "张三 教授",
   readers: (
     "李四 副教授",
     "王五 副教授",
   ),
   date: (
     CN: (
-      defenddate: "2099年01月02日",
-      authorizedate: "2099年01月03日",
-      finishdate: "2024年01月15日",
+      defend-date: "2099年01月02日",
+      authorize-date: "2099年01月03日",
+      finish-date: "2024年01月15日",
     ),
     EN: (
-      finishdate: "Jan 15, 2024",
+      finish-date: "Jan 15, 2024",
     ),
   ),
-  degreeform: none,
-  cnabstract: [示例摘要],
-  cnkeywords: ("关键词1", "关键词2"),
-  enabstract: [#lorem(100)],
-  enkeywords: ("Keywords1", "Keywords2"),
-  terminology: none,
+  degree-form: none,
   anonymous: false,
 ) = page(
   margin: (top: 2cm, bottom: 2cm, left: 2cm, right: 2cm),
@@ -96,13 +91,13 @@
           row-gutter: 0.4em,
           justify-4em("学校代码"),
           "：",
-          chineseunderline(schoolnumber),
+          chineseunderline(school-number),
           justify-4em("分类号"),
           "：",
-          chineseunderline(categorynumber),
+          chineseunderline(category-number),
           justify-4em("密级"),
           "：",
-          chineseunderline(secretlevel),
+          chineseunderline(secret-level),
           justify-4em("UDC"),
           "：",
           chineseunderline(UDC),
@@ -128,7 +123,7 @@
       block(fakebold(text(
         font: 字体.标题宋体,
         size: 字号.小初,
-        thesisname.CN
+        thesis-name.CN
       ))),
       // 空间
       [],
@@ -139,11 +134,11 @@
           size: 字号.一号,
           title.CN
         ))
-        if not degreeform in (none, [], [ ], "") {
+        if not degree-form in (none, [], [ ], "") {
           block(text(
             font: 字体.标题宋体,
             size: 字号.三号,
-            "（学位论文形式：" + degreeform + "）"
+            "（学位论文形式：" + degree-form + "）"
           ), below: 2em)
         }
       },
@@ -165,7 +160,7 @@
           text(font: 字体.宋体, justify-words("导师姓名", width: 5em)),
           [：],
           chineseunderline(
-            advisors.map(it => it.CN + " " + it.CNTitle).join("\n")
+            advisors.map(it => it.CN + " " + it.CN-title).join("\n")
           )
         )
       },
@@ -190,7 +185,7 @@
             text(font: 字体.宋体, justify-7em("二级学科名称")),
             chineseunderline(major.submajor),
             text(font: 字体.宋体, "答辩委员会主席"),
-            chineseunderline(committeechair),
+            chineseunderline(committee-chair),
           ),
           grid(
             columns: (6em, 10em),
@@ -198,9 +193,9 @@
             text(font: 字体.宋体, "学位授予单位"),
             chineseunderline("东 南 大 学"),
             text(font: 字体.宋体, "论文答辩日期"),
-            chineseunderline(date.CN.defenddate),
+            chineseunderline(date.CN.defend-date),
             text(font: 字体.宋体, "学位授予日期"),
-            chineseunderline(date.CN.authorizedate),
+            chineseunderline(date.CN.authorize-date),
             text(font: 字体.宋体, justify-6em("评阅人")),
             chineseunderline(readers.join("\n")),
           )
@@ -209,7 +204,7 @@
       // 空间
       [],
       // 日期
-      text(font: 字体.宋体, size: 字号.四号, date.CN.finishdate)
+      text(font: 字体.宋体, size: 字号.四号, date.CN.finish-date)
     ),
     )
   },
@@ -217,7 +212,7 @@
 
 #degree-cover-conf(
   author: (CN: "王东南", EN: "WANG Dong-nan", ID: "012345"),
-  thesisname: (
+  thesis-name: (
     CN: "硕士学位论文",
     EN: [
       A Thesis submitted to \
@@ -231,12 +226,12 @@
     EN: "A Study of the Use of the Typst Template During Touching Fish",
   ),
   advisors: (
-    (CN: "湖牌桥", EN: "HU Pai-qiao", CNTitle: "教授", ENTitle: "Prof."),
+    (CN: "湖牌桥", EN: "HU Pai-qiao", CN-title: "教授", EN-title: "Prof."),
     (
       CN: "苏锡浦",
       EN: "SU Xi-pu",
-      CNTitle: "副教授",
-      ENTitle: "Associate Prof.",
+      CN-title: "副教授",
+      EN-title: "Associate Prof.",
     ),
   ),
   school: (
@@ -248,30 +243,25 @@
     submajor: "计算机摸鱼",
   ),
   degree: "摸鱼学硕士",
-  categorynumber: "N94",
-  secretlevel: "公开",
+  category-number: "N94",
+  secret-level: "公开",
   UDC: "303",
-  schoolnumber: "10286",
-  committeechair: "张三 教授",
+  school-number: "10286",
+  committee-chair: "张三 教授",
   readers: (
     "李四 副教授",
     "王五 副教授",
   ),
   date: (
     CN: (
-      defenddate: "2099年01月02日",
-      authorizedate: "2099年01月03日",
-      finishdate: "2024年01月15日",
+      defend-date: "2099年01月02日",
+      authorize-date: "2099年01月03日",
+      finish-date: "2024年01月15日",
     ),
     EN: (
-      finishdate: "Jan 15, 2024",
+      finish-date: "Jan 15, 2024",
     ),
   ),
-  degreeform: "应用研究",
-  cnabstract: [示例摘要],
-  cnkeywords: ("关键词1", "关键词2"),
-  enabstract: [#lorem(100)],
-  enkeywords: ("Keywords1", "Keywords2"),
-  terminology: none,
+  degree-form: "应用研究",
   anonymous: false,
 )

@@ -2,10 +2,10 @@
 #import "../utils/packages.typ": fakebold
 
 #let abstract-conf(
-  cnabstract: none,
-  cnkeywords: none,
-  enabstract: none,
-  enkeywords: none,
+  cn-abstract: none,
+  cn-keywords: none,
+  en-abstract: none,
+  en-keywords: none,
   page-break: none,
 ) = {
   // 摘要使用罗马字符的页码
@@ -16,24 +16,24 @@
   set par(first-line-indent: 2em, leading: 9.6pt, justify: true)
   show par: set block(spacing: 9.6pt)
 
-  if not cnabstract in (none, [], "") or not cnkeywords in (none, ()) {
+  if not cn-abstract in (none, [], "") or not cn-keywords in (none, ()) {
     {
       heading(numbering: none, level: 1, outlined: true, bookmarked: true)[摘要]
 
-      cnabstract
+      cn-abstract
 
       v(1em)
 
       parbreak()
 
-      if not cnkeywords in (none, ()) {
-        assert(type(cnkeywords) == array)
-        fakebold[关键词：] + cnkeywords.join("，")
+      if not cn-keywords in (none, ()) {
+        assert(type(cn-keywords) == array)
+        fakebold[关键词：] + cn-keywords.join("，")
       }
     }
   }
 
-  if not enabstract in (none, [], "") or not enkeywords in (none, ()) {
+  if not en-abstract in (none, [], "") or not en-keywords in (none, ()) {
     {
       if type(page-break) == function {
         page-break()
@@ -48,22 +48,22 @@
         bookmarked: true,
       )[ABSTRACT]
 
-      enabstract
+      en-abstract
 
       v(1em)
       parbreak()
 
-      if not enkeywords in (none, ()) {
-        assert(type(enkeywords) == array)
-        text(weight: "bold")[Keywords: ] + enkeywords.join("，")
+      if not en-keywords in (none, ()) {
+        assert(type(en-keywords) == array)
+        text(weight: "bold")[Keywords: ] + en-keywords.join("，")
       }
     }
   }
 }
 
 #abstract-conf(
-  cnabstract: [示例摘要],
-  cnkeywords: ("关键词1", "关键词2"),
-  enabstract: none,
-  enkeywords: ("Keywords1", "Keywords2"),
+  cn-abstract: [示例摘要],
+  cn-keywords: ("关键词1", "关键词2"),
+  en-abstract: none,
+  en-keywords: ("Keywords1", "Keywords2"),
 )

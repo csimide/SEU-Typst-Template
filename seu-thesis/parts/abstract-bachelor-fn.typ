@@ -1,10 +1,10 @@
 #import "../utils/fonts.typ": 字体, 字号
 
 #let abstract-conf(
-  cnabstract: none,
-  cnkeywords: none,
-  enabstract: none,
-  enkeywords: none,
+  cn-abstract: none,
+  cn-keywords: none,
+  en-abstract: none,
+  en-keywords: none,
 ) = {
   // 摘要使用罗马字符的页码
   set page(numbering: "I", number-align: center)
@@ -12,7 +12,7 @@
 
   set text(font: 字体.宋体, size: 字号.小四)
 
-  if not cnabstract in (none, [], "") or not cnkeywords in (none, ()) {
+  if not cn-abstract in (none, [], "") or not cn-keywords in (none, ()) {
     {
       set par(first-line-indent: 2em, leading: 14pt, justify: true)
       show par: set block(spacing: 14pt)
@@ -22,21 +22,21 @@
 
       v(3pt)
 
-      cnabstract
+      cn-abstract
 
       v(18pt)
 
       // 英文
       set par(first-line-indent: 0em)
 
-      if not cnkeywords in (none, ()) {
-        assert(type(cnkeywords) == array)
-        "关键词：" + cnkeywords.join("，")
+      if not cn-keywords in (none, ()) {
+        assert(type(cn-keywords) == array)
+        "关键词：" + cn-keywords.join("，")
       }
     }
   }
 
-  if not enabstract in (none, [], "") or not enkeywords in (none, ()) {
+  if not en-abstract in (none, [], "") or not en-keywords in (none, ()) {
     {
       pagebreak(weak: true)
 
@@ -53,21 +53,21 @@
 
       v(3pt)
 
-      enabstract
+      en-abstract
 
       v(20pt)
 
-      if not enkeywords in (none, ()) {
-        assert(type(enkeywords) == array)
-        "KEY WORDS: " + enkeywords.join("，")
+      if not en-keywords in (none, ()) {
+        assert(type(en-keywords) == array)
+        "KEY WORDS: " + en-keywords.join("，")
       }
     }
   }
 }
 
 #abstract-conf(
-  cnabstract: [示例摘要],
-  cnkeywords: ("关键词1", "关键词2"),
-  enabstract: none,
-  enkeywords: ("Keywords1", "Keywords2"),
+  cn-abstract: [示例摘要],
+  cn-keywords: ("关键词1", "关键词2"),
+  en-abstract: none,
+  en-keywords: ("Keywords1", "Keywords2"),
 )
