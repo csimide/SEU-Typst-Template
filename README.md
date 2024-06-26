@@ -10,9 +10,13 @@
 >
 > 本模板虽已尽力尝试复原原始 Word 模板，但可能仍然存在诸多格式问题。
 
+> [!NOTE]
+>
+> 因近期用于修模板的时间较少，目前弃用部分自造轮子的重构进度较为缓慢。`master` branch 内是正在重构的功能，上一个稳定版本是 `typst init  @preview/cheda-seu-thesis:0.2.2` （ https://github.com/csimide/SEU-Typst-Template/tree/c44b5172178c0c2380b322e50931750e2d761168 ）。请自行挑选合适的版本使用。
+
 > [!IMPORTANT]
 >
-> 自 `0.2.2` 的**下一个版本**开始，本模板将引入 breaking change：
+> 自 `0.2.2` 的**下一个版本**（`master` branch 正在开发的版本）开始，本模板将引入 breaking change：
 >
 > 1. 进入附录章节的方式改变：
 >    - 取消了 `#appendix()` ，改为使用 `#show: show-appendix-degree` 或 `#show: show-appendix-bachelor` 进入。请同步更新文档头部的 `#import` 语句，删除导入的 `appendix` 并修改为相应的 `show-appendix-degree` 或 `show-appendix-bachelor` 。
@@ -186,7 +190,7 @@
 
 7. 引用其他学位论文时，GB7714-2015/本科毕设/学位论文均要求注明 `地点: 学校名称, 年份.` 。但是模板不显示这一项。
 
-   **A:** Typst 不支持 `school` `institution` 作为 `publisher` 的别名，亦不支持解析 csl 中的 `institution` （https://github.com/typst/hayagriva/issues/112）。如需修复，请手动修改 bib 文件内对应条目，在 `school = {学校名称},` 下加一行 `publisher = {学校名称},` 。
+   **A:** Typst 不支持 `school` `institution` 作为 `publisher` 的别名，亦不支持解析 csl 中的 `institution` （ https://github.com/typst/hayagriva/issues/112 ）。如需修复，请手动修改 bib 文件内对应条目，在 `school = {学校名称},` 下加一行 `publisher = {学校名称},` 。
    <details>
     <summary> 修改示例 </summary>
 
