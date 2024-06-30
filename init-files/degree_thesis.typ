@@ -1,18 +1,27 @@
-#import "../seu-thesis/lib.typ": degree-conf, thanks, show-appendix-degree
-#import "@preview/sourcerer:0.2.1": code
+#import "../seu-thesis/lib.typ": degree-conf, degree-utils
+#let (thanks, show-appendix) = degree-utils
 
 /*
   使用模板前，请先安装 https://github.com/csimide/SEU-Typst-Template/tree/master/fonts 内的所有字体。
   如果使用 Web App，请将这些字体上传到 Web App 项目的根目录中。
 */
 
+// 由于研究生院模板没有严格规定代码块的字体，为了美观，在此设定代码块字体
+#import "@preview/sourcerer:0.2.1": code
+#show raw.where(block: false): set text(font: ("Fira Code", "SimHei"))
+#let code = code.with(
+  numbering: true,
+  radius: 0pt,
+  text-style: (font: ("Courier New", "SimHei")),
+)
+
 #let terminology = [
 
   如果有必要可以设置此注释表。此部分内容可根据论文中采用的符号、变量、缩略词等专用术语加以定义和注释，以便于论文阅读和迅速查出某符号的明确含义。
 
-  术语表建议使用 `#let` 语句另行定义，再通过参数传入模板。
+  术语表建议使用 ```typ #let``` 语句另行定义，再通过参数传入模板。
 
-  一般来说，请用 `#table` 绘制表格。如果想让术语表也有编号，可以使用 `#figure`。
+  一般来说，请用 ```typ #table``` 绘制表格。如果想让术语表也有编号，可以使用 ```typ #figure```。
 
   `table` 的用法请见 Typst 文档。
 
@@ -151,12 +160,9 @@
 
 每一图应有简短确切的题名，连同图号置于图下。图题、图号字体与正文相同，字体也可改用仿宋以示与正文的区别。必要时，应将图上的符号、标记、代码以及实验条件等，用最简练的文字，横排于图题下方，作为图例说明。
 
-本模板采用按章节编号的方式。如果需要插入带自动编号的图片，需要使用`#figure`。例如，使用下面的代码插入带编号的图片：
+本模板采用按章节编号的方式。如果需要插入带自动编号的图片，需要使用```typ #figure```。例如，使用下面的代码插入带编号的图片：
 
 #code(
-  numbering: true,
-  radius: 0pt,
-  text-style: (font: ("Courier New", "SimHei")),
   ```typst
   #figure(
     image("./demo_image/24h_rain.png", width: 8.36cm),// 宽度/高度需要自行调整
@@ -176,9 +182,6 @@
 如一个插图由两个及以上的分图组成，分图用(a)、(b)、(c)等标出，并标出分图名。目前，本模板尚未实现分图的字母自动编号。如需要分图，建议使用 `#grid` 来构建。例如：
 
 #code(
-  numbering: true,
-  radius: 0pt,
-  text-style: (font: ("Courier New", "SimHei")),
   ```typst
   #figure(
     grid(
@@ -209,9 +212,6 @@
 带编号、表名的表格需要使用 `#figure` 包裹，才能自动编号。方式与上方图片相仿，或者查看下面的代码说明。表格本身建议使用函数 `table` 、或第三方库 `tablem` 库绘制。使用 `tablem` 库时，`#figure` 可能会认为其包裹的内容不是 `table` 类型，而编号“图X-X”。可以通过添加 `kind: table` 声明这是一个表格。
 
 #code(
-  numbering: true,
-  radius: 0pt,
-  text-style: (font: ("Courier New", "SimHei")),
 ```typst
 #figure(
   {
@@ -273,7 +273,7 @@
 
 Typst 的公式与 LaTeX 写法不同，参见 Typst 官方文档。
 
-在 Typst 中，使用 `$$` 包裹公式以获得行内公式，在公式内容两侧增加空格以获得块公式。如 `$alpha + beta = gamma$` 会获得行内公式 $alpha + beta = gamma$，而加上两侧空格，写成 `$ alpha + beta = gamma $` ，就会变成带自动编号的块公式：
+在 Typst 中，使用 ```typ $$``` 包裹公式以获得行内公式，在公式内容两侧增加空格以获得块公式。如 ```typ $alpha + beta = gamma$``` 会获得行内公式 $alpha + beta = gamma$，而加上两侧空格，写成 ```typ $ alpha + beta = gamma $``` ，就会变成带自动编号的块公式：
 
 $ alpha + beta = gamma $ <eqexample>
 
@@ -282,8 +282,6 @@ $ alpha + beta = gamma $ <eqexample>
 多行公式可以使用 `\ ` 换行（反斜杠紧跟空格或者反斜杠紧跟换行）。与 LaTeX 类似，`&` 可以用于声明对齐关系。
 
 #code(
-  radius: 0pt,
-  text-style: (font: ("Courier New", "SimHei")),
   ```typst
   $ E_"ocv" &= 1.229 - 0.85 times 10^(-3) (T_"st" - T_0) \
     &+ 4.3085 times 10^(-5) T_"st" [ln(P_H_2/1.01325)+1/2 ln(P_O_2/1.01325)] 
@@ -303,11 +301,9 @@ $
 
 公式引用使用式 1、式 1.1 等，英语文本中用 Eq.1、Eq.1.1 等。在 Typst 中，可以给公式添加 label 再引用。例如引用 @eqt:eqexample。
 
-请注意，引用公式、图表需要添加相应的前缀，如  `@tbl:` `@fig:` `@eqt:`。
+请注意，引用公式、图表需要添加相应的前缀，如  ```typ @tbl:``` ```typ @fig:``` ```typ @eqt:```。
 
 #code(
-  radius: 0pt,
-  text-style: (font: ("Courier New", "SimHei")),
 ```typst
 $ alpha + beta = gamma $ <eqexample​>
 
@@ -320,7 +316,7 @@ $ alpha + beta = gamma $ <eqexample​>
 
 #h(2em) 较短的公式一般一式一行并按顺序编号，后面一式若为前面一式的注解（如下标范围 i=1，3，5，……）可用括号括起来与前面一式并排一行。较长的公式必须转行时，只能在=、≈、+、-、×、÷、<、>处转行。上下式尽可能在等号“=”处对齐。公式中符号尚未说明者应有说明，符号说明之间用分号隔开，一般一个符号占一行。
 
-不需编号的公式也可以不用另起行。如：$I=V \/ R$ 。在上文的“行内公式”已经解说，此处不再赘述。由于 Typst 默认尝试使用数学方式表现，例如 `$I=V / R$` 会显示为 $I=V / R$，而研院的排版要求中说明“不宜采用竖式，以便使行距均匀，编排整齐。”故有时需要使用转义方式输入斜杠，如 `$I=V \/ R$`。
+不需编号的公式也可以不用另起行。如：$I=V \/ R$ 。在上文的“行内公式”已经解说，此处不再赘述。由于 Typst 默认尝试使用数学方式表现，例如 ```typ $I=V / R$``` 会显示为 $I=V / R$，而研院的排版要求中说明“不宜采用竖式，以便使行距均匀，编排整齐。”故有时需要使用转义方式输入斜杠，如 ```typ $I=V \/ R$```。
 
 === 计量单位和数字用法
 
@@ -344,13 +340,10 @@ $ alpha + beta = gamma $ <eqexample​>
 == 为引用文献而添加的章节
 
 
-#h(2em)参考文献需要使用 bib 格式的引用文献表，再在正文中通过 `@labelname` 方式引用。如
+#h(2em)参考文献需要使用 bib 格式的引用文献表，再在正文中通过 ```typ @labelname``` 方式引用。如
 
 
 #code(
-  numbering: true,
-  radius: 0pt,
-  text-style: (font: ("Courier New", "SimHei")),
 ```typst
 这里有一段话 @kopka2004guide.
 
@@ -401,11 +394,11 @@ $ alpha + beta = gamma $ <eqexample​>
 
 3、给予转载或者引用权的资料、图片、文献、研究设想的所有者。
 
-致谢章节应当使用 `#thanks[内容]` 显示。
+致谢章节应当使用 ```typ #thanks[内容]``` 显示。
 
-在致谢章节后，请添加  `#bibliography` 引用文献表。
+在致谢章节后，请添加  ```typ #bibliography``` 引用文献表。
 
-参考文献过后，需要使用`#show: show-appendix-degree`进入附录部分。
+参考文献过后，需要使用```typ #show: show-appendix```进入附录部分。
 
 ]
 
@@ -414,7 +407,7 @@ $ alpha + beta = gamma $ <eqexample​>
   style: "gb-t-7714-2015-numeric-seu-degree.csl"
 )
 
-#show: show-appendix-degree // 进入附录部分
+#show: show-appendix // 进入附录部分
 
 
 = 附录说明 <appendix-1>

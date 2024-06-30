@@ -1,10 +1,20 @@
-#import "../seu-thesis/lib.typ": bachelor-conf, thanks, show-appendix-bachelor
-#import "@preview/sourcerer:0.2.1": code
+#import "../seu-thesis/lib.typ": bachelor-conf, bachelor-utils
+#let (thanks, show-appendix) = bachelor-utils
+
 
 /*
   使用模板前，请先安装 https://github.com/csimide/SEU-Typst-Template/tree/master/fonts 内的所有字体。
   如果使用 Web App，请将这些字体上传到 Web App 项目的根目录中。
 */
+
+// 由于教务处模板没有严格规定代码块的字体，为了美观，在此设定代码块字体
+#import "@preview/sourcerer:0.2.1": code
+#show raw.where(block: false): set text(font: ("Fira Code", "SimHei"))
+#let code = code.with(
+  numbering: true,
+  radius: 0pt,
+  text-style: (font: ("Courier New", "SimHei")),
+)
 
 #show: doc => bachelor-conf(
   student-id: "00121001",
@@ -39,6 +49,7 @@ ABSTRACT为三号Times New Roman加粗居中。
 
 = 绪论
 
+
 == 课题背景和意义
 
 绪论部分主要论述选题的意义、国内外研究现状以及本文主要研究的内容、研究思路以及内容安排等。
@@ -47,13 +58,13 @@ ABSTRACT为三号Times New Roman加粗居中。
 
 正文部分为小四号宋体，行间距1.5倍行距，首行缩进2个字符。
 
-有时，首行缩进不起作用（Typst 的已知问题）。此时，可以使用 `#h(2em)` 手动插入两个汉字长度的空间，“手动”首行缩进。如果打开 demo 源文件，可以发现本小节的第一段是用这种方式手动缩进的。请注意，在成文后，需要自行检查首行缩进是否工作正常。
+有时，首行缩进不起作用（Typst 的已知问题）。此时，可以使用 ```typ #h(2em)``` 手动插入两个汉字长度的空间，“手动”首行缩进。如果打开 demo 源文件，可以发现本小节的第一段是用这种方式手动缩进的。*请注意，在成文后，需要自行检查首行缩进是否工作正常。*
 
 == 研究现状
 
 #strike[目前，由于宋体（SimSun）、黑体（SimHei）均是单一字重字体，而 Typst 0.10.0 尚未加入伪粗体的支持，本文档的中文部分暂时无法加粗。章节大标题等需要加粗的地方也未加粗。因 https://github.com/typst/typst/pull/2970 已经合并了改善字体描边功能的 PR，预计在之后的版本中即可直接或间接使用伪粗体，届时本模板亦将相应修改。]
 
-在 0.11.0 中，Typst 提供了间接实现伪粗体的方式。本模板亦已通过 cuti 包加入粗体相关支持。如需使用粗体，可以用 `*` 包裹需要加粗的文字，或者使用 `text(weight: "bold")`。比如，*这是一段加粗文字的示例。*
+在 0.11.0 中，Typst 提供了间接实现伪粗体的方式。本模板亦已通过 cuti 包加入粗体相关支持。如需使用粗体，可以用 ```typ *``` 包裹需要加粗的文字，或者使用 ```typst #text(weight: "bold")```。比如，*这是一段加粗文字的示例。*
 
 == 本文研究内容
 
@@ -75,9 +86,6 @@ ABSTRACT为三号Times New Roman加粗居中。
 本模板采用按章节编号的方式。如果需要插入带自动编号的图片，需要使用`#figure`。例如，使用下面的代码插入带编号的图片：
 
 #code(
-  numbering: true,
-  radius: 0pt,
-  text-style: (font: ("Courier New", "SimHei")),
   ```typst
   #figure(
     image("./demo_image/24h_rain.png", width: 8.36cm),// 宽度/高度需要自行调整
@@ -91,14 +99,11 @@ ABSTRACT为三号Times New Roman加粗居中。
   caption: [每小时降水量24小时均值分布图]
 )<每小时降水量24小时均值分布图>
 
-#h(2em) 通常情况下，插入图、表等组件后，后续的首个段落会丢失首行缩进，需要使用 `#h(2em)` 手动补充缩进。
+#h(2em) 通常情况下，插入图、表等组件后，后续的首个段落会丢失首行缩进，需要使用 ```typ #h(2em)``` 手动补充缩进。您也可以尝试使用 `indenta` 包来完成缩进。
 
-如一个插图由两个及以上的分图组成，分图用(a)、(b)、(c)等标出，并标出分图名。目前，本模板尚未实现分图的字母自动编号。如需要分图，建议使用 `#grid` 来构建。例如：
+如一个插图由两个及以上的分图组成，分图用(a)、(b)、(c)等标出，并标出分图名。目前，本模板尚未实现分图的字母自动编号。如需要分图，建议使用 ```typ #grid``` 来构建。例如：
 
 #code(
-  numbering: true,
-  radius: 0pt,
-  text-style: (font: ("Courier New", "SimHei")),
   ```typst
   #figure(
     grid(
@@ -125,15 +130,15 @@ ABSTRACT为三号Times New Roman加粗居中。
 
 #h(2em) 实际使用中，网格划分、网格大小调整需要自行操作。
 
-如果需要在文中引用这些图表，应当先给对应部分打 label ，再到需要引用的地方使用 `@` ，注意引用公式、图表需要添加相应的前缀，如  `@tbl:` `@fig:` `@eqt:`。例如，上面的@fig:每小时降水量24小时均值分布图 中使用 `<>` 添加了 label ，然后，使用`@fig:每小时降水量24小时均值分布图`引用，即可得到“@fig:每小时降水量24小时均值分布图”。
+如果需要在文中引用这些图表，应当先给对应部分打 label ，再到需要引用的地方使用 ```typ @``` ，注意引用公式、图表需要添加相应的前缀，如  ```typ @tbl:``` ```typ @fig:``` ```typ @eqt:```。例如，上面的@fig:每小时降水量24小时均值分布图 中使用 ```typ <>``` 添加了 label ，然后，使用```typ @fig:每小时降水量24小时均值分布图```引用，即可得到“@fig:每小时降水量24小时均值分布图”。
 
 == 表格格式要求
 
 表格的结构应简洁，一律采用三线表，应有表序和表名，且表序和表名位于表格上方。表格可以逐章单独编序（如：表2.1），也可以统一编序（如：表10），采用哪种方式应和插图及公式的编序方式统一。表序必须连续，不得重复或跳跃。
 
-带编号、表名的表格需要使用 `#figure` 包裹，才能自动编号。方式与上方图片相仿，或者查看下面的代码说明。表格本身建议使用函数 `table` 或第三方库 `tablem` 库绘制。使用 `tablem` 库时，`#figure` 可能会认为其包裹的内容不是 `table` 类型，而编号“图X-X”。可以通过添加 `kind: table` 声明这是一个表格。
+带编号、表名的表格需要使用 ```typ #figure``` 包裹，才能自动编号。方式与上方图片相仿，或者查看下面的代码说明。表格本身建议使用函数 `table` 或第三方库 `tablem` 库绘制。使用 `tablem` 库时，`#figure` 可能会认为其包裹的内容不是 `table` 类型，而编号“图X-X”。可以通过添加 `kind: table` 声明这是一个表格。
 
-表格无法在同一页排版时，可以用续表的形式另页书写，续表需在表格右上角表序前加“续”字，如“续表2.1”，并重复表头。请注意：目前此模板内，`#figure` 包裹的单个表格强制显示在同一页上，不会发生跨页现象。如果按照 https://github.com/typst/typst/pull/1121 启用了 `#show figure: set block(breakable: true)`，那么跨页表格第二页暂时不会显示“续表”与表名。#strong[由于在教务处给出的Word模板中，跨页表格并没有加注“续表”，也没有给出“续表”的格式样例，因此本模板暂未实现相关功能。]如果使用 `table` 声明表头的特性，第二页会重复表头。
+表格无法在同一页排版时，可以用续表的形式另页书写，续表需在表格右上角表序前加“续”字，如“续表2.1”，并重复表头。请注意：目前此模板内，```typ #figure``` 包裹的单个表格强制显示在同一页上，不会发生跨页现象。如果按照 https://github.com/typst/typst/pull/1121 启用了 ```typ #show figure: set block(breakable: true)```，那么跨页表格第二页暂时不会显示“续表”与表名。#strong[由于在教务处给出的Word模板中，跨页表格并没有加注“续表”，也没有给出“续表”的格式样例，因此本模板暂未实现相关功能。]如果使用 `table` 声明表头的特性，第二页会重复表头。
 
 表格居中，边框为黑色直线1磅，中文为五号宋体，英文及数字为五号Times New Roman字体，表序与表名之间空一格，表格与下文之间空一行。#strong[在教务处给出的Word模板中，文字说明是表格边框为黑色直线1磅，但示例的表格边框是0.5磅，自相矛盾。请自行根据需求与格式要求调整框线粗细。]
 
@@ -141,9 +146,6 @@ ABSTRACT为三号Times New Roman加粗居中。
 
 
 #code(
-  numbering: true,
-  radius: 0pt,
-  text-style: (font: ("Courier New", "SimHei")),
 ```typst
 #figure(
   {
@@ -209,7 +211,7 @@ ABSTRACT为三号Times New Roman加粗居中。
 
 Typst 的公式与 LaTeX 写法不同，参见 Typst 官方文档。
 
-在 Typst 中，使用 `$$` 包裹公式以获得行内公式，在公式内容两侧增加空格以获得块公式。如 `$alpha + beta = gamma$` 会获得行内公式 $alpha + beta = gamma$，而加上两侧空格，写成 `$ alpha + beta = gamma $` ，就会变成带自动编号的块公式：
+在 Typst 中，使用 `$$` 包裹公式以获得行内公式，在公式内容两侧增加空格以获得块公式。如 ```typ $alpha + beta = gamma$``` 会获得行内公式 $alpha + beta = gamma$，而加上两侧空格，写成 ```typ $ alpha + beta = gamma $``` ，就会变成带自动编号的块公式：
 
 $ alpha + beta = gamma $
 
@@ -218,8 +220,6 @@ $ alpha + beta = gamma $
 多行公式可以使用 `\ ` 换行（反斜杠紧跟空格或者反斜杠紧跟换行）。与 LaTeX 类似，`&` 可以用于声明对齐关系。
 
 #code(
-  radius: 0pt,
-  text-style: (font: ("Courier New", "SimHei")),
   ```typst
   $ E_"ocv" &= 1.229 - 0.85 times 10^(-3) (T_"st" - T_0) \
     &+ 4.3085 times 10^(-5) T_"st" [ln(P_H_2/1.01325)+1/2 ln(P_O_2/1.01325)] 
@@ -239,9 +239,6 @@ $
 注释应当采用 `#footnote` 插入。如上方的“马尔科夫链”及其注释，是通过下面的代码插入的。
 
 #code(
-  numbering: true,
-  radius: 0pt,
-  text-style: (font: ("Courier New", "SimHei")),
 ```typst
 马尔可夫链#footnote[马尔可夫链表示……]
 ```
@@ -268,9 +265,6 @@ $
 
 
 #code(
-  numbering: true,
-  radius: 0pt,
-  text-style: (font: ("Courier New", "SimHei")),
 ```typst
 这里有一段话 @kopka2004guide.
 
@@ -290,14 +284,14 @@ $
 
 本模板附带的 `gb-t-7714-2015-numeric-seu.csl` 是“修复”部分 bug 的 CSL 文件。该格式和东大格式不完全吻合，但比自带的 `gb7714-2015` 稍微符合一些。
 
-参考文献过后，需要使用`#show: show-appendix-bachelor`进入附录部分。
+参考文献过后，需要使用```typ #show: show-appendix```进入附录部分。
 
 #bibliography(
   "ref.bib", // 替换为自己的bib路径
   style: "gb-t-7714-2015-numeric-seu-bachelor.csl"
 )
 
-#show: show-appendix-bachelor
+#show: show-appendix
 
 = 这里是附录内容
 
@@ -319,5 +313,5 @@ $ a^2 + b^2 = c^2 $ <ss1>
 
 “致谢”用三号黑体加粗居中，两字之间空4个半角空格。致谢内容为小四号宋体，1.5倍行距。
 
-若需要渲染致谢，请用 `#thanks[内容]`。
+若需要渲染致谢，请用 ```typ #thanks[内容]```。
 ]

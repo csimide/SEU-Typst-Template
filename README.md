@@ -12,21 +12,21 @@
 
 > [!NOTE]
 >
-> 因近期用于修模板的时间较少，目前弃用部分自造轮子的重构进度较为缓慢。`master` branch 内是正在重构的功能，上一个稳定版本是 `typst init  @preview/cheda-seu-thesis:0.2.2` （ https://github.com/csimide/SEU-Typst-Template/tree/c44b5172178c0c2380b322e50931750e2d761168 ）。请自行挑选合适的版本使用。
+> 因近期用于修模板的时间较少，目前弃用部分自造轮子的重构进度较为缓慢。`master` branch 内是正在重构的功能，上一个稳定版本是 `typst init @preview/cheda-seu-thesis:0.2.2` （ https://github.com/csimide/SEU-Typst-Template/tree/c44b5172178c0c2380b322e50931750e2d761168 ）。请自行挑选合适的版本使用。
 
 > [!IMPORTANT]
 >
 > 自 `0.2.2` 的**下一个版本**（`master` branch 正在开发的版本）开始，本模板将引入 breaking change：
 >
 > 1. 进入附录章节的方式改变：
->    - 取消了 `#appendix()` ，改为使用 `#show: show-appendix-degree` 或 `#show: show-appendix-bachelor` 进入。请同步更新文档头部的 `#import` 语句，删除导入的 `appendix` 并修改为相应的 `show-appendix-degree` 或 `show-appendix-bachelor` 。
+>    - 取消了 `#appendix()` ，改为使用 `#show: show-appendix`。请同步更新文档头部的 `#import` 语句（参考 demo 文档头部写法）
 >    - 不再支持使用 `#bibliography` 自动进入附录，需要手动切换到附录。
 > 2. 引用图表的方式改变：
 >    - 引用图表的样式由自造轮子改为了 `i-figured` 。
 >    - 请将所有图表引用 `@xxx` 添加相应的类别前缀，详见 https://github.com/RubixDev/typst-i-figured#usage
 > 3. `state` 改变：
 >    - 不再使用一堆 state 存放章节信息。
-> 4. 参数格式统一:
+> 4. 参数格式统一：
 >    - 统一使用 `-` 风格的参数名称。
 
 - [东南大学论文模板](#东南大学论文模板)

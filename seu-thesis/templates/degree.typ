@@ -9,7 +9,11 @@
 
 #import "../utils/set-degree.typ": set-degree
 #import "../utils/smart-pagebreak.typ": gen-smart-pagebreak
+
 #import "../utils/thanks.typ": thanks
+#import "../utils/show-appendix.typ": show-appendix-degree
+
+#let degree-utils = (thanks, show-appendix-degree)
 
 #let degree-conf(
   author: (CN: "王东南", EN: "WANG Dong-nan", ID: "012345"),

@@ -1,12 +1,16 @@
 #import "../utils/fonts.typ": 字体, 字号
 #import "../utils/set-bachelor.typ": set-bachelor
 #import "../utils/states.typ": part-state
-#import "../utils/thanks.typ": thanks
 
 #import "../pages/cover-bachelor-fn.typ": bachelor-cover-conf
 #import "../parts/abstract-bachelor-fn.typ": abstract-conf
 #import "../parts/main-body-bachelor-fn.typ": main-body-bachelor-conf
 #import "../parts/outline-bachelor-fn.typ": outline-conf
+
+#import "../utils/thanks.typ": thanks
+#import "../utils/show-appendix.typ": show-appendix-bachelor
+
+#let bachelor-utils = (thanks, show-appendix-bachelor)
 
 #let bachelor-conf(
   student-id: "00121001",

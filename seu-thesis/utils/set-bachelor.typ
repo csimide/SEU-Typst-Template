@@ -24,8 +24,9 @@
   show: show-bibliography.with(bilingual: bilingual-bib)
 
   show heading: show-heading.with(
-    heading-top-margin: (0.2cm, 0.07cm, 0cm),
-    heading-bottom-margin: (0.13cm, 0.1cm, 0cm),
+    heading-top-margin: (0.2cm, 0.19cm, 0cm),
+    heading-bottom-margin: (0.12cm, 0.1cm, 0cm),
+    heading-space: (0.5em, 0.3em),
     heading-indent: (0cm, 0em, 0em),
     heading-align: (center, left, left),
     heading-text: (
@@ -33,8 +34,8 @@
       (font: 字体.黑体, size: 字号.四号, weight: "regular"),
       (font: 字体.宋体, size: 字号.小四, weight: "regular")
     ),
-    always-new-page: true, // 每次一级标题都切换到新的页面，取值为 bool 或 function ，如果 function 则会以 function 作为分页时执行的操作
-    auto-h-spacing: true, // 为 true 时，二字标题会变为 A #h(2em) B
+    always-new-page: true, 
+    auto-h-spacing: true, 
   )
   show heading.where(level: 1): set heading(supplement: none)
 
@@ -45,6 +46,7 @@
   show figure: set text(size: 字号.五号, font: 字体.宋体, weight: "regular")
   show figure: i-figured.show-figure.with(numbering: "1-1")
   show figure.where(kind: table): i-figured.show-figure.with(numbering: "1.1")
+  show figure.where(kind: table): it => v(1.2em) + it
   show math.equation.where(block: true): i-figured.show-equation
 
   set footnote(numbering: num => number-with-circle(num))
