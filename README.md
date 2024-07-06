@@ -75,7 +75,7 @@
 
 ### 研究生学位论文模板
 
-此 Typst 模板按照[《东南大学研究生学位论文格式规定》](https://seugs.seu.edu.cn/_upload/article/files/5d/c2/abe9785f44c8b3ea4823f14bfb92/cd829a73-1b86-400d-9bce-2c4b4fdb85b7.pdf)制作，制作时参考了 [SEUThesis 模板](https://ctan.math.utah.edu/ctan/tex-archive/macros/latex/contrib/seuthesis/seuthesis.pdf)。
+此 Typst 模板按照[《东南大学研究生学位论文格式规定》](https://seugs.seu.edu.cn/2023/0424/c26669a442680/page.htm)制作，制作时参考了 [SEUThesis 模板](https://ctan.math.utah.edu/ctan/tex-archive/macros/latex/contrib/seuthesis/seuthesis.pdf)。
 
 当前支持进度：
 
