@@ -9,25 +9,12 @@
 > 此模板是民间模板，有不被学校认可的风险。
 >
 > 本模板虽已尽力尝试复原原始 Word 模板，但可能仍然存在诸多格式问题。
+>
+> Typst 是一个仍在活跃开发、可能会有较大变更的排版工具，请选择最新版模板与本模板建议的 Typst 版本相配合使用。
 
-> [!NOTE]
+> [!CAUTION]
 >
-> 因近期用于修模板的时间较少，目前弃用部分自造轮子的重构进度较为缓慢。`master` branch 内是正在重构的功能，上一个稳定版本是 `typst init @preview/cheda-seu-thesis:0.2.2` （ https://github.com/csimide/SEU-Typst-Template/tree/c44b5172178c0c2380b322e50931750e2d761168 ）。请自行挑选合适的版本使用。
-
-> [!IMPORTANT]
->
-> 自 `0.2.2` 的**下一个版本**（`master` branch 正在开发的版本）开始，本模板将引入 breaking change：
->
-> 1. 进入附录章节的方式改变：
->    - 取消了 `#appendix()` ，改为使用 `#show: show-appendix`。请同步更新文档头部的 `#import` 语句（参考 demo 文档头部写法）
->    - 不再支持使用 `#bibliography` 自动进入附录，需要手动切换到附录。
-> 2. 引用图表的方式改变：
->    - 引用图表的样式由自造轮子改为了 `i-figured` 。
->    - 请将所有图表引用 `@xxx` 添加相应的类别前缀，详见 https://github.com/RubixDev/typst-i-figured#usage
-> 3. `state` 改变：
->    - 不再使用一堆 state 存放章节信息。
-> 4. 参数格式统一：
->    - 统一使用 `-` 风格的参数名称。
+> 本模板在 [`0.2.2`](https://github.com/csimide/SEU-Typst-Template/tree/c44b5172178c0c2380b322e50931750e2d761168) -> `0.3.0` 时进行了破坏性变更。有关此次变更的详细信息，请查看[更新日志](CHANGELOG.md)
 
 - [东南大学论文模板](#东南大学论文模板)
   - [使用方法](#使用方法)
@@ -244,6 +231,7 @@
 - （仅研究生学位论文）奇数页偶数页页眉不同，且有页眉中显示章节名称的需求。
 
   - 该功能位于 `seu-thesis/parts/main-body-degree-fn.typ`。
+  - 推荐改用 `chic-hdr` 而不是自造轮子，由于历史遗留问题本模板暂未改用。
 
 - 支持双语显示参考文献（自动使用 `et al.` 和 `等`）
   - 该功能来自 `bilingual-bibliography`，关联的文件是 `seu-thesis/utils/bilingual-bibliography.typ`。

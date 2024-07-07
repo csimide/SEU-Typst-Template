@@ -25,10 +25,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   更改为
   ```typst
   // 毕设
-  #import "@preview/cheda-seu-thesis:0.2.2": bachelor-conf, bachelor-utils
+  #import "@preview/cheda-seu-thesis:0.3.0": bachelor-conf, bachelor-utils
   #let (thanks, show-appendix) = bachelor-utils
   // 学位
-  #import "@preview/cheda-seu-thesis:0.2.2": degree-conf, degree-utils
+  #import "@preview/cheda-seu-thesis:0.3.0": degree-conf, degree-utils
   #let (thanks, show-appendix) = degree-utils
   ```
   本模板暂未计划完全改为闭包。
