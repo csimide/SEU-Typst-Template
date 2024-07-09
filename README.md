@@ -40,7 +40,7 @@
 请先安装位于 `fonts` 目录内的全部字体。然后，您可以使用以下两种方式使用本模板：
 
 - 下载/clone 本 repo 的全部文件，编辑 `init-files` 目录内的示例文件。
-- 使用 `typst init @preview/cheda-seu-thesis:0.2.2` 来获取此模板与初始化文件。
+- 使用 `typst init @preview/cheda-seu-thesis:0.3.0` 来获取此模板与初始化文件。
 
 随后，您可以通过编辑示例文件来生成想要的论文。两种论文格式的说明都在对应的示例文档内。
 
