@@ -13,6 +13,9 @@
 > Typst 是一个仍在活跃开发、可能会有较大变更的排版工具，请选择最新版模板与本模板建议的 Typst 版本相配合使用。
 
 > [!CAUTION]
+> Typst 0.12.0 的破坏性变更会导致行间距变化。本模板用到了一些即将废弃的功能，使用 Typst 0.12.0 编译时会报 warning。目前本模板正在适配 0.12.0 ，敬请耐心等待。
+
+> [!CAUTION]
 >
 > 本模板在 [`0.2.2`](https://github.com/csimide/SEU-Typst-Template/tree/c44b5172178c0c2380b322e50931750e2d761168) -> `0.3.0` 时进行了破坏性变更。有关此次变更的详细信息，请查看[更新日志](CHANGELOG.md)
 
@@ -198,11 +201,13 @@
 
 8. 正文中连续引用，上标合并错误（例如，引用 1 2 3 4 应当显示为 [1-4] ，但是显示为 [1,4] ）。
 
-   **A:** 临时方案是把 csl 文件里 `after-collapse-delimiter=","` 改成 `after-collapse-delimiter="-"`。本模板附带的 CSL 文件已做此修改。
+   **A:** ~~临时方案是把 csl 文件里 `after-collapse-delimiter=","` 改成 `after-collapse-delimiter="-"`。本模板附带的 CSL 文件已做此修改。~~
 
-   详细原因请见 https://github.com/typst/hayagriva/issues/154 。
+   ~~详细原因请见 https://github.com/typst/hayagriva/issues/154 。~~
 
-   https://github.com/typst/hayagriva/pull/176 正尝试解决这一 bug。**该 bug 修复后，请及时撤销上述对 csl 的临时修改。**
+   ~~https://github.com/typst/hayagriva/pull/176 正尝试解决这一 bug。**该 bug 修复后，请及时撤销上述对 csl 的临时修改。**~~
+
+   Typst 0.12.0 已经修复，不需要魔改了。
 
 ## 友情链接
 
