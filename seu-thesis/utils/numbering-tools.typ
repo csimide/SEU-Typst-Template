@@ -11,11 +11,9 @@
 
 #let chinese-numbering(
   ..nums,
-  location: none,
   in-appendix: false,
   brackets: false,
-) = locate(loc => {
-  // let actual_loc = if location == none { loc } else { location }
+) = context {
   if not in-appendix {
     if nums.pos().len() == 1 {
       "第" + int-to-cn-num(nums.pos().first()) + "章"
@@ -43,4 +41,4 @@
       )
     }
   }
-})
+}

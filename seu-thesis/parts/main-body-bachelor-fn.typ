@@ -6,8 +6,7 @@
     header: {
       set align(center)
       set text(font: 字体.宋体, size: 字号.小五, lang: "zh")
-      set par(first-line-indent: 0pt, leading: 16pt, justify: true)
-      show par: set block(spacing: 16pt)
+      set par(first-line-indent: 0pt, leading: 16pt, justify: true, spacing: 16pt)
 
       [东南大学本科毕业设计（论文）]
       v(-12pt)
@@ -20,7 +19,7 @@
       set align(center)
       set text(font: 字体.宋体, size: 字号.小五, lang: "zh")
       h(16pt)
-      counter(page).display()
+      context counter(page).display()
     },
     header-ascent: 10%,
     footer-descent: 10%,

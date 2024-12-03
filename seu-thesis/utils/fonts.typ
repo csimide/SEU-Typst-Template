@@ -35,7 +35,7 @@
   // 来自 pku-thesis
   let chars = s.clusters()
   let n = chars.len()
-  style(styles => {
+  context {
     let i = 0
     let now = ""
     let ret = ()
@@ -44,14 +44,14 @@
       let c = chars.at(i)
       let nxt = now + c
 
-      if measure(nxt, styles).width > width or c == "\n" {
+      if measure(nxt).width > width or c == "\n" {
         if bold {
-          ret.push(strong(now))
+          ret.push(text(weight: "bold", now))
         } else {
           ret.push(now)
         }
-        ret.push(v(-1em))
-        ret.push(line(length: 100%, stroke: (thickness: 0.5pt)))
+        ret.push(v(-par.spacing))
+        ret.push(line(start: (0em,  par.spacing/3), length: 100%, stroke: (thickness: 0.5pt)))
         if c == "\n" {
           now = ""
         } else {
@@ -70,19 +70,19 @@
       } else {
         ret.push(now)
       }
-      ret.push(v(-0.9em))
-      ret.push(line(length: 100%, stroke: (thickness: 0.5pt)))
+      ret.push(v(-par.spacing))
+      ret.push(line(start: (0em, par.spacing/3),length: 100%, stroke: (thickness: 0.5pt)))
     }
 
     ret.join()
-  })
+  }
 }
 
-#let justify-words(s, width: none) = {
+#let justify-words(s, width: auto) = {
   assert(type(s) == str and s.clusters().len() >= 2)
   context {
     let measure-width = measure(s).width
-    let expected-width = if width == none {
+    let expected-width = if width == auto {
       0pt
     } else if type(width) in (str, content) {
       measure(width).width.to-absolute()

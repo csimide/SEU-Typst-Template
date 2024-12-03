@@ -11,10 +11,10 @@
     header: {
       set align(center)
       set text(font: 字体.宋体, size: 字号.小五, lang: "zh")
-      set par(first-line-indent: 0pt, leading: 16pt, justify: true)
-      show par: set block(spacing: 16pt)
+      set par(first-line-indent: 0pt, leading: 16pt, justify: true, spacing: 16pt)
 
-      locate(loc => {
+      context {
+        let loc = here()
         // 真正的一级标题会被装入这里，如果是 none 则不渲染本页的页眉
         let true-level-1-heading = none
 
@@ -57,7 +57,7 @@
           v(-1em)
           line(length: 100%, stroke: (thickness: 0.5pt))
         }
-      })
+      }
       // locate 结束
       counter(footnote).update(0)
     },

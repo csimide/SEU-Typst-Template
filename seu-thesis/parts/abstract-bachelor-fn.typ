@@ -14,8 +14,7 @@
 
   if not cn-abstract in (none, [], "") or not cn-keywords in (none, ()) {
     {
-      set par(first-line-indent: 2em, leading: 14pt, justify: true)
-      show par: set block(spacing: 14pt)
+      set par(first-line-indent: 2em, leading: 14pt, justify: true, spacing: 14pt)
       // 我不理解为什么两个摘要需要不同的间距
 
       heading(outlined: true, bookmarked: true, level: 1, numbering: none)[摘要]
@@ -40,8 +39,7 @@
     {
       pagebreak(weak: true)
 
-      set par(first-line-indent: 2em, leading: 15pt, justify: true)
-      show par: set block(spacing: 15pt)
+      set par(first-line-indent: 2em, leading: 15pt, justify: true, spacing: 15pt)
       // 我不理解为什么两个摘要需要不同的间距
 
       heading(
