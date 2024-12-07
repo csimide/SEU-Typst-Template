@@ -16,14 +16,14 @@
     ),
   )
   set text(font: 字体.宋体, size: 字号.小四, weight: "regular", lang: "zh")
-  set par(first-line-indent: 2em, leading: 15pt, justify: true, spacing: 15pt)
+  set par(first-line-indent: 2em, leading: 15pt, justify: true, spacing: 15.2pt)
 
   show: show-cn-fakebold
 
   show: show-bibliography.with(bilingual: bilingual-bib)
 
   show heading: show-heading.with(
-    heading-top-margin: (0.2cm, 0.19cm, 0cm),
+    heading-top-margin: (0.2cm, 0.11cm, 0cm),
     heading-bottom-margin: (0.12cm, 0.1cm, 0cm),
     heading-space: (0.5em, 0.3em),
     heading-indent: (0cm, 0em, 0em),
