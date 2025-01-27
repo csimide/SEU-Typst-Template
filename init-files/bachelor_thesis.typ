@@ -1,20 +1,15 @@
 #import "../seu-thesis/lib.typ": bachelor-conf, bachelor-utils
 #let (thanks, show-appendix) = bachelor-utils
 
-
 /*
   使用模板前，请先安装 https://github.com/csimide/SEU-Typst-Template/tree/master/fonts 内的所有字体。
   如果使用 Web App，请将这些字体上传到 Web App 项目的根目录中。
 */
 
 // 由于教务处模板没有严格规定代码块的字体，为了美观，在此设定代码块字体
-#import "@preview/sourcerer:0.2.1": code
-#show raw.where(block: false): set text(font: ("Fira Code", "SimHei"))
-#let code = code.with(
-  numbering: true,
-  radius: 0pt,
-  text-style: (font: ("Courier New", "SimHei")),
-)
+#show raw: set text(font: ("Fira Code", "SimHei"))
+#import "@preview/codelst:2.0.2": sourcecode
+#let code = sourcecode
 
 #show: doc => bachelor-conf(
   student-id: "00121001",
@@ -90,7 +85,7 @@ ABSTRACT为三号Times New Roman加粗居中。
   #figure(
     image("./demo_image/24h_rain.png", width: 8.36cm),// 宽度/高度需要自行调整
     caption: [每小时降水量24小时均值分布图]
-  )
+  ) <每小时降水量24小时均值分布图>
   ```
 )
 
@@ -116,8 +111,6 @@ ABSTRACT为三号Times New Roman加粗居中。
   ```
 )
 
-// 上面这处代码请不要直接复制
-// 因为为了规避渲染报错，加了一个零宽度空格
 
 #figure(
   grid(
