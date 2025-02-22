@@ -16,7 +16,7 @@
     ),
   )
   set text(font: 字体.宋体, size: 字号.小四, weight: "regular", lang: "zh")
-  set par(first-line-indent: 2em, leading: 15pt, justify: true, spacing: 15.2pt)
+  set par(first-line-indent: (amount: 2em, all: true), leading: 15pt, justify: true, spacing: 15.2pt)
 
   show: show-cn-fakebold
 

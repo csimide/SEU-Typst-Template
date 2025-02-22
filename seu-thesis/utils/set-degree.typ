@@ -8,7 +8,7 @@
 #let set-degree(always-new-page: true, bilingual-bib: true, doc) = {
   set page(paper: "a4", margin: (top: 2cm, bottom: 2cm, left: 2cm, right: 2cm))
   set text(font: 字体.宋体, size: 字号.小四, weight: "regular", lang: "zh")
-  set par(first-line-indent: 2em, leading: 9.6pt, justify: true, spacing: 9.6pt)
+  set par(first-line-indent: (amount: 2em, all: true), leading: 9.6pt, justify: true, spacing: 9.6pt)
   
   show: show-cn-fakebold
 
@@ -25,6 +25,7 @@
     ),
   )
   show heading.where(level: 1): set heading(supplement: none)
+  // 标题写入 state 的保存逻辑在 show-heading.typ
 
   show figure.where(kind: table): set figure.caption(position: top)
   show figure: set text(size: 字号.五号, font: 字体.宋体, weight: "regular")

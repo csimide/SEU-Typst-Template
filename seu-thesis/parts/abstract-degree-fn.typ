@@ -13,7 +13,7 @@
   counter(page).update(1)
 
   set text(font: 字体.宋体, size: 字号.小四)
-  set par(first-line-indent: 2em, leading: 9.6pt, justify: true, spacing: 9.6pt)
+  set par(first-line-indent: (amount: 2em, all: true), leading: 9.6pt, justify: true, spacing: 9.6pt)
 
   if not cn-abstract in (none, [], "") or not cn-keywords in (none, ()) {
     {

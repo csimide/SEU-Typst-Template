@@ -19,7 +19,7 @@
     set text(font: 字体.宋体, size: 10.6pt, lang: "zh")
     // 字号来自“附件1：学位论文独创性和使用授权声明.pdf”
 
-    set par(first-line-indent: 2em, leading: 1.5em, justify: true)
+    set par(first-line-indent: (amount: 2em, all: true), leading: 1.5em, justify: true)
     set block(spacing: 1.5em)
 
     set align(horizon)

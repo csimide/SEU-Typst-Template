@@ -1,5 +1,6 @@
 #import "../utils/states.typ": part-state
 #import "../utils/fonts.typ": 字体, 字号
+#import "../utils/get-heading-title.typ": get-heading-at-page
 
 #let main-body-bachelor-conf(
   thesis-name: [],
@@ -15,45 +16,31 @@
 
       context {
         let loc = here()
-        // 真正的一级标题会被装入这里，如果是 none 则不渲染本页的页眉
-        let true-level-1-heading = none
 
-        // 先确定下一个一级标题
-        let next-level-1-heading = query(
-          selector(heading.where(level: 1)).after(loc),
-        ).filter(
-          it => it.location().page() == loc.page()
-        ).at(0, default: none)
-
-        if next-level-1-heading == none {
-          // 如本页不存在下一个一级标题
-          // 1. 本页不是一级标题所在页面（不需要考虑是否显示的问题）
-          // 2. 本页所在章节由上一个一级标题所定义
-          true-level-1-heading = query(
-            selector(heading.where(level: 1)).before(loc),
-          ).at(-1, default: none)
-        } else {
-          // 如果在本页，那么就要处理“一级标题是否显示页眉”参数
-          true-level-1-heading = if first-level-title-page-disable-heading {none} else {next-level-1-heading} 
+        // 上一个一级标题会被装入这里，如果是 none 则不渲染本页的页眉
+        // 同时，需要确定本页上是否有一级标题
+        let (last-level-1-heading, is-level-1-heading-on-this-page) = get-heading-at-page(loc)
+        // 如果在本页，那么就要处理“一级标题是否显示页眉”参数
+        if is-level-1-heading-on-this-page and first-level-title-page-disable-heading {
+          last-level-1-heading = none
         }
-        // 取所在章节的逻辑结束
 
-        if true-level-1-heading == none {
+        if last-level-1-heading == none {
           []
         } else if calc.even(loc.page()) {
           thesis-name.heading
           v(-1em)
           line(length: 100%, stroke: (thickness: 0.5pt))
         } else {
-          if true-level-1-heading.numbering != none {
-            (true-level-1-heading.numbering)(
+          if last-level-1-heading.numbering != none {
+            (last-level-1-heading.numbering)(
               counter(heading.where(level: 1)).at(
-                true-level-1-heading.location(),
+                last-level-1-heading.location(),
               ).first(),
             )
             h(0.5em)
           }
-          true-level-1-heading.body
+          last-level-1-heading.body
           v(-1em)
           line(length: 100%, stroke: (thickness: 0.5pt))
         }

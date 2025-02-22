@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.2] - 2025-02-22
+
+- 适配 Typst 0.13.0 ，使用 `par(first-line-indent: (length, all: true))` 代替原有的 `fake-par` 方案。
+- 改用更优的页眉显示章节标题逻辑，详见 `seu-thesis\utils\get-heading-title.typ` 注释。
+
 ## [0.3.1] - 2025-01-26
 
 - 适配 Typst 0.12.0 。
@@ -79,6 +84,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 此版本重构了目录结构，合并两个模板的大部分工具函数，并按 Typst template package 组织文件。
 
+[0.3.2]: https://github.com/csimide/SEU-Typst-Template/compare/v0.3.1...v0.3.2
 [0.3.1]: https://github.com/csimide/SEU-Typst-Template/compare/v0.3.0...v0.3.1
 [0.3.0]: https://github.com/csimide/SEU-Typst-Template/compare/c44b5172178c0c2380b322e50931750e2d761168...v0.3.0
 [0.2.2]: https://github.com/csimide/SEU-Typst-Template/compare/908a28c7da02b260f04dcf31ed22278a212cad19...c44b5172178c0c2380b322e50931750e2d761168

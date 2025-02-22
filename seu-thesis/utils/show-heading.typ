@@ -2,7 +2,7 @@
 #import "packages.typ": show-cn-fakebold, i-figured
 #import "states.typ": *
 #import "to-string.typ": to-string
-#import "fake-par.typ": fake-par
+#import "get-heading-title.typ": first-heading, last-heading
 
 #let show-heading(
   // 下方以数组形式给出的参数，代表 level 1, level 2, ... 标题分别使用的参数。
@@ -101,7 +101,25 @@
     ),
   )
 
-  i-figured.reset-counters((level: it.level), return-orig-heading: false)
+  // 与 `get-heading-title` 配合，用于将一级标题信息写入 state ，供页眉显示章节的 feature 使用
+  // 该 feature 只在学位论文中用到
+  // 更多信息见 `get-heading-title.typ`
+  if it.level == 1 {
+    context {
+      let loc = here()
+      last-heading.update(headings => {
+        headings.insert(str(loc.page()), it)
+        return headings
+      })
+      first-heading.update(headings => {
+        let k = str(loc.page())
+        if k not in headings.keys() {
+          headings.insert(k, it)
+        }
+        return headings
+      })
+    }
+  }
 
-  fake-par
+  i-figured.reset-counters((level: it.level), return-orig-heading: false)
 }

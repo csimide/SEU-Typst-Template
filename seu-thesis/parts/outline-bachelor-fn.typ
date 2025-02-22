@@ -15,22 +15,14 @@
   v(3pt)
 
   show outline.entry.where(level: 1): it => {
-    if it.element.numbering == none and it.body.text.clusters().len() == 2 {
-      link(it.element.location(), {
-        it.body.text.clusters().first()
+    if it.element.numbering == none and it.element.body.text.clusters().len() == 2 {
+      show regex("\p{script=Han}{2}"): it => {
+        it.text.first()
         h(2em)
-        it.body.text.clusters().last()
-      })
-      h(3pt)
-      box(repeat("."), width: 1fr)
-      h(3pt)
-      link(it.element.location(), {
-        it.page
-      })
-      // 默认的 outline 中间没有链接，所以我也没加
-    } else {
+        it.text.last()
+      }
       it
-    }
+    } else { it }
   }
 
   outline(title: none, depth: outline-depth, indent: 2em)
