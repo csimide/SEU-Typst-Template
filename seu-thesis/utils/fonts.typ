@@ -19,13 +19,13 @@
 )
 
 #let 字体 = (
-  仿宋: ("Times New Roman", "FangSong", "STFangSong"),
-  宋体: ("Times New Roman", "SimSun"),
-  黑体: ("Times New Roman", "SimHei"),
+  仿宋: ((name: "Times New Roman", covers: "latin-in-cjk"), "FangSong", "STFangSong"),
+  宋体: ((name: "Times New Roman", covers: "latin-in-cjk"), "SimSun"),
+  黑体: ((name: "Times New Roman", covers: "latin-in-cjk"), "SimHei"),
   //标题黑体: ("SimHei"),
-  标题宋体: ("Times New Roman", "STZhongsong", "SimSun"),
-  楷体: ("Times New Roman", "KaiTi"),
-  代码: ("New Computer Modern Mono", "Times New Roman", "SimSun"),
+  标题宋体: ((name: "Times New Roman", covers: "latin-in-cjk"), "STZhongsong", "SimSun"),
+  楷体: ((name: "Times New Roman", covers: "latin-in-cjk"), "KaiTi"),
+  代码: ((name: "New Computer Modern Mono", covers: "latin-in-cjk"), "SimSun"),
 )
 
 #let ziti = 字体
