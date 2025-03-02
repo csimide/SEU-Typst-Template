@@ -2,7 +2,7 @@
 #import "../utils/set-bachelor.typ": set-bachelor
 #import "../utils/states.typ": part-state
 
-#import "../pages/cover-bachelor-fn.typ": bachelor-cover-conf
+#import "../pages/cover-bachelor-trans-fn.typ": bachelor-trans-cover-conf
 #import "../parts/abstract-bachelor-fn.typ": abstract-conf
 #import "../parts/main-body-bachelor-fn.typ": main-body-bachelor-conf
 #import "../parts/outline-bachelor-fn.typ": outline-conf
@@ -10,15 +10,16 @@
 #import "../utils/thanks.typ": thanks
 #import "../utils/show-appendix.typ": show-appendix-bachelor
 
-#let bachelor-utils = (thanks, show-appendix-bachelor)
+#let bachelor-trans-utils = (thanks, show-appendix-bachelor)
 
-#let bachelor-conf(
+#let bachelor-trans-conf(
   student-id: none,
   author: none,
   school: none,
   major: none,
   advisor: none,
-  thesis-name: none,
+  thesis-name-cn: none,
+  thesis-name-raw: none,
   date: none,
   cn-abstract: none,
   cn-keywords: none,
@@ -31,18 +32,16 @@
   show: set-bachelor.with(bilingual-bib: bilingual-bib)
 
   // 封面
-  bachelor-cover-conf(
+  bachelor-trans-cover-conf(
     student_id: student-id,
     author: author,
     school: school,
     major: major,
     advisor: advisor,
-    thesis-name: thesis-name,
+    thesis-name-cn: thesis-name-cn,
+    thesis-name-raw: thesis-name-raw,
     date: date,
   )
-
-  // 独创性声明
-  include "../pages/statement-bachelor-ic.typ"
 
   // 摘要
   abstract-conf(
@@ -54,21 +53,20 @@
 
   // 目录
   outline-conf(outline-depth: outline-depth)
-
-
   // 正文
-  show: main-body-bachelor-conf
+  show: main-body-bachelor-conf.with(header-text: "本科毕业设计（论文）资料翻译")
   doc
 }
 
-#show: bachelor-conf.with(
+#show: bachelor-trans-conf.with(
   student-id: "00121001",
   author: "王东南",
   school: "示例学院",
   major: "示例专业",
   advisor: "湖牌桥",
-  thesis-name: "示例论文标题\n此行空白时下划线自动消失",
-  date: "某个起止日期",
+  thesis-name-cn: "新兴排版方式下的摸鱼科学优化研究",
+  thesis-name-raw: "Optimization of Fish-Touching Strategies \n in Emerging Typesetting Environments",
+  date: "某个完成日期",
   cn-abstract: [示例摘要],
   cn-keywords: ("关键词1", "关键词2"),
   en-abstract: [#lorem(100)],

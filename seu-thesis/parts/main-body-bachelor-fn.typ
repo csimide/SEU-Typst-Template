@@ -1,14 +1,17 @@
 #import "../utils/states.typ": part-state
 #import "../utils/fonts.typ": 字体, 字号
 
-#let main-body-bachelor-conf(doc) = {
+#let main-body-bachelor-conf(
+  header-text: "东南大学本科毕业设计（论文）", 
+  doc
+) = {
   set page(
     header: {
       set align(center)
       set text(font: 字体.宋体, size: 字号.小五, lang: "zh")
       set par(first-line-indent: 0pt, leading: 16pt, justify: true, spacing: 16pt)
 
-      [东南大学本科毕业设计（论文）]
+      header-text
       v(-12pt)
       line(length: 100%, stroke: (thickness: 0.5pt))
 

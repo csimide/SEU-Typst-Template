@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - 适配 Typst 0.13.0 ，使用 `par(first-line-indent: (length, all: true))` 代替原有的 `fake-par` 方案。
 - 改用更优的页眉显示章节标题逻辑，详见 `seu-thesis\utils\get-heading-title.typ` 注释。
+- 添加毕设翻译模板。
 
 ## [0.3.1] - 2025-01-26
 

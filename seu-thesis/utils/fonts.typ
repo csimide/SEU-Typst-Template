@@ -33,7 +33,7 @@
 
 #let chineseunderline(s, width: 300pt, bold: false) = {
   // 来自 pku-thesis
-  let chars = s.clusters()
+  let chars = if s == none or s == "" {(" ")} else {s.clusters()}
   let n = chars.len()
   context {
     let i = 0
