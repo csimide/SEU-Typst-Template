@@ -26,12 +26,14 @@
   标题宋体: ((name: "Times New Roman", covers: "latin-in-cjk"), "STZhongsong", "SimSun"),
   楷体: ((name: "Times New Roman", covers: "latin-in-cjk"), "KaiTi"),
   代码: ((name: "New Computer Modern Mono", covers: "latin-in-cjk"), "SimSun"),
+  思源宋体: ((name: "Times New Roman", covers: "latin-in-cjk"), "Source Han Serif"),
+  思源黑体: ((name: "Times New Roman", covers: "latin-in-cjk"), "Source Han Sans"),
 )
 
 #let ziti = 字体
 #let zihao = 字号
 
-#let chineseunderline(s, width: 300pt, bold: false) = {
+#let chineseunderline(s, width: 300pt, bold: false, bottom: none) = {
   // 来自 pku-thesis
   let chars = if s == none or s == "" {(" ")} else {s.clusters()}
   let n = chars.len()
@@ -39,6 +41,10 @@
     let i = 0
     let now = ""
     let ret = ()
+    let padding = par.spacing/3
+    if bottom != none {
+      padding = bottom
+    }
 
     while i < n {
       let c = chars.at(i)
@@ -51,7 +57,7 @@
           ret.push(now)
         }
         ret.push(v(-par.spacing))
-        ret.push(line(start: (0em,  par.spacing/3), length: 100%, stroke: (thickness: 0.5pt)))
+        ret.push(line(start: (0em, padding), length: 100%, stroke: (thickness: 0.5pt)))
         if c == "\n" {
           now = ""
         } else {
@@ -71,7 +77,7 @@
         ret.push(now)
       }
       ret.push(v(-par.spacing))
-      ret.push(line(start: (0em, par.spacing/3),length: 100%, stroke: (thickness: 0.5pt)))
+      ret.push(line(start: (0em, padding),length: 100%, stroke: (thickness: 0.5pt)))
     }
 
     ret.join()

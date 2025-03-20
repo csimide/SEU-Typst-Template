@@ -24,6 +24,7 @@
       it
     } else { it }
   }
+  set outline.entry(fill: repeat([.], gap: 0.05em))
 
   outline(title: none, depth: outline-depth, indent: 2em)
   // 如果要和 Word 模板完全一样，需要改成 indent: n => (n + 1) * 2em
