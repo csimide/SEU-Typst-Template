@@ -26,8 +26,8 @@
   标题宋体: ((name: "Times New Roman", covers: "latin-in-cjk"), "STZhongsong", "SimSun"),
   楷体: ((name: "Times New Roman", covers: "latin-in-cjk"), "KaiTi"),
   代码: ((name: "New Computer Modern Mono", covers: "latin-in-cjk"), "SimSun"),
-  思源宋体: ((name: "Times New Roman", covers: "latin-in-cjk"), "Source Han Serif"),
-  思源黑体: ((name: "Times New Roman", covers: "latin-in-cjk"), "Source Han Sans"),
+  // 思源宋体: ((name: "Times New Roman", covers: "latin-in-cjk"), "Source Han Serif SC", "Source Han Serif"), // 暂未使用
+  思源黑体: ((name: "Times New Roman", covers: "latin-in-cjk"), "Source Han Sans SC", "Source Han Sans"),
 )
 
 #let ziti = 字体

@@ -19,10 +19,11 @@
     right: 2cm,
   ),
   // 原模板中调整了图片亮度和对比度，因此直接导出了调整后的版本
+  // 原始图片在本仓库的 ref 目录中
   background: image("../assets/bachelor_cover_adjusted.png")
 )[
 
-  #set text(lang: "zh")
+  #set text(lang: "zh", region: "cn")
 
   #set align(center)
   //#hide[#heading(outlined: false, bookmarked: true)[封面]]
@@ -36,9 +37,9 @@
   #block(
     height: 2cm,
     {
-      // 调不到和原模板一样的字体，直接先用原模板的位图了
+      // 字号/字距调节太麻烦，并且需要另行安装思源宋体，故使用 svg 代替
       // text(font: 字体.思源宋体, size: 36pt, weight: 900, tracking: 0pt, "本科毕业设计（论文）报告")
-      image("../assets/bachelor_title.jpeg", width: 16.48cm)
+      image("../assets/bachelor_title.svg", width: 16.48cm)
     },
   )
 
