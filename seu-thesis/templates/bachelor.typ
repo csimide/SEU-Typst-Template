@@ -10,6 +10,8 @@
 #import "../utils/thanks.typ": thanks
 #import "../utils/show-appendix.typ": show-appendix-bachelor
 
+#import "../pages/back-bachelor-fn.typ": bachelor-back
+
 #let bachelor-utils = (thanks, show-appendix-bachelor)
 
 #let bachelor-conf(
@@ -55,10 +57,11 @@
   // 目录
   outline-conf(outline-depth: outline-depth)
 
-
   // 正文
-  show: main-body-bachelor-conf
-  doc
+  main-body-bachelor-conf(doc)
+
+  // 封底
+  bachelor-back()
 }
 
 #show: bachelor-conf.with(
