@@ -57,7 +57,7 @@
 
       if not en-keywords in (none, ()) {
         assert(type(en-keywords) == array)
-        "KEY WORDS: " + en-keywords.join("，")
+        "KEY WORDS: " + en-keywords.join(", ")
       }
     }
   }
