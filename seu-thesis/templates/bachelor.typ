@@ -22,6 +22,7 @@
   advisor: none,
   thesis-name: none,
   date: none,
+  cover_date: datetime.today(),
   cn-abstract: none,
   cn-keywords: none,
   en-abstract: none,
@@ -41,6 +42,7 @@
     advisor: advisor,
     thesis-name: thesis-name,
     date: date,
+    cover_date: cover_date,
   )
 
   // 独创性声明
