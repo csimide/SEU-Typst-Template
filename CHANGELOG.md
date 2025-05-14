@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.4] - 2025-05-14
+
+- 修复本科毕设模板多处格式错误：
+  - 英文关键词应当使用半角逗号分隔 by @idawnlight ；
+  - 参考文献应使用五号字。
+- 本科毕设模版提供自定义封面日期的选项 by @idawnlight 。
+
 ## [0.3.3] - 2025-03-29
 
 - 更新本科毕设模板至教务处 2025 模板 by @idawnlight 。
@@ -89,6 +96,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 此版本重构了目录结构，合并两个模板的大部分工具函数，并按 Typst template package 组织文件。
 
+[0.3.4]: https://github.com/csimide/SEU-Typst-Template/compare/v0.3.3...v0.3.4
 [0.3.3]: https://github.com/csimide/SEU-Typst-Template/compare/v0.3.2...v0.3.3
 [0.3.2]: https://github.com/csimide/SEU-Typst-Template/compare/v0.3.1...v0.3.2
 [0.3.1]: https://github.com/csimide/SEU-Typst-Template/compare/v0.3.0...v0.3.1
