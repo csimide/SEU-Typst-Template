@@ -20,7 +20,7 @@
 
   show: show-cn-fakebold
 
-  show: show-bibliography.with(bilingual: bilingual-bib)
+  show: show-bibliography.with(bilingual: bilingual-bib, font-size: 字号.五号)
 
   show heading: show-heading.with(
     heading-top-margin: (0.2cm, 0.11cm, 0cm),
@@ -31,10 +31,10 @@
     heading-text: (
       (font: 字体.黑体, size: 字号.三号, weight: "bold"),
       (font: 字体.黑体, size: 字号.四号, weight: "regular"),
-      (font: 字体.宋体, size: 字号.小四, weight: "regular")
+      (font: 字体.宋体, size: 字号.小四, weight: "regular"),
     ),
-    always-new-page: true, 
-    auto-h-spacing: true, 
+    always-new-page: true,
+    auto-h-spacing: true,
   )
   show heading.where(level: 1): set heading(supplement: none)
 

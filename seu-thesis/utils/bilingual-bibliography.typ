@@ -7,13 +7,16 @@
 ) = {
   // Please fill in the remaining mapping table here
   mapping = (
-    //"等": "et al",
-    "卷": "Vol.",
-    "册": "Bk.",
-    // "译": "tran",
-    // "等译": "et al. tran",
-    // 注: 请见下方译者数量判断部分。
-  ) + mapping
+    (
+      //"等": "et al",
+      "卷": "Vol.",
+      "册": "Bk.",
+      // "译": "tran",
+      // "等译": "et al. tran",
+      // 注: 请见下方译者数量判断部分。
+    )
+      + mapping
+  )
 
   let to-string(content) = {
     if content.has("text") {
@@ -101,23 +104,26 @@
           "et al."
           // 如果原文就是 `等.`，则仅需简单替换，不需要额外处理
           // 如果原文 `等` 后没有跟随英文标点，则需要补充一个空格
-          if not itt.text.last() in (
-            ".",
-            ",",
-            ";",
-            ":",
-            "[",
-            "]",
-            "/",
-            "\\",
-            "<",
-            ">",
-            "?",
-            "(",
-            ")",
-            " ",
-            "\"",
-            "'",
+          if not (
+            itt.text.last()
+              in (
+                ".",
+                ",",
+                ";",
+                ":",
+                "[",
+                "]",
+                "/",
+                "\\",
+                "<",
+                ">",
+                "?",
+                "(",
+                ")",
+                " ",
+                "\"",
+                "'",
+              )
           ) {
             " "
           }
@@ -147,6 +153,7 @@
 #let show-bibliography(
   mapping: (:),
   bilingual: true,
+  font-size: auto,
   it,
 ) = {
   set bibliography(title: none)
@@ -157,6 +164,8 @@
       numbering: none,
       level: 1,
     )[参考文献]
+    assert(type(font-size) in (auto, length), message: "字体大小需要为 `auto` 或 `length`")
+    set text(size: font-size) if font-size != auto
     if bilingual {
       bilingual-bibliography(mapping: mapping, it)
     } else {
