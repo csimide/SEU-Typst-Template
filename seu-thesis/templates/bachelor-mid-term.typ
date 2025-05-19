@@ -1,4 +1,3 @@
-#import "@preview/cuti:0.3.0"
 #import "../utils/fonts.typ": 字体, 字号
 
 #let bachelor-mid-term-conf(
