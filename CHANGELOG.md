@@ -11,6 +11,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - 英文关键词应当使用半角逗号分隔 by @idawnlight ；
   - 参考文献应使用五号字。
 - 本科毕设模版提供自定义封面日期的选项 by @idawnlight 。
+- 统一使用连字符风格（kebab-case）的参数名。
+  - 如您使用本科毕设模板、学位论文模板：无需改动即可升级。
+  - 如您使用本科毕设翻译模板，请将 `student_id` 改为 `student-id`。
 
 ## [0.3.3] - 2025-03-29
 
