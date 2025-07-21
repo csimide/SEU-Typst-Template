@@ -11,7 +11,7 @@
 #let show-update-heading-title(it) = {
   show heading.where(level: 1): curr-heading => {
     curr-heading
-    
+
     context {
       let loc = here()
       last-heading.update(headings => {
@@ -31,12 +31,25 @@
 }
 */
 
-#let find-headings(headings, page-num) = if page-num > 0 {
-  headings.at(str(page-num), default: find-headings(headings, page-num - 1))
+/* 由于递归深度限制，此处不再使用递归
+ * 见 https://github.com/csimide/SEU-Typst-Template/issues/6
+ */
+// #let find-headings(headings, page-num) = if page-num > 0 {
+//   headings.at(str(page-num), default: find-headings(headings, page-num - 1))
+// }
+
+// by https://github.com/amomorning
+#let find-headings(headings, page-num) = {
+  while page-num > 0 {
+    if headings.at(str(page-num), default: none) != none {
+      return headings.at(str(page-num))
+    } else {
+      page-num -= 1
+    }
+  }
 }
 
-
-// 返回 array `(str|none, bool,)` 
+// 返回 array `(str|none, bool,)`
 // 第一个元素表示当前的一级标题，如果找不到则为 none
 // 第二个元素表示当前页面是否为标题页面，是则为 true
 #let get-heading-at-page(loc) = {
